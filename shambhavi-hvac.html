@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Shambhavi Enterprises — Airconditioning Engineers</title>
+<meta name="description" content="HVAC design, supply and installation engineers. VRF, cassette, ducted and packaged air conditioning for homes, hospitals, hotels, restaurants, malls and offices. Gorakhpur, Uttar Pradesh, India."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Expanded:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#10243a;
+  --navy-2:#0a1929;
+  --steel:#1d6fb8;
+  --sky:#3fb6e6;
+  --red:#ef2d56;
+  --orange:#f7941d;
+  --ink:#22303c;
+  --slate:#5b6b78;
+  --cloud:#f3f7fb;
+  --cloud-2:#e7eef5;
+  --white:#ffffff;
+  --line:#dde6ee;
+  --sans:'Archivo',system-ui,sans-serif;
+  --gut:clamp(20px,5vw,72px);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--white);color:var(--ink);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+::selection{background:var(--sky);color:var(--navy);}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:1280px;margin:0 auto;padding:0 var(--gut);}
+.eyebrow{font-weight:800;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--steel);}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:15px;padding:14px 26px;border-radius:8px;cursor:pointer;border:2px solid transparent;transition:.2s;justify-content:center;}
+.btn-primary{background:var(--steel);color:#fff;}
+.btn-primary:hover{background:#155a96;}
+.btn-orange{background:var(--orange);color:#fff;}
+.btn-orange:hover{background:#dd8011;}
+.btn-outline{background:transparent;border-color:var(--steel);color:var(--steel);}
+.btn-outline:hover{background:var(--steel);color:#fff;}
+.btn-ghost-light{background:transparent;border-color:rgba(255,255,255,.5);color:#fff;}
+.btn-ghost-light:hover{background:#fff;color:var(--navy);}
+
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.rv.in{opacity:1;transform:none;}
+.rv.d1{transition-delay:.08s;}.rv.d2{transition-delay:.16s;}.rv.d3{transition-delay:.24s;}
+
+/* logo mark */
+.se-logo{display:flex;align-items:center;gap:12px;}
+.se-mark{width:42px;height:42px;flex-shrink:0;}
+.se-name{font-family:'Archivo Expanded',var(--sans);font-weight:800;font-size:15px;letter-spacing:.02em;line-height:1.05;color:var(--ink);text-transform:uppercase;}
+.se-name small{display:block;font-size:11px;letter-spacing:.04em;}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;padding:13px var(--gut);transition:.35s;background:transparent;}
+nav.solid{background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);box-shadow:0 2px 18px rgba(16,36,58,.06);}
+nav .se-name{color:#fff;}
+nav.solid .se-name{color:var(--ink);}
+.nav-right{display:flex;align-items:center;gap:22px;}
+.nav-links{display:flex;gap:22px;}
+.nav-links a{font-weight:600;font-size:14.5px;color:#fff;opacity:.85;transition:.2s;}
+nav.solid .nav-links a{color:var(--ink);}
+.nav-links a:hover{opacity:1;}
+.nav-cta{background:var(--orange);color:#fff !important;padding:10px 18px;border-radius:8px;font-weight:700;font-size:14px;opacity:1 !important;}
+.nav-cta:hover{background:#dd8011;}
+@media(max-width:1000px){.nav-links{display:none;}}
+
+/* ===== HERO ===== */
+.hero{background:var(--navy);color:#fff;position:relative;overflow:hidden;padding:clamp(120px,16vh,165px) var(--gut) clamp(60px,9vh,100px);}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(55% 70% at 85% 10%,rgba(63,182,230,.18),transparent 55%),
+  radial-gradient(45% 60% at 5% 100%,rgba(247,148,29,.1),transparent 55%);}
+/* airflow lines */
+.hero::after{content:"";position:absolute;inset:0;opacity:.5;
+  background:repeating-linear-gradient(115deg,transparent 0 38px,rgba(255,255,255,.025) 38px 39px);}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(40px,5vw,70px);align-items:center;max-width:1280px;margin:0 auto;}
+@media(max-width:920px){.hero-grid{grid-template-columns:1fr;gap:42px;}}
+.hero .eyebrow{color:var(--sky);}
+.hero h1{font-family:'Archivo Expanded',var(--sans);font-weight:800;font-size:clamp(36px,5.6vw,68px);line-height:1.02;letter-spacing:-.01em;margin:16px 0 0;}
+.hero h1 .hl{color:var(--sky);}
+.hero .sub{margin-top:22px;font-size:clamp(16px,1.7vw,19px);line-height:1.6;color:rgba(255,255,255,.78);max-width:500px;}
+.hero-cta{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;}
+.hero-trust{margin-top:30px;display:flex;gap:26px;flex-wrap:wrap;}
+.hero-trust .ht{display:flex;flex-direction:column;}
+.hero-trust .ht b{font-family:'Archivo Expanded',var(--sans);font-weight:800;font-size:26px;color:#fff;line-height:1;}
+.hero-trust .ht span{font-size:12.5px;color:rgba(255,255,255,.6);margin-top:5px;}
+/* hero visual card */
+.hero-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:30px;backdrop-filter:blur(4px);}
+.hero-card h3{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;}
+.hero-card .hc-sub{font-size:13px;color:rgba(255,255,255,.6);margin-bottom:20px;}
+.hc-feat{display:flex;align-items:center;gap:13px;padding:13px 0;border-top:1px solid rgba(255,255,255,.12);}
+.hc-feat:first-of-type{border-top:none;}
+.hc-feat .hf-ic{width:40px;height:40px;border-radius:10px;background:rgba(63,182,230,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--sky);}
+.hc-feat .hf-ic svg{width:21px;height:21px;}
+.hc-feat .hf-tx{font-size:14px;line-height:1.4;color:rgba(255,255,255,.85);}
+.hc-feat .hf-tx b{display:block;color:#fff;font-weight:700;}
+.hero-card .btn{width:100%;margin-top:20px;}
+
+/* ===== STRIP ===== */
+.cred{background:var(--navy-2);color:#fff;padding:18px var(--gut);}
+.cred .wrap{display:flex;align-items:center;justify-content:center;gap:14px 40px;flex-wrap:wrap;text-align:center;}
+.cred span{font-size:14px;font-weight:600;color:rgba(255,255,255,.75);display:inline-flex;align-items:center;gap:9px;}
+.cred span svg{width:18px;height:18px;color:var(--sky);}
+
+/* ===== SECTION ===== */
+.section{padding:clamp(70px,10vh,110px) var(--gut);}
+.section-head{max-width:720px;margin-bottom:46px;}
+.section-head.center{margin-inline:auto;text-align:center;}
+.section h2{font-family:'Archivo Expanded',var(--sans);font-weight:800;font-size:clamp(28px,4.2vw,50px);line-height:1.06;letter-spacing:-.01em;margin-top:12px;}
+.section h2 .hl{color:var(--steel);}
+.section .lead{margin-top:16px;font-size:17.5px;color:var(--slate);line-height:1.6;}
+
+/* ===== CALCULATOR ===== */
+.calc{background:var(--cloud);}
+.calc-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,3vw,40px);align-items:start;}
+@media(max-width:920px){.calc-grid{grid-template-columns:1fr;}}
+.calc-panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:clamp(24px,3vw,36px);box-shadow:0 14px 40px rgba(16,36,58,.05);}
+.cstep{margin-bottom:24px;}
+.cstep:last-child{margin-bottom:0;}
+.cstep .clbl{font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--steel);margin-bottom:11px;display:block;}
+.cseg{display:flex;flex-wrap:wrap;gap:8px;}
+.cseg button{font-family:var(--sans);font-weight:600;font-size:14px;color:var(--ink);background:var(--cloud);border:1.5px solid var(--line);border-radius:8px;padding:11px 15px;cursor:pointer;transition:.18s;}
+.cseg button:hover{border-color:var(--steel);}
+.cseg button.on{background:var(--steel);color:#fff;border-color:var(--steel);}
+.cfield{display:flex;flex-direction:column;}
+.cfield input[type=number]{width:100%;background:var(--cloud);border:1.5px solid var(--line);border-radius:8px;font-family:var(--sans);font-size:15px;color:var(--ink);padding:12px 14px;outline:none;transition:.18s;}
+.cfield input[type=number]:focus{border-color:var(--steel);}
+.crow{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:430px){.crow{grid-template-columns:1fr;}}
+.calc-btn{width:100%;margin-top:6px;}
+/* result */
+.calc-out{background:var(--navy);color:#fff;border-radius:16px;padding:clamp(24px,3vw,34px);position:sticky;top:88px;}
+.co-empty{color:rgba(255,255,255,.6);font-size:15px;line-height:1.6;}
+.co-empty svg{width:40px;height:40px;color:var(--sky);margin-bottom:14px;}
+.co-result{display:none;}
+.co-result.show{display:block;}
+.co-tonnage{font-family:'Archivo Expanded',var(--sans);font-weight:800;font-size:clamp(40px,6vw,60px);line-height:1;color:var(--sky);}
+.co-tonnage span{font-size:18px;color:rgba(255,255,255,.6);font-family:var(--sans);font-weight:600;}
+.co-sub{font-size:13px;color:rgba(255,255,255,.55);margin-top:6px;}
+.co-block{margin-top:24px;border-top:1px solid rgba(255,255,255,.14);padding-top:20px;}
+.co-block .cb-lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);font-weight:800;margin-bottom:8px;}
+.co-block .cb-pick{font-family:'Archivo Expanded',var(--sans);font-weight:800;font-size:20px;color:#fff;}
+.co-block .cb-why{font-size:13.5px;color:rgba(255,255,255,.7);line-height:1.55;margin-top:8px;}
+.co-actions{margin-top:24px;display:flex;flex-direction:column;gap:10px;}
+.co-actions .btn{width:100%;}
+.co-wa{background:#25D366 !important;color:#fff !important;border-color:#25D366 !important;}
+.co-wa:hover{background:#1da851 !important;}
+.calc-note{margin-top:18px;font-size:12.5px;color:var(--slate);line-height:1.55;}
+
+/* ===== DUCTS / DELIVERY TYPES ===== */
+.ducts{background:#fff;}
+.duct-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media(max-width:860px){.duct-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:440px){.duct-grid{grid-template-columns:1fr;}}
+.duct-card{background:var(--cloud);border:1px solid var(--line);border-radius:14px;padding:24px;text-align:center;transition:.22s;}
+.duct-card:hover{border-color:var(--steel);transform:translateY(-3px);box-shadow:0 12px 30px rgba(16,36,58,.07);}
+.duct-card svg{width:58px;height:58px;margin:0 auto 14px;color:var(--steel);}
+.duct-card h4{font-weight:700;font-size:16px;}
+.duct-card p{font-size:13px;color:var(--slate);margin-top:5px;line-height:1.45;}
+
+/* ===== PROJECTS ===== */
+.projects{background:var(--cloud);}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media(max-width:860px){.proj-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.proj-grid{grid-template-columns:1fr;}}
+.proj-card{border-radius:14px;overflow:hidden;position:relative;min-height:200px;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;color:#fff;isolation:isolate;}
+.proj-card::before{content:"";position:absolute;inset:0;z-index:-2;}
+.proj-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(16,36,58,.15),rgba(16,36,58,.82));}
+.proj-card .pc-ic{position:absolute;top:20px;left:20px;width:30px;height:30px;color:rgba(255,255,255,.9);z-index:1;}
+.proj-card h4{font-family:'Archivo Expanded',var(--sans);font-weight:800;font-size:21px;line-height:1.05;}
+.proj-card p{font-size:13px;color:rgba(255,255,255,.8);margin-top:5px;}
+.pc-hosp::before{background:linear-gradient(140deg,#1d6fb8,#10243a);}
+.pc-hotel::before{background:linear-gradient(140deg,#c0392b,#10243a);}
+.pc-rest::before{background:linear-gradient(140deg,#e67e22,#10243a);}
+.pc-mall::before{background:linear-gradient(140deg,#16a085,#10243a);}
+.pc-office::before{background:linear-gradient(140deg,#8e44ad,#10243a);}
+.pc-home::before{background:linear-gradient(140deg,#2c7fb8,#10243a);}
+.proj-cta{margin-top:40px;text-align:center;}
+
+/* ===== PARTNERS ===== */
+.partners{background:#fff;}
+.partner-row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:980px;margin:0 auto;}
+.partner-row span{background:var(--cloud);border:1px solid var(--line);border-radius:10px;padding:16px 26px;font-family:'Archivo Expanded',var(--sans);font-weight:800;font-size:16px;color:var(--navy);letter-spacing:.01em;}
+
+/* ===== WHY / ENGINEERS ===== */
+.engineers{background:var(--navy);color:#fff;}
+.eng-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:820px){.eng-grid{grid-template-columns:1fr;}}
+.eng-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:28px;}
+.eng-card .ec-ic{width:46px;height:46px;border-radius:11px;background:rgba(63,182,230,.16);display:flex;align-items:center;justify-content:center;color:var(--sky);margin-bottom:16px;}
+.eng-card .ec-ic svg{width:24px;height:24px;}
+.eng-card h4{font-weight:700;font-size:18px;}
+.eng-card p{font-size:14.5px;color:rgba(255,255,255,.68);margin-top:8px;line-height:1.55;}
+
+/* ===== ABOUT ===== */
+.about{background:var(--cloud);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,5vw,70px);align-items:center;}
+@media(max-width:820px){.about-grid{grid-template-columns:1fr;}}
+.about p{color:var(--slate);font-size:16.5px;margin-bottom:14px;line-height:1.7;}
+.about p.lead{color:var(--ink);font-size:18px;}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.about-stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;}
+.about-stat b{font-family:'Archivo Expanded',var(--sans);font-weight:800;font-size:32px;color:var(--steel);line-height:1;display:block;}
+.about-stat span{font-size:13.5px;color:var(--slate);margin-top:8px;display:block;line-height:1.4;}
+
+/* ===== CONTACT ===== */
+.contact{background:var(--navy-2);color:#fff;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,70px);align-items:center;}
+@media(max-width:820px){.contact-grid{grid-template-columns:1fr;}}
+.contact h2{font-family:'Archivo Expanded',var(--sans);font-weight:800;font-size:clamp(28px,4.2vw,48px);line-height:1.05;}
+.contact h2 .hl{color:var(--sky);}
+.contact .csub{margin-top:14px;color:rgba(255,255,255,.7);font-size:16px;line-height:1.6;}
+.contact-ways{margin-top:28px;}
+.cw{display:flex;gap:14px;padding:16px 0;border-top:1px solid rgba(255,255,255,.12);align-items:flex-start;}
+.cw:first-child{border-top:none;}
+.cw .cw-ic{width:42px;height:42px;border-radius:11px;background:rgba(63,182,230,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--sky);}
+.cw .cw-ic svg{width:20px;height:20px;}
+.cw .cw-h{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:700;margin-bottom:3px;}
+.cw .cw-v{font-size:16px;font-weight:600;}
+.cw .cw-v a:hover{color:var(--sky);}
+.contact-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:clamp(26px,3vw,38px);}
+.contact-card h3{font-size:20px;font-weight:700;margin-bottom:18px;}
+.cc-field{margin-bottom:14px;}
+.cc-field label{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55);display:block;margin-bottom:6px;}
+.cc-field input,.cc-field select,.cc-field textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:8px;color:#fff;font-family:var(--sans);font-size:14.5px;padding:12px 13px;outline:none;transition:.2s;}
+.cc-field input::placeholder,.cc-field textarea::placeholder{color:rgba(255,255,255,.4);}
+.cc-field input:focus,.cc-field select:focus,.cc-field textarea:focus{border-color:var(--sky);}
+.cc-field select option{color:#111;}
+.cc-field textarea{resize:vertical;min-height:70px;}
+.contact-card .btn{width:100%;margin-top:4px;}
+.contact-card .cc-note{font-size:12px;color:rgba(255,255,255,.45);margin-top:10px;text-align:center;}
+
+/* ===== FOOTER ===== */
+footer{background:var(--navy-2);color:#fff;padding:36px var(--gut);border-top:1px solid rgba(255,255,255,.1);}
+.foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;}
+.foot-inner .se-name{color:#fff;}
+.foot-copy{font-size:13px;color:rgba(255,255,255,.45);}
+
+/* WA float */
+.wa{position:fixed;right:18px;bottom:18px;z-index:80;width:54px;height:54px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(0,0,0,.25);transition:.2s;}
+.wa:hover{transform:scale(1.07);}
+.wa svg{width:30px;height:30px;}
+
+@media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}.rv{opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+
+<!-- LOGO MARK (reused) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="se-mark-def">
+  <rect x="6" y="30" width="52" height="26" rx="13" transform="rotate(-45 32 43)" fill="#f7941d"/>
+  <rect x="42" y="14" width="52" height="26" rx="13" transform="rotate(-45 68 27)" fill="#3fb6e6"/>
+  <circle cx="40" cy="38" r="22" fill="#ef2d56"/>
+  <path d="M40 16 a22 22 0 0 1 0 44 z" fill="#1d6fb8"/>
+</g>
+</defs></svg>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#top" class="se-logo">
+    <svg class="se-mark" viewBox="0 0 100 75"><use href="#se-mark-def"/></svg>
+    <span class="se-name">Shambhavi<small>Enterprises</small></span>
+  </a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#calculator">AC Load Calculator</a>
+      <a href="#systems">Systems</a>
+      <a href="#projects">Projects</a>
+      <a href="#partners">Brands</a>
+      <a href="#about">About</a>
+    </div>
+    <a href="#contact" class="nav-cta">Get a quote</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-grid">
+    <div>
+      <span class="eyebrow rv in">HVAC Design · Supply · Installation</span>
+      <h1 class="rv in d1">The <span class="hl">airconditioning engineers</span> behind comfortable spaces.</h1>
+      <p class="sub rv in d2">We don't just sell air conditioners — we engineer the right cooling for your space. From a single room to a full hospital or hotel, we size it, design it, install it and stand behind it.</p>
+      <div class="hero-cta rv in d2">
+        <a href="#calculator" class="btn btn-orange">Get a Free Load Calculation →</a>
+        <a href="#projects" class="btn btn-ghost-light">See our projects</a>
+      </div>
+      <div class="hero-trust rv in d3">
+        <div class="ht"><b>All types</b><span>VRF · Cassette · Ducted · Split</span></div>
+        <div class="ht"><b>Turnkey</b><span>Design to commissioning</span></div>
+        <div class="ht"><b>Trusted brands</b><span>Daikin · Mitsubishi · Hitachi</span></div>
+      </div>
+    </div>
+    <div class="hero-card rv in d2">
+      <h3>Why work with engineers, not just dealers?</h3>
+      <div class="hc-sub">The wrong size or system costs you for years.</div>
+      <div class="hc-feat">
+        <div class="hf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div>
+        <div class="hf-tx"><b>Right-sized cooling load</b>No overspending on capacity you don't need.</div>
+      </div>
+      <div class="hc-feat">
+        <div class="hf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 2l-3 3M12 2l3 3"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M8 14h8"/></svg></div>
+        <div class="hf-tx"><b>The right system</b>VRF, ducted or cassette — matched to how you use the space.</div>
+      </div>
+      <div class="hc-feat">
+        <div class="hf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div class="hf-tx"><b>Lower running bills</b>Efficient design that pays back every summer.</div>
+      </div>
+      <a href="#calculator" class="btn btn-primary">Try the Load Calculator →</a>
+    </div>
+  </div>
+</header>
+
+<!-- CRED STRIP -->
+<section class="cred">
+  <div class="wrap">
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Homes &amp; villas</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Hospitals &amp; clinics</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Hotels &amp; restaurants</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> Malls &amp; offices</span>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="section calc" id="calculator">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Free AC Load Calculator</span>
+      <h2>How much cooling does your home or building <span class="hl">actually need?</span></h2>
+      <p class="lead">Answer a few questions about your space and we'll estimate your cooling load and recommend the right system — and tell you <em>why</em>. It's the same first step our engineers take.</p>
+    </div>
+    <div class="calc-grid">
+      <!-- INPUTS -->
+      <div class="calc-panel">
+        <div class="cstep">
+          <span class="clbl">1 · What kind of space is it?</span>
+          <div class="cseg" id="cs-space">
+            <button onclick="cPick('space','home',this)">Home / house</button>
+            <button onclick="cPick('space','office',this)">Office / commercial</button>
+            <button onclick="cPick('space','shop',this)">Retail / showroom</button>
+            <button onclick="cPick('space','restaurant',this)">Restaurant</button>
+            <button onclick="cPick('space','hospital',this)">Medical / clinic</button>
+            <button onclick="cPick('space','hall',this)">Event space / warehouse</button>
+          </div>
+        </div>
+        <div class="cstep">
+          <span class="clbl">2 · Total square footage of the space</span>
+          <div class="crow">
+            <div class="cfield"><input type="number" id="c-area" placeholder="e.g. 1800" oninput="cCalc()"/></div>
+            <div class="cfield">
+              <div class="cseg" id="cs-unit" style="flex-wrap:nowrap;">
+                <button onclick="cPick('unit','sqft',this)" class="on">sq.ft</button>
+                <button onclick="cPick('unit','sqm',this)">sq.m</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cstep">
+          <span class="clbl">3 · How many areas or rooms need cooling?</span>
+          <div class="cseg" id="cs-zones">
+            <button onclick="cPick('zones','1',this)">Single open area / studio</button>
+            <button onclick="cPick('zones','few',this)">2 – 4 bedrooms</button>
+            <button onclick="cPick('zones','many',this)">5+ bedrooms / whole building</button>
+          </div>
+        </div>
+        <div class="cstep">
+          <span class="clbl">4 · Does each area need its own thermostat control?</span>
+          <div class="cseg" id="cs-control">
+            <button onclick="cPick('control','yes',this)">Yes — each room/zone separate</button>
+            <button onclick="cPick('control','no',this)">No — one thermostat is fine</button>
+          </div>
+        </div>
+        <div class="cstep">
+          <span class="clbl">5 · Does the home have existing ductwork or attic space?</span>
+          <div class="cseg" id="cs-ceiling">
+            <button onclick="cPick('ceiling','yes',this)">Yes — has ducts / attic</button>
+            <button onclick="cPick('ceiling','no',this)">No ductwork at all</button>
+            <button onclick="cPick('ceiling','partial',this)">Partial / some areas</button>
+          </div>
+        </div>
+        <div class="cstep">
+          <span class="clbl">6 · Where would the outdoor unit go?</span>
+          <div class="cseg" id="cs-outdoor">
+            <button onclick="cPick('outdoor','open',this)">Backyard / open ground</button>
+            <button onclick="cPick('outdoor','tight',this)">Side of house / tight space</button>
+            <button onclick="cPick('outdoor','none',this)">Very limited space / rooftop</button>
+          </div>
+        </div>
+        <button class="btn btn-primary calc-btn" onclick="cCalc(true)">Get my recommendation →</button>
+      </div>
+
+      <!-- OUTPUT -->
+      <div class="calc-out">
+        <div class="co-empty" id="co-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 2l-3 3M12 2l3 3"/><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M7 14h10M7 17h6"/></svg>
+          <div>Fill in your space details and your estimated cooling load and recommended system will appear here — with the reasoning behind it.</div>
+        </div>
+        <div class="co-result" id="co-result">
+          <div class="cb-lbl" style="color:var(--sky);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin-bottom:8px;">Estimated Cooling Load</div>
+          <div class="co-tonnage" id="co-ton">—</div>
+          <div class="co-sub" id="co-ton-sub">Estimate only — confirmed after an on-site load calculation.</div>
+
+          <div class="co-block">
+            <div class="cb-lbl">Recommended system</div>
+            <div class="cb-pick" id="co-system">—</div>
+            <div class="cb-why" id="co-system-why"></div>
+          </div>
+
+          <div class="co-block">
+            <div class="cb-lbl">Indoor unit type</div>
+            <div class="cb-pick" id="co-indoor">—</div>
+            <div class="cb-why" id="co-indoor-why"></div>
+          </div>
+
+          <div class="co-block">
+            <div class="cb-lbl">Outdoor unit</div>
+            <div class="cb-pick" id="co-outdoor">—</div>
+            <div class="cb-why" id="co-outdoor-why"></div>
+          </div>
+
+          <div class="co-actions">
+            <a href="#" class="btn co-wa" id="co-wa">Send this to our engineers →</a>
+            <button class="btn btn-ghost-light" onclick="cReset()" style="border-color:rgba(255,255,255,.3);">Start over</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="calc-note">This tool gives a planning estimate using standard rules of thumb. A full Manual J load calculation — accounting for windows, insulation, solar exposure, occupancy and equipment — is performed on-site before we quote. No obligation.</p>
+  </div>
+</section>
+
+<!-- SYSTEMS / DUCT & DELIVERY TYPES -->
+<section class="section ducts" id="systems">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Every type, engineered &amp; installed</span>
+      <h2>Whatever the space needs,<br><span class="hl">we make it fit.</span></h2>
+      <p class="lead" style="margin-inline:auto;">From hidden ducting to neat cassettes — we fabricate and install every air delivery type in steel, GI and aluminium.</p>
+    </div>
+    <div class="duct-grid">
+      <div class="duct-card rv">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="32" cy="32" r="22"/><circle cx="32" cy="32" r="13" opacity=".5"/></svg>
+        <h4>Round duct</h4>
+        <p>Efficient airflow, lower friction — great for exposed industrial looks.</p>
+      </div>
+      <div class="duct-card rv d1">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="10" y="18" width="44" height="28" rx="3"/><rect x="17" y="25" width="30" height="14" rx="2" opacity=".5"/></svg>
+        <h4>Rectangular duct</h4>
+        <p>The workhorse for false ceilings — fits flat, hidden spaces neatly.</p>
+      </div>
+      <div class="duct-card rv d2">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4"><ellipse cx="32" cy="32" rx="24" ry="14"/><ellipse cx="32" cy="32" rx="15" ry="7" opacity=".5"/></svg>
+        <h4>Oval / elliptical</h4>
+        <p>Round performance in a slimmer profile — for tight ceiling depths.</p>
+      </div>
+      <div class="duct-card rv d3">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="32" cy="32" r="20"/><circle cx="32" cy="32" r="9" fill="currentColor" opacity=".25" stroke="none"/><circle cx="32" cy="32" r="9"/></svg>
+        <h4>Eyeball / jet diffuser</h4>
+        <p>Adjustable directional throw — for high ceilings, malls and atriums.</p>
+      </div>
+      <div class="duct-card rv">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="12" y="12" width="40" height="40" rx="4"/><path d="M12 26h40M12 38h40M26 12v40M38 12v40" opacity=".5"/></svg>
+        <h4>Cassette grille</h4>
+        <p>Flush ceiling unit with 4-way throw — clean look, even cooling.</p>
+      </div>
+      <div class="duct-card rv d1">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="10" y="22" width="44" height="20" rx="4"/><path d="M18 42v4M30 42v4M42 42v4" stroke-linecap="round"/></svg>
+        <h4>Linear slot grille</h4>
+        <p>Slim architectural slots — designer ceilings and premium interiors.</p>
+      </div>
+      <div class="duct-card rv d2">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="12" y="14" width="40" height="36" rx="3"/><path d="M12 24h40M12 32h40M12 40h40" opacity=".5"/></svg>
+        <h4>Supply / return grille</h4>
+        <p>Wall and ceiling grilles, with or without volume control dampers.</p>
+      </div>
+      <div class="duct-card rv d3">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="32" cy="32" r="22"/><path d="M32 10v44M10 32h44M17 17l30 30M47 17L17 47" opacity=".4"/></svg>
+        <h4>Swirl / round diffuser</h4>
+        <p>Even 360° distribution for offices, lobbies and large halls.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section projects" id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Work we've delivered</span>
+      <h2>We've cooled <span class="hl">every kind of space.</span></h2>
+      <p class="lead">Across homes, healthcare, hospitality, retail and commercial projects — search our work and reviews on our Google Business profile.</p>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card pc-hosp rv">
+        <svg class="pc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M12 9v6M9 12h6"/></svg>
+        <h4>Hospitals &amp; clinics</h4>
+        <p>Zoned VRF with room-by-room control and clean, quiet air.</p>
+      </div>
+      <div class="proj-card pc-hotel rv d1">
+        <svg class="pc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg>
+        <h4>Hotels &amp; resorts</h4>
+        <p>Guest-room comfort with individual control and low noise.</p>
+      </div>
+      <div class="proj-card pc-rest rv d2">
+        <svg class="pc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1 1 2 2 2s2-1 2-2V2M5 11v11M16 2c-2 0-3 2-3 5s1 4 3 4v11"/></svg>
+        <h4>Restaurants &amp; cafes</h4>
+        <p>High-occupancy cooling plus kitchen heat &amp; fresh-air handling.</p>
+      </div>
+      <div class="proj-card pc-mall rv">
+        <svg class="pc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1-5h16l1 5M4 9v11h16V9M9 13h6"/></svg>
+        <h4>Malls &amp; showrooms</h4>
+        <p>Large-volume cooling with diffusers sized for high ceilings.</p>
+      </div>
+      <div class="proj-card pc-office rv d1">
+        <svg class="pc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 7h.01M12 7h.01M16 7h.01M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01"/></svg>
+        <h4>Offices &amp; commercial</h4>
+        <p>Ducted and cassette systems for clean, evenly cooled workspaces.</p>
+      </div>
+      <div class="proj-card pc-home rv d2">
+        <svg class="pc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
+        <h4>Homes &amp; villas</h4>
+        <p>Concealed ducting and tasteful cassettes that disappear into interiors.</p>
+      </div>
+    </div>
+    <div class="proj-cta">
+      <a href="#" class="btn btn-primary" id="gbp-link" target="_blank" rel="noopener">★ See our projects &amp; reviews on Google →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="section partners" id="partners">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Authorised &amp; experienced with</span>
+      <h2>We work with the <span class="hl">brands you trust.</span></h2>
+    </div>
+    <div class="partner-row">
+      <span>Daikin</span><span>Mitsubishi</span><span>Hitachi</span><span>O General</span><span>Samsung</span><span>LG</span><span>Toshiba</span><span>Voltas</span><span>Blue Star</span><span>Carrier</span>
+    </div>
+    <p style="text-align:center;margin-top:22px;font-size:13.5px;color:var(--slate);max-width:680px;margin-inline:auto;">Final brand and model selection is recommended per project, based on capacity, budget, efficiency and after-sales support in your area.</p>
+  </div>
+</section>
+
+<!-- ENGINEERS / WHY -->
+<section class="section engineers">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow" style="color:var(--sky);">The engineering difference</span>
+      <h2 style="color:#fff;">More than installers.<br>We're your <span class="hl">comfort engineers.</span></h2>
+    </div>
+    <div class="eng-grid">
+      <div class="eng-card rv">
+        <div class="ec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M19 9l-5 5-4-4-3 3"/></svg></div>
+        <h4>Proper heat-load design</h4>
+        <p>We calculate the real cooling load — not a guess — so you never over- or under-spend on capacity.</p>
+      </div>
+      <div class="eng-card rv d1">
+        <div class="ec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h6"/></svg></div>
+        <h4>System &amp; ducting layout</h4>
+        <p>We plan unit placement, duct routing and diffusers for even cooling and a clean finish.</p>
+      </div>
+      <div class="eng-card rv d2">
+        <div class="ec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13l2 2 4-4"/></svg></div>
+        <h4>Turnkey &amp; documented</h4>
+        <p>Supply, install, commission and hand over — with the BOQ and warranty in writing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <span class="eyebrow">About Shambhavi Enterprises</span>
+        <h2 style="font-family:'Archivo Expanded',var(--sans);font-weight:800;font-size:clamp(28px,4vw,46px);line-height:1.06;margin:12px 0 18px;">Engineering comfort for over 25 years.</h2>
+        <p class="lead">Shambhavi Enterprises is a Gorakhpur-based engineering house with deep roots in air conditioning, interiors and furniture. HVAC is where we started — and it's still at our core.</p>
+        <p>We've grown by doing the unglamorous things well: sizing systems correctly, routing ducts cleanly, choosing the right brand for the budget, and being there after the sale. From a single split AC in a bedroom to multi-floor VRF in a hospital, the same engineering discipline goes into every project.</p>
+        <p>When you work with us, you're not buying a box off a shelf — you're getting a team that owns the result, from the first measurement to the final commissioning.</p>
+      </div>
+      <div class="about-stats">
+        <div class="about-stat"><b>25+</b><span>Years in air conditioning &amp; engineering</span></div>
+        <div class="about-stat"><b>All types</b><span>VRF, ducted, cassette, split &amp; packaged</span></div>
+        <div class="about-stat"><b>Turnkey</b><span>Design, supply, install &amp; commission</span></div>
+        <div class="about-stat"><b>Purvanchal</b><span>Serving Gorakhpur &amp; wider UP</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <span class="eyebrow" style="color:var(--sky);">Get a quote</span>
+        <h2>Tell us about your space.<br>We'll <span class="hl">engineer the rest.</span></h2>
+        <p class="csub">Share your requirement and our team will get back with a site-visit plan and an estimate — usually within a working day.</p>
+        <div class="contact-ways">
+          <div class="cw">
+            <div class="cw-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></div>
+            <div><div class="cw-h">Call &amp; WhatsApp</div><div class="cw-v"><a href="tel:+910000000000">+91 00000 00000</a></div></div>
+          </div>
+          <div class="cw">
+            <div class="cw-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></div>
+            <div><div class="cw-h">Email</div><div class="cw-v"><a href="mailto:info@example.com">info@example.com</a></div></div>
+          </div>
+          <div class="cw">
+            <div class="cw-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div class="cw-h">Based in</div><div class="cw-v">Gorakhpur, Uttar Pradesh, India</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>Request a site visit</h3>
+        <div class="cc-field"><label>Name</label><input type="text" id="ct-name" placeholder="Your name"/></div>
+        <div class="cc-field"><label>Phone / WhatsApp</label><input type="tel" id="ct-phone" placeholder="Mobile number"/></div>
+        <div class="cc-field"><label>Type of space</label>
+          <select id="ct-type">
+            <option>Home / villa</option><option>Office / commercial</option><option>Hospital / clinic</option><option>Hotel / restaurant</option><option>Mall / showroom</option><option>Other</option>
+          </select>
+        </div>
+        <div class="cc-field"><label>Your requirement</label><textarea id="ct-msg" placeholder="e.g. 3 BHK flat with false ceiling, looking for ducted AC…"></textarea></div>
+        <a class="btn btn-orange" id="ct-submit" href="#">Send via WhatsApp →</a>
+        <div class="cc-note">We respond within one working day.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot-inner">
+    <a href="#top" class="se-logo">
+      <svg class="se-mark" viewBox="0 0 100 75"><use href="#se-mark-def"/></svg>
+      <span class="se-name">Shambhavi<small>Enterprises</small></span>
+    </a>
+    <div class="foot-copy">© <span id="yr"></span> Shambhavi Enterprises · Airconditioning Engineers · Gorakhpur, UP, India</div>
+  </div>
+</footer>
+
+<a class="wa" id="wa-float" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.595zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg>
+</a>
+
+<script>
+/* ===== CLINIC/COMPANY SETTINGS (edit these) ===== */
+var CO_PHONE = "910000000000";          // WhatsApp number, digits + country code
+var CO_NAME  = "Shambhavi Enterprises";
+var CO_GBP   = "https://www.google.com/maps";   // replace with your Google Business profile link
+/* ================================================ */
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){ nav.classList.toggle('solid', window.scrollY>40); },{passive:true});
+
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.rv:not(.in)').forEach(function(el){io.observe(el);});
+
+var waBase="https://wa.me/"+CO_PHONE+"?text=";
+document.getElementById('wa-float').href=waBase+encodeURIComponent("Hi "+CO_NAME+", I have an air conditioning requirement.");
+document.getElementById('gbp-link').href=CO_GBP;
+
+/* ===== AC CALCULATOR ===== */
+var S={space:'',unit:'sqft',area:0,zones:'',control:'',ceiling:'',outdoor:''};
+
+function cPick(key,val,el){
+  S[key]=val;
+  var parent=el.parentElement;
+  parent.querySelectorAll('button').forEach(function(b){b.classList.remove('on');});
+  el.classList.add('on');
+  cCalc();
+}
+
+function tonnage(){
+  var area=parseFloat(document.getElementById('c-area').value)||0;
+  S.area=area;
+  if(area<=0) return 0;
+  var sqft = S.unit==='sqm' ? area*10.7639 : area;
+  // base rule of thumb: ~ 0.06 ton per sqft (600 sqft -> ~1.5 ton baseline), adjusted by usage load
+  var perSqft=0.0017; // tons per sqft for residential light load (approx 1 ton / ~150 sqft)
+  var load={home:1.0, office:1.1, shop:1.2, restaurant:1.45, hospital:1.25, hall:1.4};
+  var ton = sqft * (1/150) * (load[S.space]||1.1);
+  // round to nearest 0.5
+  return Math.max(0.5, Math.round(ton*2)/2);
+}
+
+function cCalc(force){
+  var area=parseFloat(document.getElementById('c-area').value)||0;
+  // need at least space + area to show something
+  if(!S.space || area<=0){
+    if(force){ /* nudge */ if(!S.space){document.getElementById('cs-space').scrollIntoView({behavior:'smooth',block:'center'});} else {document.getElementById('c-area').focus();} }
+    return;
+  }
+  var ton=tonnage();
+  document.getElementById('co-empty').style.display='none';
+  document.getElementById('co-result').classList.add('show');
+
+  document.getElementById('co-ton').innerHTML = ton + ' <span>ton'+(ton>1?'s':'')+' (approx)</span>';
+
+  // ---- system recommendation ----
+  var sys, sysWhy;
+  if(S.zones==='many' || (S.zones==='few' && S.control==='yes') || (S.space==='hospital'&&S.zones!=='1') || (S.space==='hotel')){
+    sys='VRF / VRV system';
+    sysWhy='You have multiple rooms that need independent control. A VRF system runs many indoor units off one or two outdoor units, lets every room set its own temperature, and only uses energy where it\u2019s needed \u2014 which cuts running bills significantly over time.';
+    if(S.space==='hospital') sysWhy='Hospital and clinic rooms each need separate, precise control and quiet operation. VRF gives every room its own setpoint from a shared outdoor system \u2014 ideal for patient comfort and infection-conscious zoning \u2014 while saving energy across the building.';
+  } else if(S.zones==='few' && S.control==='no'){
+    sys='Ducted / multi-split system';
+    sysWhy='A few connected areas used together are well served by a ducted system (hidden in the ceiling) or a multi-split \u2014 even cooling, a clean look, and simpler control since you don\u2019t need each room separate.';
+  } else if(S.space==='restaurant' || S.space==='shop' || S.space==='hall'){
+    sys='Cassette or ducted system';
+    sysWhy='High-occupancy open spaces cool best from above with wide, even airflow. Cassette or ducted units handle the bigger heat load from people, lighting and kitchens without cold or hot spots.';
+  } else {
+    sys='Split / hi-wall system';
+    sysWhy='For a single room, a good split (hi-wall) AC is the most cost-effective choice \u2014 simple, efficient and easy to service. We\u2019ll size it right so it cools fast without short-cycling.';
+  }
+  document.getElementById('co-system').textContent=sys;
+  document.getElementById('co-system-why').textContent=sysWhy;
+
+  // ---- indoor unit type ----
+  var ind, indWhy;
+  if(sys.indexOf('Split')===0){
+    ind='Ductless mini-split indoor unit';
+    indWhy='Mounts high on the wall \u2014 no false ceiling needed, lowest cost, easy to clean and service.';
+  } else if(S.ceiling==='no'){
+    ind='Hi-wall or ceiling-suspended';
+    indWhy='With no false ceiling, wall-mounted or exposed ceiling-suspended units are the practical choice \u2014 no civil work needed.';
+  } else if(S.space==='restaurant'||S.space==='shop'||S.space==='hall'||S.space==='hospital'||S.space==='office'){
+    ind='Cassette units (ceiling)';
+    indWhy='Flush 4-way cassettes sit neatly in the false ceiling and throw air evenly in all directions \u2014 clean look, great for public and work spaces.';
+  } else {
+    ind='Concealed ducted units';
+    indWhy='Hidden above the false ceiling with only slim grilles visible \u2014 the most premium, invisible finish for homes and cabins.';
+  }
+  document.getElementById('co-indoor').textContent=ind;
+  document.getElementById('co-indoor-why').textContent=indWhy;
+
+  // ---- outdoor discharge ----
+  var out, outWhy;
+  if(S.outdoor==='open'){
+    out='Top-discharge outdoor unit';
+    outWhy='With open terrace or ground space, a top-discharge (vertical) outdoor unit is ideal \u2014 it throws heat straight up, runs efficiently and is the standard for VRF and larger systems.';
+  } else if(S.outdoor==='tight'){
+    out='Side-discharge outdoor unit';
+    outWhy='In a tight spot or close to a wall, a side-discharge (horizontal) unit fits better and vents heat sideways \u2014 it can sit in narrow balconies or service shafts where a top-discharge unit would choke.';
+  } else if(S.outdoor==='none'){
+    out='Compact side-discharge / VRF stacking';
+    outWhy='With very little outdoor space, we use compact side-discharge units or stack a few high-efficiency VRF outdoor units \u2014 minimising footprint while keeping airflow clear so the system doesn\u2019t overheat.';
+  } else {
+    out='Confirmed on site';
+    outWhy='Tell us about your outdoor space and we\u2019ll recommend top- or side-discharge to suit it.';
+  }
+  document.getElementById('co-outdoor').textContent=out;
+  document.getElementById('co-outdoor-why').textContent=outWhy;
+
+  // WhatsApp summary
+  var spaceLabel={home:'Home/bedroom',office:'Office/cabin',shop:'Shop/showroom',restaurant:'Restaurant',hospital:'Hospital/clinic',hall:'Hall/banquet'}[S.space]||S.space;
+  var msg="Hi "+CO_NAME+", here is my AC requirement from your calculator:%0A%0A"
+    +"Space: "+encodeURIComponent(spaceLabel)+"%0A"
+    +"Area: "+encodeURIComponent(area+' '+S.unit)+"%0A"
+    +"Rooms/zones: "+encodeURIComponent(S.zones||'-')+"%0A"
+    +"Separate control: "+encodeURIComponent(S.control||'-')+"%0A"
+    +"False ceiling: "+encodeURIComponent(S.ceiling||'-')+"%0A"
+    +"Outdoor space: "+encodeURIComponent(S.outdoor||'-')+"%0A%0A"
+    +"Estimated: "+encodeURIComponent(ton+' ton')+"%0A"
+    +"Suggested system: "+encodeURIComponent(sys)+"%0A"
+    +"Indoor: "+encodeURIComponent(ind)+"%0A"
+    +"Outdoor: "+encodeURIComponent(out)+"%0A%0A"
+    +"Please advise and arrange a site visit.";
+  document.getElementById('co-wa').href="https://wa.me/"+CO_PHONE+"?text="+msg;
+  document.getElementById('co-wa').target="_blank";
+}
+
+function cReset(){
+  S={space:'',unit:'sqft',area:0,zones:'',control:'',ceiling:'',outdoor:''};
+  document.querySelectorAll('.cseg button').forEach(function(b){b.classList.remove('on');});
+  document.querySelectorAll('#cs-unit button')[0].classList.add('on');
+  document.getElementById('c-area').value='';
+  document.getElementById('co-result').classList.remove('show');
+  document.getElementById('co-empty').style.display='block';
+}
+
+/* contact form -> whatsapp */
+document.getElementById('ct-submit').addEventListener('click',function(e){
+  e.preventDefault();
+  var n=(document.getElementById('ct-name').value||'').trim();
+  var p=(document.getElementById('ct-phone').value||'').trim();
+  var t=document.getElementById('ct-type').value;
+  var m=(document.getElementById('ct-msg').value||'').trim();
+  if(!n&&!p){document.getElementById('ct-name').focus();return;}
+  var msg="Hi "+CO_NAME+", I'd like a site visit / quote.%0A"
+    +"Name: "+encodeURIComponent(n)+"%0A"
+    +"Phone: "+encodeURIComponent(p)+"%0A"
+    +"Space: "+encodeURIComponent(t)+"%0A"
+    +"Details: "+encodeURIComponent(m);
+  window.open("https://wa.me/"+CO_PHONE+"?text="+msg,'_blank');
+});
+
+/* fix anchor scrolling when opened as Blob URL */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var id = this.getAttribute('href').slice(1);
+    if(!id) return;
+    var el = document.getElementById(id);
+    if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+  });
+});
+</script>
+</body>
+</html>
