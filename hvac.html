@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>BlueRidge Heating &amp; Air — Heating, Cooling &amp; Indoor Air</title>
+<meta name="description" content="Trusted residential heating and air conditioning. AC repair, system replacement, furnace service and maintenance plans. Free in-home estimates, financing available."/>
+<!--
+  ============================================================
+  BLUERIDGE HEATING & AIR — US residential HVAC landing page
+  Built as a sample for the Elevate Designs portfolio.
+  Replace [PLACEHOLDER] notes with the client's real details:
+   - Company name, license #, phone, service area, hours
+   - Real technician + job-site photos, Google review screenshots
+   - Financing partner, brands installed, NATE/EPA certifications
+  Heat-load estimator uses a simplified ACCA Manual J model for
+  a ballpark size. A certified Manual J load calc is still
+  required before any install — that disclaimer stays on the page.
+  ============================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Expanded:wght@600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#0e2438;
+  --navy-2:#0a1a2b;
+  --steel:#1a5fb4;
+  --steel-d:#144d94;
+  --sky:#4aa8e0;
+  --orange:#f5821f;
+  --orange-d:#dd6f0f;
+  --ink:#1c2b39;
+  --slate:#5a6b7b;
+  --cloud:#eef4fb;
+  --cloud-2:#e2ecf6;
+  --white:#ffffff;
+  --line:#d8e3ef;
+  --sans:'Archivo',system-ui,sans-serif;
+  --disp:'Archivo Expanded','Archivo',system-ui,sans-serif;
+  --gut:clamp(20px,5vw,72px);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--white);color:var(--ink);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+::selection{background:var(--sky);color:#fff;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+.wrap{max-width:1240px;margin:0 auto;padding:0 var(--gut);}
+.eyebrow{font-weight:800;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--steel);}
+h1,h2,h3{font-family:var(--disp);letter-spacing:-.01em;line-height:1.05;}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:15px;padding:14px 26px;border-radius:9px;cursor:pointer;border:2px solid transparent;transition:.2s;justify-content:center;font-family:var(--sans);}
+.btn-orange{background:var(--orange);color:#fff;}
+.btn-orange:hover{background:var(--orange-d);transform:translateY(-1px);}
+.btn-steel{background:var(--steel);color:#fff;}
+.btn-steel:hover{background:var(--steel-d);}
+.btn-outline{background:transparent;border-color:var(--steel);color:var(--steel);}
+.btn-outline:hover{background:var(--steel);color:#fff;}
+.btn-ghost{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.45);color:#fff;}
+.btn-ghost:hover{background:#fff;color:var(--navy);}
+
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
+.rv.in{opacity:1;transform:none;}
+.rv.d1{transition-delay:.08s;}.rv.d2{transition-delay:.16s;}.rv.d3{transition-delay:.24s;}
+
+/* image placeholder (real photo loads on top; falls back to labelled stripe) */
+.imgph{position:relative;overflow:hidden;background:
+  repeating-linear-gradient(135deg,#dbe7f3 0 14px,#cfddec 14px 28px);}
+.imgph::after{content:attr(data-label);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7c93ab;text-align:center;padding:14px;}
+.imgph img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;}
+
+/* logo */
+.logo{display:flex;align-items:center;gap:11px;}
+.logo .mark{width:40px;height:40px;border-radius:10px;background:linear-gradient(150deg,var(--steel),var(--sky));display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.logo .mark svg{width:24px;height:24px;}
+.logo .lw{font-family:var(--disp);font-weight:800;font-size:17px;line-height:1;color:var(--ink);}
+.logo .lw small{display:block;font-family:var(--sans);font-weight:600;font-size:10px;letter-spacing:.14em;color:var(--slate);margin-top:3px;text-transform:uppercase;}
+
+/* ===== top bar ===== */
+.topbar{background:var(--navy-2);color:#cfe0ee;font-size:13px;font-weight:600;}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:9px;padding-bottom:9px;gap:18px;}
+.topbar .tb-left{display:flex;gap:24px;flex-wrap:wrap;}
+.topbar .tb-left span{display:inline-flex;align-items:center;gap:7px;}
+.topbar .dot{width:7px;height:7px;border-radius:50%;background:#48c98a;}
+.topbar a{color:#fff;display:inline-flex;align-items:center;gap:7px;}
+@media(max-width:760px){.topbar .tb-left{display:none;}}
+
+/* ===== nav ===== */
+nav{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;gap:20px;}
+.nav-links{display:flex;gap:26px;}
+.nav-links a{font-weight:600;font-size:15px;color:var(--ink);transition:.2s;}
+.nav-links a:hover{color:var(--steel);}
+.nav-right{display:flex;align-items:center;gap:18px;}
+.nav-phone{font-family:var(--disp);font-weight:800;font-size:17px;color:var(--ink);white-space:nowrap;}
+@media(max-width:1040px){.nav-links{display:none;}}
+@media(max-width:560px){.nav-phone{display:none;}}
+
+/* ===== hero ===== */
+.hero{background:var(--cloud);position:relative;overflow:hidden;}
+.hero .wrap{display:flex;flex-direction:column;align-items:center;gap:clamp(26px,4vw,40px);padding-top:clamp(34px,5vh,60px);padding-bottom:clamp(40px,6vh,72px);}
+.hero-head{text-align:center;max-width:800px;}
+.hero-head h1{margin:16px 0 0;}
+.hero-head p.lede{max-width:600px;margin:18px auto 0;}
+.hero .est-card{width:100%;max-width:1010px;}
+.hero .assure{justify-content:center;margin-top:0;}
+@media(max-width:920px){.hero .wrap{grid-template-columns:1fr;gap:36px;}}
+.hero .pill{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);padding:8px 15px;border-radius:999px;font-size:13px;font-weight:700;color:var(--ink);}
+.hero .pill .star{color:var(--orange);}
+.hero h1{font-size:clamp(36px,5.4vw,62px);margin:20px 0 0;}
+.hero h1 .alt{color:var(--steel);}
+.hero p.lede{margin:20px 0 28px;color:var(--slate);max-width:430px;font-size:17px;}
+.hero .cta-row{display:flex;gap:13px;flex-wrap:wrap;}
+.hero .assure{margin-top:24px;display:flex;gap:22px;flex-wrap:wrap;font-size:13.5px;font-weight:600;color:var(--slate);}
+.hero .assure span{display:inline-flex;align-items:center;gap:7px;}
+.hero .assure svg{width:16px;height:16px;color:var(--steel);}
+.hero-media{position:relative;}
+.hero-media .imgph{border-radius:18px;aspect-ratio:4/3.4;box-shadow:0 30px 60px rgba(14,36,56,.18);}
+.hero-fc{position:absolute;background:#fff;border:1px solid var(--line);border-radius:13px;padding:13px 16px;box-shadow:0 14px 30px rgba(14,36,56,.14);display:flex;align-items:center;gap:12px;}
+.hero-fc .ic{width:38px;height:38px;border-radius:9px;background:var(--cloud);display:flex;align-items:center;justify-content:center;color:var(--steel);flex-shrink:0;}
+.hero-fc .ic svg{width:20px;height:20px;}
+.hero-fc b{font-family:var(--disp);font-size:16px;display:block;line-height:1;}
+.hero-fc small{font-size:12px;color:var(--slate);}
+.fc-1{left:-18px;bottom:48px;}
+.fc-2{right:-14px;top:36px;}
+@media(max-width:920px){.fc-1{left:8px;}.fc-2{right:8px;}}
+@media(max-width:480px){.hero-fc{display:none;}}
+
+/* ===== trust strip ===== */
+.trust{background:var(--navy);color:#fff;}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-top:34px;padding-bottom:34px;}
+@media(max-width:760px){.trust .wrap{grid-template-columns:1fr 1fr;gap:28px 16px;}}
+.trust .t{display:flex;flex-direction:column;gap:3px;}
+.trust .t .n{font-family:var(--disp);font-weight:800;font-size:clamp(28px,3.4vw,40px);line-height:1;}
+.trust .t .n em{font-style:normal;color:var(--sky);}
+.trust .t .l{font-size:13px;color:#a8c0d6;font-weight:600;}
+
+/* ===== section frame ===== */
+section.block{padding:clamp(64px,9vh,108px) 0;}
+.sec-head{max-width:680px;margin-bottom:46px;}
+.sec-head h2{font-size:clamp(30px,4.2vw,48px);margin:14px 0 0;}
+.sec-head p{margin-top:16px;color:var(--slate);font-size:17px;}
+
+/* ===== services ===== */
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+@media(max-width:980px){.svc-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.svc-grid{grid-template-columns:1fr;}}
+.svc{border:1px solid var(--line);border-radius:14px;padding:26px 24px;background:#fff;transition:.25s;}
+.svc:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(14,36,56,.1);border-color:transparent;}
+.svc .ic{width:50px;height:50px;border-radius:12px;background:var(--cloud);display:flex;align-items:center;justify-content:center;color:var(--steel);margin-bottom:18px;}
+.svc .ic svg{width:26px;height:26px;}
+.svc h3{font-family:var(--disp);font-size:19px;margin-bottom:9px;}
+.svc p{font-size:14.5px;color:var(--slate);line-height:1.55;}
+.svc.feat{background:var(--steel);color:#fff;border-color:var(--steel);}
+.svc.feat .ic{background:rgba(255,255,255,.15);color:#fff;}
+.svc.feat p{color:#d4e4f4;}
+
+/* ===== estimator ===== */
+.est{background:linear-gradient(180deg,var(--cloud) 0%,#fff 100%);}
+.est-card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 30px 70px rgba(14,36,56,.1);overflow:hidden;display:grid;grid-template-columns:1.25fr .95fr;}
+@media(max-width:900px){.est-card{grid-template-columns:1fr;}}
+.est-form{padding:clamp(28px,4vw,46px);}
+.est-form .field{margin-bottom:26px;}
+.est-form .field:last-child{margin-bottom:0;}
+.est-label{display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:15px;margin-bottom:13px;}
+.est-label .val{font-family:var(--disp);font-weight:800;color:var(--steel);font-size:16px;}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:7px;border-radius:6px;background:var(--cloud-2);outline:none;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--steel);cursor:pointer;border:4px solid #fff;box-shadow:0 2px 8px rgba(14,36,56,.28);}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--steel);cursor:pointer;border:4px solid #fff;box-shadow:0 2px 8px rgba(14,36,56,.28);}
+.seg{display:flex;gap:8px;flex-wrap:wrap;}
+.seg label{flex:1;min-width:fit-content;}
+.seg input{position:absolute;opacity:0;pointer-events:none;}
+.seg span{display:block;text-align:center;padding:11px 12px;border:1.5px solid var(--line);border-radius:9px;font-weight:600;font-size:13.5px;color:var(--slate);cursor:pointer;transition:.18s;white-space:nowrap;}
+.seg input:checked + span{border-color:var(--steel);background:var(--steel);color:#fff;}
+.seg span:hover{border-color:var(--steel);}
+.est-sub{font-size:12.5px;color:var(--slate);margin-top:8px;}
+select.est-select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:9px;font-family:var(--sans);font-size:15px;font-weight:600;color:var(--ink);background:#fff;cursor:pointer;}
+
+.est-result{background:var(--navy);color:#fff;padding:clamp(28px,4vw,42px);display:flex;flex-direction:column;}
+.est-result .er-eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--sky);}
+.est-big{font-family:var(--disp);font-weight:900;font-size:clamp(56px,9vw,84px);line-height:.95;margin:16px 0 4px;}
+.est-big span{font-size:.42em;color:var(--sky);font-weight:800;}
+.est-sysline{font-size:15px;color:#bcd2e6;font-weight:600;}
+.est-rows{margin:26px 0;border-top:1px solid rgba(255,255,255,.12);}
+.est-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:14.5px;}
+.est-row .k{color:#a8c0d6;}
+.est-row .v{font-family:var(--disp);font-weight:800;font-size:17px;}
+.est-note{font-size:12px;color:#8aa3ba;line-height:1.5;margin-top:auto;padding-top:18px;}
+.est-result .btn{margin-top:18px;width:100%;}
+
+/* ===== quiz teaser ===== */
+.quiz{background:var(--cloud);}
+.quiz-card{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:1fr .85fr;align-items:stretch;}
+@media(max-width:820px){.quiz-card{grid-template-columns:1fr;}}
+.quiz-body{padding:clamp(30px,4vw,52px);}
+.quiz-tag{display:inline-flex;align-items:center;gap:8px;background:var(--cloud);color:var(--steel);font-weight:700;font-size:12.5px;letter-spacing:.04em;padding:7px 13px;border-radius:999px;}
+.quiz-body h2{font-size:clamp(26px,3.6vw,40px);margin:18px 0 14px;}
+.quiz-body p{color:var(--slate);max-width:480px;}
+.quiz-steps{display:flex;gap:12px;margin:26px 0 28px;flex-wrap:wrap;}
+.quiz-step{flex:1;min-width:130px;display:flex;gap:11px;align-items:flex-start;}
+.quiz-step .qn{width:26px;height:26px;border-radius:50%;background:var(--steel);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--disp);}
+.quiz-step b{font-size:14px;display:block;}
+.quiz-step small{font-size:12.5px;color:var(--slate);}
+.quiz-soon{display:inline-flex;align-items:center;gap:9px;background:var(--navy);color:#fff;font-weight:700;font-size:14px;padding:13px 22px;border-radius:9px;}
+.quiz-soon .badge{background:var(--orange);font-size:11px;letter-spacing:.04em;padding:3px 8px;border-radius:5px;}
+.quiz-media{position:relative;}
+.quiz-media .imgph{height:100%;min-height:280px;}
+
+/* ===== reviews ===== */
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+@media(max-width:880px){.rev-grid{grid-template-columns:1fr;}}
+.rev{border:1px solid var(--line);border-radius:14px;padding:26px;background:#fff;}
+.rev .stars{color:var(--orange);font-size:15px;letter-spacing:2px;margin-bottom:13px;}
+.rev p{font-size:15px;color:var(--ink);line-height:1.55;}
+.rev .who{margin-top:18px;display:flex;align-items:center;gap:11px;}
+.rev .av{width:40px;height:40px;border-radius:50%;background:var(--cloud-2);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--steel);font-family:var(--disp);}
+.rev .who b{font-size:14px;display:block;}
+.rev .who small{font-size:12.5px;color:var(--slate);}
+
+/* ===== CTA band ===== */
+.cta-band{background:var(--steel);color:#fff;position:relative;overflow:hidden;}
+.cta-band::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 40px,rgba(255,255,255,.05) 40px 41px);}
+.cta-band .wrap{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:30px;padding-top:clamp(46px,6vh,72px);padding-bottom:clamp(46px,6vh,72px);flex-wrap:wrap;}
+.cta-band h2{font-size:clamp(28px,4vw,46px);max-width:620px;}
+.cta-band p{color:#d4e4f4;margin-top:12px;}
+.cta-band .cta-actions{display:flex;gap:13px;flex-wrap:wrap;}
+
+/* ===== footer ===== */
+footer{background:var(--navy-2);color:#a8c0d6;font-size:14.5px;}
+footer .wrap{padding-top:60px;padding-bottom:34px;}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px;}
+@media(max-width:820px){.foot-grid{grid-template-columns:1fr 1fr;gap:32px;}}
+@media(max-width:480px){.foot-grid{grid-template-columns:1fr;}}
+footer .logo .lw{color:#fff;}
+footer .logo .lw small{color:#7c93ab;}
+footer .fdesc{margin-top:16px;max-width:300px;line-height:1.6;}
+footer h4{color:#fff;font-family:var(--disp);font-size:14px;letter-spacing:.04em;margin-bottom:16px;text-transform:uppercase;}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+footer ul a:hover{color:#fff;}
+.foot-bottom{margin-top:46px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px;color:#7c93ab;}
+</style>
+</head>
+<body>
+
+<!-- ===== top bar ===== -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-left">
+      <span><span class="dot"></span> Now booking — same-week appointments</span>
+      <span>Financing available · 0% for 18 months*</span>
+      <span>Open Mon–Sat · 7 AM–7 PM</span>
+    </div>
+    <a href="tel:5550000000">📞 (555) 000-0000</a>
+  </div>
+</div>
+
+<!-- ===== nav ===== -->
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo">
+      <span class="mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/>
+        </svg>
+      </span>
+      <span class="lw">BlueRidge<small>Heating &amp; Air</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#estimator">Size My System</a>
+      <a href="#checkup">Repair or Replace</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-phone">(555) 000-0000</span>
+      <a href="#contact" class="btn btn-orange">Free Estimate →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== hero ===== -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-head rv">
+      <span class="pill"><span class="star">★★★★★</span> 4.9 · 600+ local reviews</span>
+      <h1>What size AC &amp; furnace<br><span class="alt">does your home need?</span></h1>
+      <p class="lede">Find out in 30 seconds with our free sizing tool — built on the same <b>ACCA Manual&nbsp;J</b> standard our techs use on site. Then book a free in-home estimate and we'll confirm it exactly.</p>
+    </div>
+
+    <div class="est-card rv d1" id="estimator">
+      <div class="est-form">
+        <div class="field">
+          <div class="est-label"><span>Home square footage</span><span class="val" id="sqftVal">2,000 sq ft</span></div>
+          <input type="range" id="sqft" min="600" max="5000" step="50" value="2000"/>
+          <div class="est-sub">Heated &amp; cooled living space (don't count the garage).</div>
+        </div>
+
+        <div class="field">
+          <div class="est-label"><span>Climate zone</span></div>
+          <select class="est-select" id="zone">
+            <option value="hot">Hot &amp; humid — FL, TX, AZ, Gulf Coast</option>
+            <option value="warm">Warm — GA, SC, southern CA</option>
+            <option value="moderate" selected>Mixed — VA, TN, NC, mid-Atlantic</option>
+            <option value="cool">Cool — OH, PA, IL, Pacific NW</option>
+            <option value="cold">Cold — MN, WI, ME, upper Midwest</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <div class="est-label"><span>Insulation &amp; windows</span></div>
+          <div class="seg" id="insul">
+            <label><input type="radio" name="insul" value="poor"/><span>Older / drafty</span></label>
+            <label><input type="radio" name="insul" value="avg" checked/><span>Average</span></label>
+            <label><input type="radio" name="insul" value="good"/><span>Tight / new</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="est-label"><span>Sun exposure</span></div>
+          <div class="seg" id="sun">
+            <label><input type="radio" name="sun" value="shaded"/><span>Mostly shaded</span></label>
+            <label><input type="radio" name="sun" value="avg" checked/><span>Average</span></label>
+            <label><input type="radio" name="sun" value="sunny"/><span>Lots of sun</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="est-label"><span>Ceilings</span></div>
+          <div class="seg" id="ceiling">
+            <label><input type="radio" name="ceiling" value="std" checked/><span>8 ft standard</span></label>
+            <label><input type="radio" name="ceiling" value="tall"/><span>9–10 ft</span></label>
+            <label><input type="radio" name="ceiling" value="vaulted"/><span>Vaulted</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="est-label"><span>People who live here</span><span class="val" id="occVal">4</span></div>
+          <input type="range" id="occ" min="1" max="8" step="1" value="4"/>
+        </div>
+      </div>
+
+      <div class="est-result">
+        <span class="er-eyebrow">Estimated system size</span>
+        <div class="est-big"><span id="tons">3.0</span> <span>tons</span></div>
+        <div class="est-sysline" id="cool">≈ 36,000 BTU/hr cooling</div>
+        <div class="est-rows">
+          <div class="est-row"><span class="k">Cooling capacity</span><span class="v" id="coolBtu">36,000 BTU</span></div>
+          <div class="est-row"><span class="k">Heating capacity</span><span class="v" id="heatBtu">84,000 BTU</span></div>
+          <div class="est-row"><span class="k">Typical match</span><span class="v" id="match">3-ton AC + 80k furnace</span></div>
+        </div>
+        <p class="est-note">Ballpark estimate only. Actual sizing requires an in-home <b>ACCA Manual&nbsp;J</b> load calculation that accounts for your ductwork, orientation and local design temperatures. Over- or under-sizing hurts comfort and efficiency — we'll confirm the right size for free.</p>
+        <a href="#contact" class="btn btn-orange">Get my exact size — free →</a>
+      </div>
+    </div>
+
+    <div class="assure rv d2">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> NATE-certified techs</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Upfront flat-rate pricing</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> 100% satisfaction guarantee</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== trust strip ===== -->
+<div class="trust">
+  <div class="wrap">
+    <div class="t rv"><div class="n">22<em>yrs</em></div><div class="l">Serving local homeowners</div></div>
+    <div class="t rv d1"><div class="n">18k<em>+</em></div><div class="l">Systems installed &amp; serviced</div></div>
+    <div class="t rv d2"><div class="n">4.9<em>★</em></div><div class="l">Average Google rating</div></div>
+    <div class="t rv d3"><div class="n">24/7</div><div class="l">Emergency service line</div></div>
+  </div>
+</div>
+
+<!-- ===== services ===== -->
+<section class="block" id="services">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">What we do</span>
+      <h2>Heating, cooling and air — done right the first time.</h2>
+      <p>From an emergency no-cool call in July to a full system replacement before winter, we handle every part of your home's comfort.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc feat rv">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="11" rx="2"/><path d="M7 19h10M9 15v4M15 15v4M7 8h2M7 11h6"/></svg></span>
+        <h3>AC Repair &amp; Tune-Ups</h3>
+        <p>Not cooling? We diagnose fast and fix it right — most repairs done same day with upfront pricing.</p>
+      </div>
+      <div class="svc rv d1">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v6M8 6l4-3 4 3M5 21h14a2 2 0 0 0 2-2v-6H3v6a2 2 0 0 0 2 2zM3 13l3-4h12l3 4"/></svg></span>
+        <h3>System Replacement</h3>
+        <p>High-efficiency AC and heat pump installs, sized correctly and installed clean — financing available.</p>
+      </div>
+      <div class="svc rv d2">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22c4-3 6-6 6-10a6 6 0 0 0-12 0c0 4 2 7 6 10z"/><path d="M12 7c1.5 1.5 1.5 3 0 4.5C10.5 10 10.5 8.5 12 7z"/></svg></span>
+        <h3>Furnace &amp; Heating</h3>
+        <p>Gas furnaces, heat pumps and dual-fuel — repair, replacement and seasonal safety inspections.</p>
+      </div>
+      <div class="svc rv d3">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 12h7l2-3 3 6 2-3h4"/><circle cx="12" cy="12" r="9"/></svg></span>
+        <h3>Indoor Air Quality</h3>
+        <p>Whole-home filtration, humidifiers and duct cleaning to keep the air your family breathes clean.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== repair-or-replace quiz teaser ===== -->
+<section class="block quiz" id="checkup">
+  <div class="wrap">
+    <div class="quiz-card rv">
+      <div class="quiz-body">
+        <span class="quiz-tag">⚡ 60-second checkup</span>
+        <h2>Repair it, or replace it?</h2>
+        <p>Before you spend a dollar, find out where your system really stands. Our quick checkup weighs your unit's age, repair history and efficiency against the cost of a new system — then gives you a clear, no-pressure recommendation.</p>
+        <div class="quiz-steps">
+          <div class="quiz-step"><span class="qn">1</span><div><b>A few quick questions</b><small>Age, symptoms &amp; recent repairs</small></div></div>
+          <div class="quiz-step"><span class="qn">2</span><div><b>We do the math</b><small>Repair cost vs. replacement value</small></div></div>
+          <div class="quiz-step"><span class="qn">3</span><div><b>Clear recommendation</b><small>Plus what it'd cost either way</small></div></div>
+        </div>
+        <span class="quiz-soon">Repair-or-Replace Checkup <span class="badge">COMING SOON</span></span>
+      </div>
+      <div class="quiz-media">
+        <div class="imgph" data-label="Outdoor condenser unit — your photo here">
+          <img src="https://images.unsplash.com/photo-1635348729202-66c0fd9d9d3a?auto=format&fit=crop&w=700&q=80" alt="Outdoor AC condenser unit" onerror="this.style.display='none'"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== reviews ===== -->
+<section class="block" id="reviews">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Neighbors love us</span>
+      <h2>Trusted by 600+ local homeowners.</h2>
+    </div>
+    <div class="rev-grid">
+      <div class="rev rv">
+        <div class="stars">★★★★★</div>
+        <p>"Our AC died during a heat wave and BlueRidge had a tech out the same afternoon. Honest about what was wrong, fair price, fixed in an hour. Couldn't ask for more."</p>
+        <div class="who"><span class="av">DM</span><div><b>Dana M.</b><small>Cooling repair · Verified</small></div></div>
+      </div>
+      <div class="rev rv d1">
+        <div class="stars">★★★★★</div>
+        <p>"They sized and installed a new heat pump and walked me through every option with no pressure. The financing made it easy. House has never been more comfortable."</p>
+        <div class="who"><span class="av">RT</span><div><b>Ramon T.</b><small>System replacement · Verified</small></div></div>
+      </div>
+      <div class="rev rv d2">
+        <div class="stars">★★★★★</div>
+        <p>"On time, clean, and they explained the heat-load calculation so I actually understood why my old system was the wrong size. Real professionals."</p>
+        <div class="who"><span class="av">SK</span><div><b>Susan K.</b><small>New install · Verified</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA band ===== -->
+<section class="cta-band" id="contact">
+  <div class="wrap">
+    <div>
+      <h2>Ready for a home that's comfortable again?</h2>
+      <p>Book a free, no-obligation in-home estimate. We'll size it right and give you straight pricing — same week.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="tel:5550000000" class="btn btn-ghost">📞 (555) 000-0000</a>
+      <a href="#top" class="btn btn-orange">Book Free Estimate →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== footer ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="logo">
+          <span class="mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg>
+          </span>
+          <span class="lw">BlueRidge<small>Heating &amp; Air</small></span>
+        </a>
+        <p class="fdesc">Family-owned heating, cooling and indoor-air specialists serving [Your City] and the surrounding area. License #[000000].</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">AC Repair</a></li>
+          <li><a href="#services">System Replacement</a></li>
+          <li><a href="#services">Furnace &amp; Heating</a></li>
+          <li><a href="#services">Indoor Air Quality</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#estimator">Size My System</a></li>
+          <li><a href="#checkup">Repair or Replace</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="tel:5550000000">(555) 000-0000</a></li>
+          <li><a href="#contact"><span class="__cf_email__" data-cfemail="78101d141417381a140d1d0a111c1f1d100e191b561b1715">[email&#160;protected]</span></a></li>
+          <li>Mon–Sat · 7 AM–7 PM</li>
+          <li>24/7 emergency line</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 BlueRidge Heating &amp; Air. All rights reserved.</span>
+      <span>*Financing on approved credit. Sample site — not a real business.</span>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ---- reveal on scroll ---- */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+/* ---- heat-load estimator (simplified ACCA Manual J) ---- */
+(function(){
+  var sqftEl=document.getElementById('sqft'),
+      occEl=document.getElementById('occ'),
+      zoneEl=document.getElementById('zone');
+
+  // BTU per sq ft by US climate zone (cooling vs heating design loads)
+  var COOL={hot:26,warm:22,moderate:18,cool:16,cold:14};
+  var HEAT={hot:22,warm:28,moderate:33,cool:42,cold:50};
+  var INS ={poor:1.18,avg:1.0,good:0.90};
+  var SUN ={shaded:0.92,avg:1.0,sunny:1.12};      // affects cooling
+  var CEIL={std:1.0,tall:1.08,vaulted:1.15};
+
+  function pick(name){var n=document.querySelector('input[name='+name+']:checked');return n?n.value:null;}
+  function fmt(n){return Math.round(n).toLocaleString('en-US');}
+
+  function calc(){
+    var sqft=+sqftEl.value, occ=+occEl.value, zone=zoneEl.value;
+    var insul=pick('insul'), sun=pick('sun'), ceil=pick('ceiling');
+
+    var cool=sqft*COOL[zone]*INS[insul]*SUN[sun]*CEIL[ceil];
+    if(occ>2) cool+=(occ-2)*500;                  // ~500 BTU sensible per extra person
+    var heat=sqft*HEAT[zone]*INS[insul]*CEIL[ceil];
+
+    // round cooling to nearest half-ton, clamp to common residential range
+    var tons=cool/12000;
+    tons=Math.round(tons*2)/2;
+    if(tons<1.5) tons=1.5;
+    if(tons>5)  tons=5;
+    var coolBtuRounded=tons*12000;
+
+    // furnace output rounded to nearest common 20k size
+    var furn=Math.min(120000,Math.max(40000,Math.round(heat/20000)*20000));
+
+    document.getElementById('sqftVal').textContent=fmt(sqft)+' sq ft';
+    document.getElementById('occVal').textContent=occ;
+    document.getElementById('tons').textContent=(tons%1===0?tons.toFixed(1):tons.toString());
+    document.getElementById('cool').textContent='≈ '+fmt(coolBtuRounded)+' BTU/hr cooling';
+    document.getElementById('coolBtu').textContent=fmt(coolBtuRounded)+' BTU';
+    document.getElementById('heatBtu').textContent=fmt(furn)+' BTU';
+    document.getElementById('match').textContent=(tons%1===0?tons.toFixed(0):tons.toString())+'-ton AC + '+Math.round(furn/1000)+'k furnace';
+  }
+
+  ['input','change'].forEach(function(ev){
+    document.querySelectorAll('#estimator input, #estimator select').forEach(function(el){el.addEventListener(ev,calc);});
+  });
+  calc();
+})();
+</script>
+</body>
+</html>
