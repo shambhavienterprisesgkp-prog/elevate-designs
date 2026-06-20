@@ -209,6 +209,29 @@ footer{background:var(--ink);color:#cfc7bd;padding:72px 0 34px;position:relative
   *{animation:none!important;scroll-behavior:auto!important;transition:none!important}
 }
 </style>
+<style>
+/* === full-bleed brick storefront hero === */
+.hero{padding:0!important}
+.hero-stage{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden;background:#15100b}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(105deg,rgba(15,11,7,.93) 0%,rgba(18,13,8,.72) 40%,rgba(18,13,8,.28) 72%,rgba(18,13,8,.05) 100%)}
+.hero-stage .watermark{top:auto;bottom:4%;left:auto;right:2%;transform:none;text-align:right;z-index:2;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.07)}
+.hero-inner{position:relative;z-index:3;display:block;width:100%;padding-top:126px;padding-bottom:64px}
+.hero-stage .hero-copy{max-width:640px}
+.hero-stage h1{color:#fff}
+.hero-stage .lede{color:rgba(247,242,233,.82)}
+.hero-stage .btn-ghost{color:#fff;border-color:rgba(255,255,255,.55)}
+.hero-stage .btn-ghost:hover{background:#fff;color:var(--ink);border-color:#fff}
+.hero-stage .statcard{background:rgba(27,23,20,.5);backdrop-filter:blur(10px);border-color:rgba(255,255,255,.18)}
+.hero-stage .statcard .lbl{color:rgba(247,242,233,.72)}
+.hero-stage .statcard .div{background:rgba(255,255,255,.22)}
+@media(max-width:920px){
+  .hero-stage{min-height:auto}
+  .hero-inner{padding-top:118px;padding-bottom:48px}
+  .hero-overlay{background:linear-gradient(180deg,rgba(15,11,7,.55) 0%,rgba(15,11,7,.8) 55%,rgba(15,11,7,.92) 100%)}
+  .hero-stage .watermark{font-size:7rem;right:auto;left:4%}
+}
+</style>
 </head>
 <body>
 
@@ -234,8 +257,11 @@ footer{background:var(--ink);color:#cfc7bd;padding:72px 0 34px;position:relative
 
 <!-- HERO -->
 <header class="hero" id="top">
-  <div class="watermark" aria-hidden="true">BUILDERS</div>
-  <div class="wrap hero-grid">
+  <div class="hero-stage">
+    <img class="hero-bg" src="tcb-storefront-brick.png" alt="The Coffee Builders storefront, built in brick style">
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="watermark" aria-hidden="true">BUILDERS</div>
+    <div class="wrap hero-inner">
     <div class="hero-copy">
       <span class="eyebrow">Downtown Phoenix · Warehouse District</span>
       <h1>We don't just<br>brew coffee.<br><span class="hl">We build it.</span></h1>
@@ -254,54 +280,7 @@ footer{background:var(--ink);color:#cfc7bd;padding:72px 0 34px;position:relative
         <div class="lbl">across 647 reviews</div>
       </div>
     </div>
-
-    <div class="scene" aria-hidden="true">
-      <!-- central cup -->
-      <svg class="cup" viewBox="0 0 220 290">
-        <defs>
-          <radialGradient id="cupG" cx="38%" cy="26%" r="80%">
-            <stop offset="0" stop-color="#FF8A57"/><stop offset="55%" stop-color="#F2541B"/><stop offset="100%" stop-color="#CE410E"/>
-          </radialGradient>
-          <linearGradient id="lidG" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#FFFDF8"/><stop offset="100%" stop-color="#EAE0CE"/>
-          </linearGradient>
-          <linearGradient id="sleeveG" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#F7EBDA"/><stop offset="100%" stop-color="#E4D2B8"/>
-          </linearGradient>
-        </defs>
-        <ellipse cx="110" cy="272" rx="74" ry="13" fill="rgba(27,23,20,.10)"/>
-        <g class="steam"><path d="M86 44c-7-8 4-15-2-24" stroke="#fff" stroke-width="6" stroke-linecap="round" fill="none" opacity=".6"/></g>
-        <g class="steam s2"><path d="M110 40c-7-8 4-16-2-25" stroke="#fff" stroke-width="6" stroke-linecap="round" fill="none" opacity=".6"/></g>
-        <g class="steam s3"><path d="M134 44c-7-8 4-15-2-24" stroke="#fff" stroke-width="6" stroke-linecap="round" fill="none" opacity=".6"/></g>
-        <path d="M50 92 L170 92 L152 256 Q150 270 136 270 L84 270 Q70 270 68 256 Z" fill="url(#cupG)"/>
-        <path d="M44 92 Q44 70 66 70 L154 70 Q176 70 176 92 Z" fill="url(#lidG)"/>
-        <ellipse cx="110" cy="70" rx="66" ry="12" fill="#FFFDF8"/>
-        <ellipse cx="110" cy="69" rx="58" ry="8" fill="#EDE3D2"/>
-        <rect x="60" y="150" width="100" height="54" rx="12" fill="url(#sleeveG)"/>
-        <g stroke="#D8C6A8" stroke-width="2"><line x1="74" y1="158" x2="74" y2="196"/><line x1="92" y1="158" x2="92" y2="196"/><line x1="146" y1="158" x2="146" y2="196"/><line x1="128" y1="158" x2="128" y2="196"/></g>
-        <circle cx="96" cy="128" r="5.5" fill="#2A1206"/><circle cx="124" cy="128" r="5.5" fill="#2A1206"/>
-        <path d="M96 140 Q110 150 124 140" stroke="#2A1206" stroke-width="4" fill="none" stroke-linecap="round"/>
-        <circle cx="84" cy="136" r="6" fill="#FF9C6E" opacity=".5"/><circle cx="136" cy="136" r="6" fill="#FF9C6E" opacity=".5"/>
-      </svg>
-
-      <!-- beans -->
-      <div class="prop p-beans"><span class="floatY"><svg viewBox="0 0 100 90"><defs><radialGradient id="bn1" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#8A5A38"/><stop offset="100%" stop-color="#4A2E1A"/></radialGradient></defs><ellipse cx="36" cy="40" rx="26" ry="20" fill="url(#bn1)" transform="rotate(-20 36 40)"/><path d="M22 44q14-16 28 0" stroke="#2E1B0E" stroke-width="3" fill="none" transform="rotate(-20 36 40)"/><ellipse cx="66" cy="58" rx="24" ry="18" fill="url(#bn1)" transform="rotate(18 66 58)"/><path d="M54 60q12-14 24 0" stroke="#2E1B0E" stroke-width="3" fill="none" transform="rotate(18 66 58)"/></svg></span></div>
-
-      <!-- croissant -->
-      <div class="prop p-croissant"><span class="floatY"><svg viewBox="0 0 110 90"><defs><radialGradient id="cr1" cx="40%" cy="30%" r="80%"><stop offset="0" stop-color="#F5C266"/><stop offset="100%" stop-color="#D4923A"/></radialGradient></defs><path d="M18 64C8 50 22 30 44 30c26 0 40 16 50 30-14-8-22-6-30 2-8-10-18-10-26-2-6-8-14-8-20 4Z" fill="url(#cr1)"/><path d="M30 50q14-10 26 0M50 44q14-8 26 4" stroke="#B5772A" stroke-width="2.4" fill="none"/></svg></span></div>
-
-      <!-- wrench (builder) -->
-      <div class="prop p-wrench"><span class="floatY"><svg viewBox="0 0 90 90"><defs><linearGradient id="wr1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D9DDE2"/><stop offset="100%" stop-color="#9AA0A8"/></linearGradient></defs><path d="M58 18a16 16 0 0 0-20 20L20 56a8 8 0 0 0 11 11l18-18a16 16 0 0 0 20-20l-9 9-8-2-2-8Z" fill="url(#wr1)" stroke="#7C828B" stroke-width="2"/></svg></span></div>
-
-      <!-- hard hat (builder) -->
-      <div class="prop p-hat"><span class="floatY"><svg viewBox="0 0 110 80"><defs><radialGradient id="ht1" cx="40%" cy="25%" r="85%"><stop offset="0" stop-color="#FFD45E"/><stop offset="100%" stop-color="#E8A013"/></radialGradient></defs><path d="M14 58a41 41 0 0 1 82 0Z" fill="url(#ht1)"/><rect x="42" y="20" width="26" height="20" rx="5" fill="#E8A013"/><rect x="6" y="56" width="98" height="11" rx="5.5" fill="#FFD45E"/><path d="M40 56V30M70 56V30" stroke="#C8870C" stroke-width="3"/></svg></span></div>
-
-      <!-- smiley -->
-      <div class="prop p-smiley"><span class="floatY"><svg viewBox="0 0 80 80"><defs><radialGradient id="sm1" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="#FFE27A"/><stop offset="100%" stop-color="#F4B528"/></radialGradient></defs><circle cx="40" cy="40" r="34" fill="url(#sm1)"/><circle cx="30" cy="34" r="4.5" fill="#7A4E10"/><circle cx="50" cy="34" r="4.5" fill="#7A4E10"/><path d="M28 48q12 12 24 0" stroke="#7A4E10" stroke-width="4" fill="none" stroke-linecap="round"/></svg></span></div>
-
-      <!-- star review badge -->
-      <div class="prop p-star"><span class="floatY"><svg viewBox="0 0 130 60"><rect x="2" y="6" width="126" height="48" rx="24" fill="#fff" stroke="#E9E1D3" stroke-width="2"/><path d="M30 18l4 8 9 1-6.5 6 1.6 9L30 44l-8.1 4 1.6-9L17 33l9-1z" fill="#F2541B"/><text x="56" y="30" font-family="Space Grotesk" font-weight="700" font-size="17" fill="#1B1714">4.9</text><text x="56" y="44" font-family="Inter" font-size="9" fill="#8A8077">647 reviews</text></svg></span></div>
-    </div>
+  </div>
   </div>
 
   <!-- marquee -->
