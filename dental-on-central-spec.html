@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dental on Central — Anxiety-Free Dentistry in Phoenix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cloud:#f1f7fc;
+    --paper:#ffffff;
+    --sky-1:#a7d4f0;
+    --sky-2:#6fb0e0;
+    --blue:#3a83c4;
+    --deep:#235886;
+    --ink:#13314a;
+    --slate:#5c7488;
+    --warm:#ff9e6b;     /* humanity accent */
+    --warm-soft:#ffd9c2;
+    --gold:#f3c14b;     /* booking badge */
+    --mint:#bfe6d6;
+    --line:rgba(19,49,74,.10);
+    --shadow:0 22px 50px -24px rgba(20,60,100,.45);
+    --shadow-sm:0 10px 30px -16px rgba(20,60,100,.4);
+    --r-lg:34px;
+    --r-md:22px;
+    --r-sm:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Hanken Grotesk',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--cloud);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;font-weight:500;line-height:1.05;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  .eyebrow{
+    font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--blue);display:inline-flex;align-items:center;gap:.5em;
+  }
+  .eyebrow::before{content:"";width:22px;height:2px;background:var(--warm);border-radius:2px}
+
+  /* ---------- NAV ---------- */
+  header.nav{position:sticky;top:0;z-index:60;backdrop-filter:blur(12px);
+    background:rgba(241,247,252,.82);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:'Fraunces';font-weight:600;font-size:1.32rem;color:var(--deep)}
+  .brand .mark{width:38px;height:38px;border-radius:12px;background:linear-gradient(150deg,var(--sky-2),var(--deep));
+    display:grid;place-items:center;box-shadow:var(--shadow-sm)}
+  .nav-links{display:flex;gap:30px;align-items:center;font-weight:500;font-size:.96rem;color:var(--slate)}
+  .nav-links a{transition:color .2s}
+  .nav-links a:hover{color:var(--deep)}
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-size:.95rem;
+    padding:13px 24px;border-radius:100px;cursor:pointer;border:none;transition:transform .18s,box-shadow .18s;white-space:nowrap}
+  .btn-primary{background:var(--deep);color:#fff;box-shadow:0 14px 26px -12px rgba(35,88,134,.7)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 34px -12px rgba(35,88,134,.75)}
+  .btn-ghost{background:#fff;color:var(--deep);border:1px solid var(--line)}
+  .btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+  .nav-cta{display:flex;gap:12px;align-items:center}
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:30px 0 96px;
+    background:
+      radial-gradient(85% 78% at 5% -6%, #d3dc82 0%, rgba(211,220,130,0) 48%),
+      radial-gradient(82% 72% at 97% 3%, #a3d8c5 0%, rgba(163,216,197,0) 52%),
+      radial-gradient(130% 95% at 50% 122%, #adc5ea 0%, rgba(173,197,234,0) 56%),
+      linear-gradient(158deg, #c4dbac 0%, #a2d0d9 47%, #abc5e9 100%);}
+  .hero-tagline{display:flex;justify-content:center;margin-bottom:34px}
+
+  /* pillar cards — 3D cursor-forward stage */
+  .pillars{display:grid;grid-template-columns:1fr 1.18fr 1fr;gap:22px;position:relative;
+    perspective:1700px;align-items:stretch}
+  .pcard{position:relative;border-radius:var(--r-lg);padding:30px 26px 26px;color:#fff;overflow:hidden;
+    box-shadow:var(--shadow);min-height:500px;display:flex;flex-direction:column;
+    transform-style:preserve-3d;will-change:transform;
+    /* entrance start state */
+    opacity:0;transform:translateY(46px) scale(.96);
+    transition:transform .6s cubic-bezier(.18,.85,.3,1),box-shadow .6s ease,filter .6s ease,opacity .7s ease}
+  .pcard.c1{background:linear-gradient(165deg,#74acdb,#4b8eca)}
+  .pcard.c2{background:linear-gradient(172deg,#5fa0d6,#3d80be)}
+  .pcard.c3{background:linear-gradient(165deg,#74acdb,#4b8eca)}
+
+  /* settled-in state (added by JS, staggered) */
+  .pcard.c1.in{opacity:1;transform:translateZ(0) translateY(0) scale(1);transition-delay:.05s}
+  .pcard.c2.in{opacity:1;transform:translateZ(40px) translateY(-20px) scale(1.015);transition-delay:.18s}
+  .pcard.c3.in{opacity:1;transform:translateZ(0) translateY(0) scale(1);transition-delay:.31s}
+
+  /* CURSOR FORWARD: hovered panel pushes toward viewer, others sit back + dim */
+  @media (hover:hover){
+    .pillars:hover .pcard.in{filter:brightness(.86) saturate(.9);opacity:.82}
+    .pillars:hover .pcard.c1.in{transform:translateZ(-30px) translateY(6px) scale(.95)}
+    .pillars:hover .pcard.c2.in{transform:translateZ(-10px) translateY(-6px) scale(.97)}
+    .pillars:hover .pcard.c3.in{transform:translateZ(-30px) translateY(6px) scale(.95)}
+    .pillars .pcard.in:hover{
+      filter:none;opacity:1;z-index:6;
+      transform:translateZ(90px) translateY(-26px) scale(1.05) rotateX(2deg);
+      box-shadow:0 48px 80px -30px rgba(15,55,95,.62)}
+  }
+
+  .pcard .tag{display:inline-flex;align-items:center;gap:7px;font-size:.72rem;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;opacity:.92}
+  .pcard h3{font-size:1.7rem;font-weight:600;margin:14px 0 10px}
+  .pcard p{font-size:.95rem;opacity:.93;font-weight:400}
+
+  /* doctor panels */
+  .pcard.doctor .portrait{width:100%;flex:1;border-radius:24px;margin:18px 0;position:relative;overflow:hidden;
+    background:rgba(255,255,255,.14);display:grid;place-items:center;min-height:188px}
+  .pcard.doctor .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+  .pcard.doctor .portrait .ini{font-family:'Fraunces';font-weight:600;font-size:3.2rem;opacity:.92}
+  .pcard.doctor .namecard{position:absolute;right:14px;bottom:14px;background:#fff;color:var(--deep);
+    border-radius:16px;padding:11px 15px;box-shadow:var(--shadow-sm);text-align:right;z-index:2}
+  .pcard.doctor .namecard .nm{font-family:'Fraunces';font-weight:600;font-size:1.15rem;line-height:1}
+  .pcard.doctor .namecard .ex{font-size:.72rem;color:var(--slate);font-weight:600;margin-top:3px}
+  .pcard .credlist{list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:4px}
+  .pcard .credlist li{font-size:.86rem;opacity:.95;display:flex;gap:8px;align-items:flex-start;font-weight:500}
+  .pcard .credlist li svg{flex:none;margin-top:3px}
+  .pcard .review-row{display:flex;align-items:center;gap:10px;margin-top:16px}
+  .pcard .review-row .stars{color:var(--gold);letter-spacing:1px;font-size:.95rem}
+  .pcard .review-row .rc{font-size:.82rem;opacity:.9;font-weight:600}
+
+  /* middle headline panel */
+  .pcard.hero-panel{justify-content:flex-start;align-items:center;text-align:center;padding-top:36px}
+  .pcard.hero-panel .brandline{display:inline-flex;align-items:center;gap:8px;font-weight:700;
+    font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;opacity:.9;margin-bottom:24px}
+  .pcard.hero-panel h1{font-family:'Poppins',sans-serif;font-weight:500;
+    font-size:clamp(1.6rem,3.1vw,2.3rem);line-height:1.12;color:#fff;letter-spacing:-.01em;max-width:330px}
+  .pcard.hero-panel h1 b{font-weight:800}
+  .pcard.hero-panel .sub{font-family:'Poppins',sans-serif;font-weight:400;
+    font-size:.92rem;line-height:1.5;opacity:.94;max-width:300px;margin:16px auto 0}
+  .hero-tooth{margin:22px auto 0;width:168px;height:168px;border-radius:24px;overflow:hidden;
+    box-shadow:0 24px 40px -18px rgba(10,40,70,.55);outline:1px solid rgba(255,255,255,.35);outline-offset:-1px}
+  .hero-tooth img{width:100%;height:100%;object-fit:cover;display:block}
+  .book-badge{margin:26px auto 0;
+    width:118px;height:118px;border-radius:50%;background:#cfe24a;color:#23406a;
+    display:grid;place-items:center;text-align:center;font-weight:700;font-size:.68rem;
+    letter-spacing:.04em;line-height:1.3;box-shadow:0 18px 30px -12px rgba(120,150,30,.55);position:relative;
+    cursor:pointer;transition:transform .3s}
+  .book-badge:hover{transform:scale(1.07) rotate(8deg)}
+  .book-badge .arrow{display:block;font-size:1.5rem;margin-top:4px}
+
+  .chip{background:rgba(255,255,255,.95);color:var(--deep);border-radius:16px;padding:12px 15px;
+    box-shadow:var(--shadow-sm)}
+  .chip .big{font-family:'Fraunces';font-size:1.5rem;font-weight:600;line-height:1;color:var(--deep)}
+  .chip .lbl{font-size:.72rem;color:var(--slate);font-weight:600;margin-top:3px}
+  .pcard .foot{margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+
+  /* ---------- PROOF BAR ---------- */
+  .proof{background:var(--deep);color:#fff;padding:30px 0}
+  .proof-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:26px}
+  .proof .pitem{display:flex;flex-direction:column;gap:2px}
+  .proof .num{font-family:'Fraunces';font-size:1.9rem;font-weight:600;line-height:1}
+  .proof .cap{font-size:.82rem;opacity:.8;font-weight:500}
+  .proof .div{width:1px;height:40px;background:rgba(255,255,255,.2)}
+
+  /* ---------- SECTIONS ---------- */
+  section.block{padding:96px 0}
+  .sec-head{max-width:640px;margin-bottom:54px}
+  .sec-head h2{font-size:clamp(2rem,4vw,3rem);margin-top:16px;color:var(--ink)}
+  .sec-head p{color:var(--slate);font-size:1.1rem;margin-top:16px}
+
+  /* story */
+  .story-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .story-card{background:var(--paper);border-radius:var(--r-lg);padding:8px;box-shadow:var(--shadow);
+    border:1px solid var(--line)}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .doc{border-radius:26px;color:#fff;min-height:340px;position:relative;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:flex-end}
+  .doc .docimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 18%}
+  .doc .doc-grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,40,65,0) 40%,rgba(13,35,58,.86) 100%)}
+  .doc.b .doc-grad{background:linear-gradient(180deg,rgba(90,40,15,0) 40%,rgba(70,30,12,.86) 100%)}
+  .doc .doc-txt{position:relative;z-index:2;padding:22px}
+  .doc .role{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;opacity:.92;font-weight:700}
+  .doc h4{font-family:'Fraunces';font-size:1.35rem;font-weight:600;margin:4px 0 6px}
+  .doc small{font-size:.82rem;opacity:.94;line-height:1.4}
+  .story-body p{color:var(--slate);font-size:1.06rem;margin-bottom:18px}
+  .story-body strong{color:var(--ink);font-weight:600}
+  .story-stats{display:flex;gap:30px;margin-top:26px}
+  .story-stats .s .n{font-family:'Fraunces';font-size:2rem;font-weight:600;color:var(--deep);line-height:1}
+  .story-stats .s .l{font-size:.85rem;color:var(--slate);font-weight:500;margin-top:4px}
+
+  /* who we treat */
+  .treat{background:linear-gradient(180deg,#e9f3fb,var(--cloud))}
+  .treat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .tcard{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);padding:28px 24px;
+    transition:transform .2s,box-shadow .2s}
+  .tcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-sm)}
+  .tcard .ic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;margin-bottom:18px;
+    background:linear-gradient(160deg,var(--sky-1),var(--sky-2))}
+  .tcard.warm .ic{background:linear-gradient(160deg,var(--warm-soft),var(--warm))}
+  .tcard h3{font-size:1.25rem;font-weight:600;margin-bottom:8px}
+  .tcard p{font-size:.94rem;color:var(--slate)}
+
+  /* sedation */
+  .sed-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .sed{border-radius:var(--r-md);padding:32px 28px;position:relative;overflow:hidden;
+    background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+  .sed .step{font-family:'Fraunces';font-size:.95rem;font-weight:600;color:var(--warm);
+    display:flex;align-items:center;gap:8px;margin-bottom:14px}
+  .sed .step .dot{width:10px;height:10px;border-radius:50%;background:var(--warm)}
+  .sed h3{font-size:1.4rem;font-weight:600;margin-bottom:10px}
+  .sed p{color:var(--slate);font-size:.97rem}
+  .sed .lvl{position:absolute;top:26px;right:26px;display:flex;gap:5px}
+  .sed .lvl i{width:8px;height:24px;border-radius:4px;background:var(--line)}
+  .sed.l1 .lvl i:nth-child(-n+1),.sed.l2 .lvl i:nth-child(-n+2),.sed.l3 .lvl i:nth-child(-n+3){background:var(--sky-2)}
+
+  /* testimonials */
+  .testi{background:var(--deep);color:#fff}
+  .testi .sec-head h2{color:#fff}
+  .testi .sec-head p{color:rgba(255,255,255,.78)}
+  .testi .eyebrow{color:var(--gold)}
+  .testi .eyebrow::before{background:var(--gold)}
+  .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .quote{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:var(--r-md);
+    padding:28px;display:flex;flex-direction:column}
+  .quote .stars{color:var(--gold);letter-spacing:2px;margin-bottom:14px}
+  .quote p{font-size:1.02rem;line-height:1.55;margin-bottom:20px}
+  .quote .by{margin-top:auto;display:flex;align-items:center;gap:12px}
+  .quote .by .av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:700;
+    background:linear-gradient(160deg,var(--sky-1),var(--blue));color:#fff;font-size:.95rem}
+  .quote .by .nm{font-weight:600;font-size:.95rem}
+  .quote .by .src{font-size:.78rem;opacity:.66}
+
+  /* credentials strip */
+  .creds{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .cred{background:var(--paper);border:1px solid var(--line);border-radius:100px;padding:12px 22px;
+    font-weight:600;font-size:.92rem;color:var(--deep);display:flex;align-items:center;gap:9px}
+  .cred svg{flex:none}
+
+  /* community */
+  .community{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center;
+    background:linear-gradient(160deg,#fff6f0,#fef0e6);border-radius:var(--r-lg);padding:52px;border:1px solid var(--warm-soft)}
+  .community h2{font-size:clamp(1.8rem,3.4vw,2.6rem);color:var(--ink)}
+  .community p{color:var(--slate);font-size:1.06rem;margin-top:16px}
+  .heart-badge{aspect-ratio:1;border-radius:var(--r-lg);background:linear-gradient(160deg,var(--warm),#e8794a);
+    display:grid;place-items:center;color:#fff;text-align:center;padding:40px;box-shadow:var(--shadow)}
+  .heart-badge .big{font-family:'Fraunces';font-size:2.4rem;font-weight:600;line-height:1.05;margin-top:14px}
+  .heart-badge small{opacity:.92;font-size:.92rem;margin-top:8px}
+
+  /* CTA */
+  .cta-final{background:
+      radial-gradient(100% 120% at 10% 0%,rgba(255,158,107,.18),transparent 50%),
+      linear-gradient(160deg,#3a83c4,#1d4d77);color:#fff;border-radius:var(--r-lg);
+      padding:64px 48px;text-align:center;position:relative;overflow:hidden}
+  .cta-final h2{font-size:clamp(2rem,4.4vw,3.2rem);margin-bottom:16px}
+  .cta-final p{font-size:1.14rem;opacity:.9;max-width:520px;margin:0 auto 30px}
+  .cta-final .btn-primary{background:#fff;color:var(--deep)}
+  .cta-final .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .cta-info{margin-top:28px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;font-size:.95rem;opacity:.92}
+  .cta-info a{display:inline-flex;align-items:center;gap:8px;font-weight:600}
+
+  /* footer */
+  footer{padding:54px 0 30px;color:var(--slate)}
+  .foot-grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
+  .foot-brand{max-width:300px}
+  .foot-brand p{font-size:.92rem;margin-top:12px}
+  .foot-col h5{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin-bottom:12px}
+  .foot-col a{display:block;font-size:.94rem;margin-bottom:8px;color:var(--slate)}
+  .foot-col a:hover{color:var(--deep)}
+  .foot-note{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:.82rem}
+  .spec-flag{background:rgba(58,131,196,.1);border:1px dashed rgba(58,131,196,.4);border-radius:12px;
+    padding:10px 16px;font-size:.82rem;color:var(--deep);margin-top:18px;display:inline-block}
+
+  /* responsive */
+  @media(max-width:900px){
+    .nav-links{display:none}
+    .pillars{grid-template-columns:1fr;gap:24px;perspective:none}
+    /* on stacked mobile, settled cards sit flat */
+    .pcard.c1.in,.pcard.c2.in,.pcard.c3.in{transform:translateZ(0) translateY(0) scale(1)}
+    .pcard{min-height:auto}
+    .pcard.doctor .portrait{min-height:120px}
+    .story-grid,.community{grid-template-columns:1fr;gap:34px}
+    .community{padding:34px}
+    .treat-grid{grid-template-columns:1fr 1fr}
+    .sed-grid,.t-grid{grid-template-columns:1fr}
+    .proof .div{display:none}
+    .proof-in{justify-content:flex-start;gap:24px 36px}
+  }
+  @media(max-width:520px){
+    .treat-grid{grid-template-columns:1fr}
+    .cta-final{padding:44px 24px}
+    section.block{padding:68px 0}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto}
+    .pcard{opacity:1}
+    .pcard.c1.in,.pcard.c3.in{transform:none}
+    .pcard.c2.in{transform:translateY(-14px)}
+  }
+  .pillars .pcard.in:focus-visible{
+    transform:translateZ(72px) translateY(-22px) scale(1.04);
+    box-shadow:0 44px 76px -30px rgba(15,55,95,.6);z-index:6}
+  :focus-visible{outline:3px solid var(--warm);outline-offset:3px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">
+      <span class="mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3c-3.2 0-4.5 1.6-6 1.6S3.5 3.8 3 5c-.8 2 .2 5 .9 7.6.5 1.9.6 4.4 1.6 6.3.5 1 1.4 1.3 1.9.4.6-1 .8-3 1.2-4.5.3-1 .8-1.8 1.4-1.8s1.1.8 1.4 1.8c.4 1.5.6 3.5 1.2 4.5.5.9 1.4.6 1.9-.4 1-1.9 1.1-4.4 1.6-6.3.7-2.6 1.7-5.6.9-7.6-.5-1.2-1.5-.6-3-.4S15.2 3 12 3z" fill="#fff"/></svg>
+      </span>
+      Dental on Central
+    </a>
+    <nav class="nav-links">
+      <a href="#story">Our Story</a>
+      <a href="#treat">Who We Help</a>
+      <a href="#sedation">Sedation</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="tel:6022661776">(602) 266-1776</a>
+      <a class="btn btn-primary" href="#visit">Book a visit</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<main id="top" class="hero">
+  <div class="wrap">
+    <div class="hero-tagline">
+      <span class="eyebrow">Anxiety-friendly · Judgment-free · Phoenix since 2005</span>
+    </div>
+
+    <!-- PILLAR CARDS: son (left) · headline (middle) · father (right) -->
+    <div class="pillars">
+
+      <!-- LEFT: the son, Dr. John Doe + credentials -->
+      <article class="pcard c1 doctor" tabindex="0" aria-label="Dr. John Doe, the dentist">
+        <span class="tag">The Dentist · Son</span>
+        <div class="portrait">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FIOVmzqLhhYVWrGz8tGlOyYHI3/hf_20260621_082800_11b8d68d-2cb2-4aaf-ab10-017facc6ddee.png" alt="Dr. John Doe, DDS">
+          <div class="namecard">
+            <div class="nm">Dr. John Doe</div>
+            <div class="ex">DDS · Special Care</div>
+          </div>
+        </div>
+        <ul class="credlist">
+          <li><svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H22l-5.8 4.3 2.2 7L12 16.9 5.6 20.2l2.2-7L2 8.9h7.6z" fill="#f3c14b"/></svg> Founding Faculty, AZ School of Dentistry</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H22l-5.8 4.3 2.2 7L12 16.9 5.6 20.2l2.2-7L2 8.9h7.6z" fill="#f3c14b"/></svg> Creighton Dental School · Horace Wells Award ’05</li>
+        </ul>
+        <div class="review-row">
+          <span class="stars">★★★★★</span>
+          <span class="rc">2,030+ reviews</span>
+        </div>
+      </article>
+
+      <!-- MIDDLE: the headline hero -->
+      <article class="pcard c2 hero-panel" aria-label="Headline">
+        <span class="brandline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3c-3.2 0-4.5 1.6-6 1.6S3.5 3.8 3 5c-.8 2 .2 5 .9 7.6.5 1.9.6 4.4 1.6 6.3.5 1 1.4 1.3 1.9.4.6-1 .8-3 1.2-4.5.3-1 .8-1.8 1.4-1.8s1.1.8 1.4 1.8c.4 1.5.6 3.5 1.2 4.5.5.9 1.4.6 1.9-.4 1-1.9 1.1-4.4 1.6-6.3.7-2.6 1.7-5.6.9-7.6-.5-1.2-1.5-.6-3-.4S15.2 3 12 3z" fill="#fff"/></svg>
+          Dental on Central
+        </span>
+        <h1><b>Every patient</b> deserves to say yes to the dentist.</h1>
+        <p class="sub">Phoenix's home for sedation, special needs, and anxiety-free dental care — all specialists, under one roof.</p>
+        <div class="hero-tooth">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FIOVmzqLhhYVWrGz8tGlOyYHI3/hf_20260621_082755_279e7182-9934-4664-a097-5d49426d8144.png" alt="Pristine white tooth" loading="lazy">
+        </div>
+        <a class="book-badge" href="#visit" aria-label="Book your consultation">Book your<br>consultation<span class="arrow">↗</span></a>
+      </article>
+
+      <!-- RIGHT: the father, Dr. Mike Doe -->
+      <article class="pcard c3 doctor" tabindex="0" aria-label="Dr. Mike Doe, the anesthesiologist">
+        <span class="tag">The Anesthesiologist · Father</span>
+        <div class="portrait" style="background:rgba(255,255,255,.2)">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3FIOVmzqLhhYVWrGz8tGlOyYHI3/hf_20260621_082804_378d08b9-43d8-4e7b-bbf6-ffb8ede1735a.png" alt="Dr. Mike Doe, MD">
+          <div class="namecard">
+            <div class="nm">Dr. Mike Doe</div>
+            <div class="ex">MD · Pain Management</div>
+          </div>
+        </div>
+        <ul class="credlist">
+          <li><svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H22l-5.8 4.3 2.2 7L12 16.9 5.6 20.2l2.2-7L2 8.9h7.6z" fill="#fff"/></svg> Board-certified · 30 years of experience</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H22l-5.8 4.3 2.2 7L12 16.9 5.6 20.2l2.2-7L2 8.9h7.6z" fill="#fff"/></svg> 10,000+ sedations safely delivered</li>
+        </ul>
+        <div class="foot">
+          <div class="chip"><div class="big">15 yrs</div><div class="lbl">working beside his son</div></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</main>
+
+<!-- PROOF BAR -->
+<section class="proof">
+  <div class="wrap proof-in">
+    <div class="pitem"><span class="num">2,030+</span><span class="cap">patient reviews</span></div>
+    <div class="div"></div>
+    <div class="pitem"><span class="num">Top Dentist ’25</span><span class="cap">recognized in Phoenix</span></div>
+    <div class="div"></div>
+    <div class="pitem"><span class="num">88%</span><span class="cap">actively recommend us</span></div>
+    <div class="div"></div>
+    <div class="pitem"><span class="num">20 yrs</span><span class="cap">caring for the Valley</span></div>
+    <div class="div"></div>
+    <div class="pitem"><span class="num">All-in-one</span><span class="cap">specialists under one roof</span></div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="block" id="story">
+  <div class="wrap">
+    <div class="story-grid">
+      <div class="story-card">
+        <div class="duo">
+          <div class="doc a">
+            <img class="docimg" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FIOVmzqLhhYVWrGz8tGlOyYHI3/hf_20260621_082800_11b8d68d-2cb2-4aaf-ab10-017facc6ddee.png" alt="Dr. John Doe, DDS">
+            <div class="doc-grad"></div>
+            <div class="doc-txt">
+              <span class="role">The Dentist</span>
+              <h4>Dr. John Doe, DDS</h4>
+              <small>Founding faculty, Arizona School of Dentistry &amp; Oral Health · Special Care Clinic</small>
+            </div>
+          </div>
+          <div class="doc b">
+            <img class="docimg" src="https://d8j0ntlcm91z4.cloudfront.net/user_3FIOVmzqLhhYVWrGz8tGlOyYHI3/hf_20260621_082804_378d08b9-43d8-4e7b-bbf6-ffb8ede1735a.png" alt="Dr. Mike Doe, MD">
+            <div class="doc-grad"></div>
+            <div class="doc-txt">
+              <span class="role">The Anesthesiologist</span>
+              <h4>Dr. Mike Doe, MD</h4>
+              <small>Board-certified pain management · 30 years of experience</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="story-body">
+        <span class="eyebrow">A father &amp; son practice</span>
+        <h2 style="font-size:clamp(2rem,4vw,2.8rem);margin:14px 0 18px;color:var(--ink)">Two doctors. One chair.<br>Zero reason to be afraid.</h2>
+        <p>Most clinics send anxious or complex patients away. Here, a <strong>dentist and a physician anesthesiologist work side by side</strong> — a father-and-son team who've spent <strong>15 years</strong> in the same room making the impossible appointment possible.</p>
+        <p>It's why someone who avoided care for a decade, or a parent of a child with autism who's been turned away elsewhere, finally hears the word that matters most: <strong>yes.</strong></p>
+        <div class="story-stats">
+          <div class="s"><div class="n">15 yrs</div><div class="l">working together</div></div>
+          <div class="s"><div class="n">2005</div><div class="l">practice founded</div></div>
+          <div class="s"><div class="n">1 visit</div><div class="l">complex care, fewer trips</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE HELP -->
+<section class="block treat" id="treat">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Who we help</span>
+      <h2>Care built around the patients others find “too hard.”</h2>
+      <p>If a dental visit has ever felt impossible, you're exactly who this practice was made for.</p>
+    </div>
+    <div class="treat-grid">
+      <div class="tcard warm">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-9.3-9C1 8.5 3 5 6.5 5 8.7 5 10 6.4 12 8.5 14 6.4 15.3 5 17.5 5 21 5 23 8.5 21.3 12 19 16.5 12 21 12 21z" fill="#fff"/></svg></div>
+        <h3>Dental anxiety</h3>
+        <p>Decades of avoidance? You'll be eased in gently, with sedation available the moment you need it.</p>
+      </div>
+      <div class="tcard">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#fff"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+        <h3>Special needs</h3>
+        <p>Autism, Down syndrome, cerebral palsy, ADHD — adapted care, led by faculty who teach it.</p>
+      </div>
+      <div class="tcard">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 4c4 0 7 2.5 7 6 0 2-1 3.5-1 6 0 2 1 3 1 3H5s1-1 1-3c0-2.5-1-4-1-6 0-3.5 3-6 7-6z" fill="#fff"/></svg></div>
+        <h3>Nervous kids</h3>
+        <p>Behavioral techniques first, sedation only when truly needed — pediatric care without the tears.</p>
+      </div>
+      <div class="tcard">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="8" r="3" fill="#fff"/><circle cx="16" cy="8" r="3" fill="#fff"/><path d="M3 19c0-2.8 2.2-5 5-5M21 19c0-2.8-2.2-5-5-5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+        <h3>Whole families</h3>
+        <p>One trusted team for grandparents, parents and kids — every routine and complex need handled in-house.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEDATION -->
+<section class="block" id="sedation">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Sleep dentistry, explained</span>
+      <h2>Three levels of calm — you choose how much.</h2>
+      <p>Every option is administered and monitored by a physician anesthesiologist with 30 years of experience. You're never just “put under” and hoped for the best.</p>
+    </div>
+    <div class="sed-grid">
+      <div class="sed l1">
+        <div class="lvl"><i></i><i></i><i></i></div>
+        <div class="step"><span class="dot"></span>For mild nerves</div>
+        <h3>Oral conscious</h3>
+        <p>A simple pill or liquid takes the edge off. You stay awake and aware, just deeply relaxed and at ease in the chair.</p>
+      </div>
+      <div class="sed l2">
+        <div class="lvl"><i></i><i></i><i></i></div>
+        <div class="step"><span class="dot"></span>For deeper comfort</div>
+        <h3>IV sedation</h3>
+        <p>A gentle, adjustable level of sedation for longer or more involved treatment. Most patients remember little to nothing.</p>
+      </div>
+      <div class="sed l3">
+        <div class="lvl"><i></i><i></i><i></i></div>
+        <div class="step"><span class="dot"></span>For complete rest</div>
+        <h3>General anesthesia</h3>
+        <p>Full sleep dentistry in our surgical suite — ideal for complex cases, special needs, or finishing everything in one visit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="block testi" id="reviews">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">In their words</span>
+      <h2>The reviews that mean the most.</h2>
+      <p>Drawn from real patient feedback across more than 2,000 reviews.</p>
+    </div>
+    <div class="t-grid">
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>“The first person in seven years to clean my daughter's teeth without sedation. He spoke to her with such respect — I nearly cried.”</p>
+        <div class="by"><span class="av">SN</span><div><div class="nm">Parent of a special-needs patient</div><div class="src">Verified review</div></div></div>
+      </div>
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>“Going to the dentist was something I dreaded — I postponed care for ten years. Dr. Doe changed how I feel about it completely.”</p>
+        <div class="by"><span class="av">RB</span><div><div class="nm">Long-time anxious patient</div><div class="src">Verified review</div></div></div>
+      </div>
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>“My brother is a handicapped adult. They speak directly to him, with dignity. So many places talk over him — never here.”</p>
+        <div class="by"><span class="av">EB</span><div><div class="nm">Family caregiver</div><div class="src">Verified review</div></div></div>
+      </div>
+    </div>
+    <div style="margin-top:40px" class="creds">
+      <span class="cred"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H22l-5.8 4.3 2.2 7L12 16.9 5.6 20.2l2.2-7L2 8.9h7.6z" fill="#f3c14b"/></svg> Creighton Dental School</span>
+      <span class="cred"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H22l-5.8 4.3 2.2 7L12 16.9 5.6 20.2l2.2-7L2 8.9h7.6z" fill="#f3c14b"/></svg> Founding Faculty, ASDOH</span>
+      <span class="cred"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H22l-5.8 4.3 2.2 7L12 16.9 5.6 20.2l2.2-7L2 8.9h7.6z" fill="#f3c14b"/></svg> American Dental Society of Anesthesiology</span>
+      <span class="cred"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H22l-5.8 4.3 2.2 7L12 16.9 5.6 20.2l2.2-7L2 8.9h7.6z" fill="#f3c14b"/></svg> Horace Wells Anesthesia Award ’05</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="block" id="community">
+  <div class="wrap">
+    <div class="community">
+      <div>
+        <span class="eyebrow">Beyond the chair</span>
+        <h2>Rooted in the Phoenix community.</h2>
+        <p>Dr. Doe doesn't just treat patients with autism — he gives back to them. As a donor and volunteer with the Southwest Autism Research &amp; Resource Center, and faculty training the next generation of special-care dentists, this practice's mission reaches far past Central Avenue.</p>
+        <a class="btn btn-ghost" style="margin-top:24px" href="#visit">Meet the team</a>
+      </div>
+      <div class="heart-badge">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-9.3-9C1 8.5 3 5 6.5 5 8.7 5 10 6.4 12 8.5 14 6.4 15.3 5 17.5 5 21 5 23 8.5 21.3 12 19 16.5 12 21 12 21z" fill="#fff"/></svg>
+        <div class="big">Donor &amp;<br>volunteer</div>
+        <small>Southwest Autism Research &amp; Resource Center (SARRC)</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="block" id="visit" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-final">
+      <span class="eyebrow" style="color:var(--gold);justify-content:center">Your gentle first visit</span>
+      <h2>Ready to stop dreading the dentist?</h2>
+      <p>Tell us what makes appointments hard for you. We'll build a plan around it — no pressure, no judgment, just a calmer way forward.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="tel:6022661776">Call (602) 266-1776</a>
+        <a class="btn btn-ghost" href="#top">Request an appointment</a>
+      </div>
+      <div class="cta-info">
+        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="#fff" stroke-width="1.8"/></svg> 5133 N Central Ave, Suite 102, Phoenix AZ 85012</a>
+        <a href="https://www.instagram.com/dental_on_central/"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="#fff" stroke-width="1.8"/><circle cx="17" cy="7" r="1.2" fill="#fff"/></svg> @dental_on_central</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top">
+          <span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3c-3.2 0-4.5 1.6-6 1.6S3.5 3.8 3 5c-.8 2 .2 5 .9 7.6.5 1.9.6 4.4 1.6 6.3.5 1 1.4 1.3 1.9.4.6-1 .8-3 1.2-4.5.3-1 .8-1.8 1.4-1.8s1.1.8 1.4 1.8c.4 1.5.6 3.5 1.2 4.5.5.9 1.4.6 1.9-.4 1-1.9 1.1-4.4 1.6-6.3.7-2.6 1.7-5.6.9-7.6-.5-1.2-1.5-.6-3-.4S15.2 3 12 3z" fill="#fff"/></svg></span>
+          Dental on Central
+        </a>
+        <p>Anxiety-friendly, judgment-free dental care in Phoenix. Sedation, special needs, and family dentistry — all under one roof.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Care</h5>
+        <a href="#sedation">Sedation dentistry</a>
+        <a href="#treat">Special needs</a>
+        <a href="#treat">Pediatric care</a>
+        <a href="#story">Family dentistry</a>
+      </div>
+      <div class="foot-col">
+        <h5>Practice</h5>
+        <a href="#story">Our story</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#community">Community</a>
+        <a href="#visit">Book a visit</a>
+      </div>
+      <div class="foot-col">
+        <h5>Visit</h5>
+        <a href="tel:6022661776">(602) 266-1776</a>
+        <a href="#">5133 N Central Ave, Ste 102</a>
+        <a href="#">Phoenix, AZ 85012</a>
+        <a href="https://www.instagram.com/dental_on_central/">Instagram</a>
+      </div>
+    </div>
+    <div class="foot-note">
+      <span>© 2025 Dental on Central · Phoenix, Arizona</span>
+      <span class="spec-flag">Concept design — portrait photos are realistic placeholders. Final build uses the clinic's own headshots, photos &amp; approved wording.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Trigger the staggered "come forward" entrance once the page is ready.
+  (function(){
+    var cards = document.querySelectorAll('.pcard');
+    function reveal(){ cards.forEach(function(c){ c.classList.add('in'); }); }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      reveal(); // no animation, just show
+    } else {
+      // small delay so the transition is visible after first paint
+      requestAnimationFrame(function(){ setTimeout(reveal, 120); });
+    }
+  })();
+</script>
+
+</body>
+</html>
