@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cumberland Insulation — Nashville's Insulation Experts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --sky-top:#A9C6CB;
+    --sky:#7CA1A9;
+    --sky-deep:#2E4348;
+    --gold:#3FB2DC;
+    --gold-soft:#74CDEF;
+    --ink:#14171A;
+    --ink-2:#1C2024;
+    --blue:#3FB2DC;
+    --blue-soft:#7FD2EE;
+    --cream:#FAF9F5;
+    --paper:#FFFFFF;
+    --text:#23272B;
+    --muted:#7E868C;
+    --line:#E7E6E0;
+    --shadow:0 30px 70px -30px rgba(15,25,28,.45);
+    --display:'Jost',sans-serif;
+    --serif:'Playfair Display',serif;
+    --body:'DM Sans',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);color:var(--text);background:var(--paper);line-height:1.6;overflow-x:hidden}
+  h1,h2,h3,h4{font-family:var(--display);font-weight:300;letter-spacing:-.01em;line-height:1.08}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--gold);color:var(--ink)}
+  .wrap{width:min(1180px,92vw);margin-inline:auto}
+  .eyebrow{font-family:var(--body);font-weight:500;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  .serif{font-family:var(--serif);font-style:italic;font-weight:500}
+
+  /* ---------- NAV ---------- */
+  header.nav{position:fixed;inset:0 0 auto 0;z-index:60;transition:.35s}
+  header.nav.scrolled{background:rgba(20,23,26,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(255,255,255,.06)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+  .logo{font-family:var(--display);font-weight:500;font-size:1.45rem;letter-spacing:.04em;color:#fff;display:flex;align-items:center;gap:2px}
+  .logo .dot{width:9px;height:9px;background:var(--gold);border-radius:2px;margin:0 1px 4px 2px;display:inline-block;transform:translateY(4px)}
+  .nav-links{display:flex;gap:34px;align-items:center}
+  .nav-links a{color:rgba(255,255,255,.82);font-size:.9rem;font-weight:400;transition:.2s;position:relative}
+  .nav-links a:hover{color:var(--gold)}
+  .nav-phone{display:flex;align-items:center;gap:9px;color:#fff;font-size:.9rem}
+  .nav-phone .pill{width:34px;height:34px;border-radius:8px;background:var(--gold);display:grid;place-items:center;color:var(--ink)}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px}
+  .burger span{width:24px;height:2px;background:#fff;display:block;transition:.3s}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;overflow:hidden}
+  .hero-media{position:absolute;inset:0;z-index:0}
+  .hero-media video,.hero-media .fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero-media video{z-index:1;background:#243033}
+  /* Animated CSS fallback — looks like teal sky + drifting spray-foam mist. Swap for a Higgsfield MP4 in <video> below. */
+  .fallback{z-index:0;background:
+     radial-gradient(120% 80% at 78% 12%,rgba(255,255,255,.18),transparent 60%),
+     linear-gradient(170deg,var(--sky-top) 0%,var(--sky) 42%,var(--sky-deep) 100%);}
+  .mist{position:absolute;inset:-20% -10%;z-index:1;pointer-events:none;
+     background:radial-gradient(40% 30% at 20% 30%,rgba(255,255,255,.5),transparent 70%),
+               radial-gradient(35% 28% at 70% 60%,rgba(255,255,255,.4),transparent 70%),
+               radial-gradient(30% 26% at 45% 80%,rgba(255,255,255,.35),transparent 70%);
+     filter:blur(8px);opacity:.55;animation:drift 22s ease-in-out infinite alternate}
+  @keyframes drift{0%{transform:translate3d(-3%,0,0) scale(1)}100%{transform:translate3d(4%,-3%,0) scale(1.12)}}
+  .hero-shade{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(20,30,32,.32) 0%,rgba(20,30,32,.05) 35%,rgba(15,22,24,.55) 100%)}
+  .hero-content{position:relative;z-index:5;width:min(1180px,92vw);margin:0 auto;padding-bottom:38px;padding-top:140px}
+  .hero h1{font-size:clamp(2.9rem,7.4vw,6.3rem);font-weight:300;line-height:.98;text-shadow:0 4px 40px rgba(0,0,0,.25)}
+  .hero h1 .line2{display:block}
+  .hero h1 em{font-family:var(--serif);font-style:italic;font-weight:600;color:var(--gold)}
+  .hero .sub{margin-top:22px;max-width:30ch;font-size:clamp(1rem,1.6vw,1.22rem);color:rgba(255,255,255,.9);font-weight:400}
+  .hero-cta{display:inline-flex;align-items:center;gap:12px;margin-top:26px;font-size:.95rem;letter-spacing:.02em}
+  .hero-cta .arrow{width:42px;height:42px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-items:center;transition:.25s}
+  .hero-cta:hover .arrow{transform:translateX(4px)}
+
+  /* ---------- ESTIMATE PANEL (collapsible black bar) ---------- */
+  .estimate{position:relative;z-index:6;width:min(1180px,92vw);margin:0 auto;transform:translateY(40px)}
+  .estimate-card{background:var(--ink);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+  .est-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 28px;cursor:pointer;user-select:none}
+  .est-head-l{display:flex;align-items:center;gap:18px}
+  .est-badge{width:48px;height:48px;border-radius:12px;background:rgba(63,178,220,.14);display:grid;place-items:center;color:var(--gold);flex:none}
+  .est-head h3{color:#fff;font-size:1.28rem;font-weight:400}
+  .est-head p{color:rgba(255,255,255,.55);font-size:.85rem;margin-top:2px}
+  .est-head:hover{background:rgba(255,255,255,.03)}
+  .est-head-r{display:flex;align-items:center;gap:14px;flex:none}
+  .est-cue{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.78);font-size:.82rem;letter-spacing:.03em;font-weight:500;transition:.3s;white-space:nowrap}
+  .est-cue .cue-arr{display:inline-block;color:var(--gold);font-weight:700;animation:bob 1.4s ease-in-out infinite}
+  .estimate.open .est-cue{opacity:0;width:0;overflow:hidden;gap:0}
+  .est-toggle{position:relative;width:46px;height:46px;border-radius:50%;border:0;background:var(--gold);color:var(--ink);display:grid;place-items:center;transition:.3s;cursor:pointer;flex:none;box-shadow:0 8px 22px -8px rgba(63,178,220,.85)}
+  .est-toggle::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--gold);animation:ping 2s ease-out infinite}
+  .est-toggle svg{transition:transform .35s}
+  .estimate.open .est-toggle{background:rgba(255,255,255,.12);color:#fff;box-shadow:none}
+  .estimate.open .est-toggle::after{display:none}
+  .estimate.open .est-toggle svg{transform:rotate(180deg)}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+  .est-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1)}
+  .estimate.open .est-body{max-height:780px}
+  .est-inner{padding:6px 28px 30px}
+  .est-divider{height:1px;background:rgba(255,255,255,.08);margin-bottom:24px}
+  .est-progress{display:flex;gap:6px;margin-bottom:22px}
+  .est-progress i{height:3px;flex:1;background:rgba(255,255,255,.12);border-radius:2px;transition:.3s}
+  .est-progress i.on{background:var(--gold)}
+  .step{display:none;animation:fade .4s ease}
+  .step.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .step-q{color:#fff;font-size:1.12rem;font-weight:400;margin-bottom:4px}
+  .step-hint{color:rgba(255,255,255,.5);font-size:.84rem;margin-bottom:18px}
+  .opts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .opt{border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:16px 16px;color:rgba(255,255,255,.86);font-size:.95rem;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.02)}
+  .opt .ic{font-size:1.15rem}
+  .opt:hover{border-color:rgba(63,178,220,.6);background:rgba(63,178,220,.06)}
+  .opt.sel{border-color:var(--gold);background:rgba(63,178,220,.12);color:#fff}
+  .range-wrap{padding:6px 2px}
+  .range-val{color:var(--gold);font-family:var(--display);font-size:2rem;font-weight:400;margin-bottom:6px}
+  .range-val small{color:rgba(255,255,255,.5);font-size:.85rem;font-family:var(--body)}
+  input[type=range]{width:100%;-webkit-appearance:none;height:5px;border-radius:4px;background:rgba(255,255,255,.18);outline:none}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--gold);cursor:pointer;box-shadow:0 0 0 6px rgba(63,178,220,.18)}
+  input[type=range]::-moz-range-thumb{width:22px;height:22px;border:0;border-radius:50%;background:var(--gold);cursor:pointer}
+  .est-fields{display:grid;gap:12px}
+  .est-fields .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .field label{display:block;color:rgba(255,255,255,.6);font-size:.76rem;letter-spacing:.04em;margin-bottom:6px}
+  .field input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:13px 14px;color:#fff;font-family:var(--body);font-size:.95rem;transition:.2s}
+  .field input::placeholder{color:rgba(255,255,255,.35)}
+  .field input:focus{border-color:var(--gold);background:rgba(255,255,255,.08)}
+  .field.err input{border-color:#ff6b6b}
+  .field .msg{color:#ff8585;font-size:.72rem;margin-top:5px;display:none}
+  .field.err .msg{display:block}
+  .est-actions{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:22px}
+  .btn{font-family:var(--body);font-weight:500;border:0;cursor:pointer;border-radius:40px;padding:13px 26px;font-size:.92rem;transition:.25s;display:inline-flex;align-items:center;gap:9px}
+  .btn-gold{background:var(--gold);color:var(--ink)}
+  .btn-gold:hover{background:var(--gold-soft);transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:rgba(255,255,255,.7);padding-left:6px}
+  .btn-ghost:hover{color:#fff}
+  .btn[disabled]{opacity:.4;cursor:not-allowed;transform:none}
+  /* result */
+  .est-result{display:none;text-align:center;padding:8px 0 4px}
+  .est-result.show{display:block;animation:fade .5s ease}
+  .est-result .big{font-family:var(--display);font-weight:300;color:#fff;font-size:clamp(2rem,5vw,2.9rem);line-height:1.05}
+  .est-result .big b{color:var(--gold);font-weight:400}
+  .est-result p{color:rgba(255,255,255,.6);font-size:.9rem;max-width:46ch;margin:12px auto 0}
+  .est-result .refine{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{position:relative}
+  .pad{padding:120px 0}
+  .sec-head{max-width:60ch}
+  .sec-head .eyebrow{display:block;margin-bottom:14px}
+  .sec-head h2{font-size:clamp(2rem,4.3vw,3.4rem);font-weight:300}
+  .sec-head h2 em{font-family:var(--serif);font-style:italic;font-weight:600}
+
+  /* ---------- TYPES (white) ---------- */
+  .types{background:var(--cream)}
+  .types-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start;margin-top:10px}
+  .types-intro h2{font-size:clamp(2rem,3.6vw,2.9rem);font-weight:300;margin-bottom:18px}
+  .types-intro h2 .gold{color:var(--gold)}
+  .types-intro p{color:var(--muted);max-width:36ch}
+  .types-intro .mini{margin-top:30px;display:grid;gap:18px}
+  .types-intro .mini div{display:flex;gap:12px;align-items:flex-start}
+  .types-intro .mini .ic{color:var(--gold);flex:none;margin-top:2px}
+  .types-intro .mini h4{font-size:1rem;font-weight:500;font-family:var(--body);color:var(--text)}
+  .types-intro .mini p{font-size:.86rem;margin:0;max-width:30ch}
+  .type-list{border-top:1px solid var(--line)}
+  .type-item{border-bottom:1px solid var(--line)}
+  .type-q{width:100%;background:none;border:0;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 4px;text-align:left;font-family:var(--display);font-weight:400;font-size:1.32rem;color:var(--text);transition:.2s}
+  .type-q:hover{color:var(--gold)}
+  .type-q .n{font-family:var(--body);font-size:.78rem;color:var(--muted);width:30px;flex:none}
+  .type-q .label{flex:1}
+  .type-q .plus{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--muted);flex:none;transition:.3s;font-size:1.1rem}
+  .type-item.open .type-q{color:var(--gold)}
+  .type-item.open .plus{background:var(--gold);border-color:var(--gold);color:var(--ink);transform:rotate(45deg)}
+  .type-a{max-height:0;overflow:hidden;transition:max-height .45s ease}
+  .type-item.open .type-a{max-height:220px}
+  .type-a-in{padding:0 64px 26px 34px;color:var(--muted);font-size:.96rem}
+  .type-a-in .tag{display:inline-block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px}
+
+  /* ---------- DARK TRANSLUCENT SECTIONS (reviews / projects) ---------- */
+  .dark{color:#fff;background:var(--ink);position:relative;overflow:hidden}
+  .dark::before{content:"";position:absolute;inset:0;opacity:.5;
+     background:radial-gradient(70% 60% at 15% 0%,rgba(63,178,220,.18),transparent 60%),
+               radial-gradient(60% 50% at 100% 100%,rgba(63,178,220,.12),transparent 60%);}
+  .dark .wrap{position:relative;z-index:2}
+  .dark .sec-head .eyebrow{color:var(--blue-soft)}
+  .dark .sec-head h2 em{color:var(--blue)}
+  .dark .sec-head p{color:rgba(255,255,255,.6);margin-top:14px}
+
+  /* reviews */
+  .reviews-track{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(330px,1fr);gap:22px;margin-top:46px;overflow-x:auto;padding-bottom:14px;scroll-snap-type:x mandatory;scrollbar-width:none}
+  .reviews-track::-webkit-scrollbar{display:none}
+  .rev{scroll-snap-align:start;background:rgba(255,255,255,.04);border:1px solid rgba(63,178,220,.18);border-radius:18px;padding:30px;backdrop-filter:blur(6px)}
+  .rev .stars{color:var(--blue-soft);letter-spacing:3px;margin-bottom:14px;font-size:.9rem}
+  .rev blockquote{font-size:1.02rem;color:rgba(255,255,255,.9);line-height:1.55;font-weight:400}
+  .rev .who{display:flex;align-items:center;gap:13px;margin-top:22px}
+  .rev .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#2a7ea0);display:grid;place-items:center;font-family:var(--display);color:#fff;font-size:1.05rem;flex:none}
+  .rev .who b{font-weight:500;font-size:.95rem;display:block}
+  .rev .who span{font-size:.8rem;color:rgba(255,255,255,.5)}
+  .scrollhint{margin-top:16px;font-size:.78rem;color:rgba(255,255,255,.4);letter-spacing:.05em}
+
+  /* projects */
+  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:46px}
+  .proj{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:3/4;cursor:pointer}
+  .proj img{width:100%;height:100%;object-fit:cover;transition:.6s}
+  .proj:hover img{transform:scale(1.07)}
+  .proj .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,23,26,.05) 30%,rgba(20,23,26,.88) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px}
+  .proj .num{position:absolute;top:18px;left:20px;font-family:var(--display);font-size:.9rem;color:rgba(255,255,255,.8)}
+  .proj .cat{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-soft);margin-bottom:6px}
+  .proj h4{font-size:1.2rem;font-weight:400}
+  .proj .loc{font-size:.82rem;color:rgba(255,255,255,.6);margin-top:4px}
+
+  /* ---------- SPLIT IMAGE SECTIONS ---------- */
+  .split{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:70px}
+  .split.rev{direction:rtl}
+  .split.rev > *{direction:ltr}
+  .split-img{position:relative}
+  .split-img img{border-radius:6px;width:100%;aspect-ratio:5/4;object-fit:cover;box-shadow:var(--shadow)}
+  .split-img .nav-btns{position:absolute;left:18px;bottom:-18px;display:flex;gap:8px}
+  .split-img .nav-btns button{width:46px;height:42px;background:var(--ink);color:#fff;border:0;display:grid;place-items:center;cursor:pointer;transition:.2s}
+  .split-img .nav-btns button:hover{background:var(--gold);color:var(--ink)}
+  .split-txt h3{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:300;margin-bottom:18px}
+  .split-txt .eyebrow{display:block;margin-bottom:14px}
+  .split-txt p{color:var(--muted);margin-bottom:14px;max-width:42ch}
+  .split-txt .btn-gold{margin-top:10px}
+  /* big "Home" typography variant */
+  .seal h3{font-size:clamp(2rem,4vw,3.1rem);line-height:1.04}
+  .seal h3 .home{font-family:var(--serif);font-style:italic;font-weight:600;color:var(--gold);font-size:1.25em;display:inline-block}
+
+  /* ---------- FAQ ---------- */
+  .faq{background:var(--cream)}
+  .faq-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:60px;margin-top:14px;align-items:start}
+  .faq-list{border-top:1px solid var(--line)}
+  .faq-item{border-bottom:1px solid var(--line)}
+  .faq-q{width:100%;background:none;border:0;cursor:pointer;display:flex;justify-content:space-between;gap:20px;align-items:center;padding:24px 4px;text-align:left;font-family:var(--display);font-size:1.18rem;font-weight:400;color:var(--text);transition:.2s}
+  .faq-q:hover{color:var(--gold)}
+  .faq-q .plus{flex:none;color:var(--muted);font-size:1.4rem;transition:.3s}
+  .faq-item.open .faq-q{color:var(--gold)}
+  .faq-item.open .plus{transform:rotate(45deg);color:var(--gold)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .faq-item.open .faq-a{max-height:260px}
+  .faq-a p{padding:0 30px 26px 4px;color:var(--muted);font-size:.97rem}
+
+  /* ---------- HOW IT WORKS ---------- */
+  .how .sec-head{margin-bottom:20px}
+  .how-row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:50px;position:relative}
+  .how-row::before{content:"";position:absolute;top:24px;left:6%;right:6%;height:1px;background:repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 16px)}
+  .step-card{text-align:center;position:relative}
+  .step-card .dot{width:50px;height:50px;border-radius:50%;background:var(--paper);border:1px solid var(--line);display:grid;place-items:center;margin:0 auto 20px;font-family:var(--display);color:var(--gold);font-size:1.05rem;position:relative;z-index:2}
+  .step-card.feat .dot{background:var(--gold);color:var(--ink);border-color:var(--gold);box-shadow:0 12px 26px -10px rgba(63,178,220,.6)}
+  .step-card h4{font-size:1.12rem;font-weight:500;font-family:var(--display);margin-bottom:8px}
+  .step-card p{font-size:.88rem;color:var(--muted)}
+  .step-card.feat::after{content:"Most popular";position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--ink);font-size:.62rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink);color:rgba(255,255,255,.7);padding:70px 0 30px}
+  .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:46px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .foot-top .logo{margin-bottom:16px}
+  .foot-top p{font-size:.9rem;max-width:34ch}
+  .foot-col h5{color:#fff;font-family:var(--display);font-weight:500;font-size:1rem;margin-bottom:16px}
+  .foot-col a{display:block;font-size:.9rem;margin-bottom:10px;color:rgba(255,255,255,.6);transition:.2s}
+  .foot-col a:hover{color:var(--gold)}
+  .foot-bottom{padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.8rem;color:rgba(255,255,255,.4)}
+
+  /* ---------- FLOATING BADGE ---------- */
+  .float-badge{position:fixed;right:22px;bottom:22px;z-index:80;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+  .badge-card{background:#fff;border-radius:16px;box-shadow:0 24px 60px -18px rgba(15,25,28,.5);padding:18px 18px 16px;width:290px;transform-origin:bottom right;transition:.35s cubic-bezier(.4,0,.2,1);position:relative}
+  .badge-card.hide{opacity:0;transform:scale(.85) translateY(10px);pointer-events:none}
+  .badge-card .x{position:absolute;top:10px;right:12px;background:none;border:0;color:var(--muted);cursor:pointer;font-size:1.1rem;line-height:1}
+  .badge-card .tt{font-family:var(--display);font-weight:500;font-size:1.02rem;margin-bottom:6px;padding-right:14px}
+  .badge-card p{font-size:.82rem;color:var(--muted);margin-bottom:14px}
+  .badge-card .acts{display:flex;gap:8px}
+  .badge-card .acts a{flex:1;text-align:center;font-size:.8rem;font-weight:500;padding:9px 6px;border-radius:9px;transition:.2s}
+  .acts .calc{background:var(--gold);color:var(--ink)}
+  .acts .calc:hover{background:var(--gold-soft)}
+  .acts .wa{background:#25D366;color:#fff}
+  .acts .wa:hover{filter:brightness(1.07)}
+  .badge-fab{width:60px;height:60px;border-radius:50%;background:var(--gold);color:var(--ink);border:0;cursor:pointer;display:grid;place-items:center;box-shadow:0 16px 34px -10px rgba(63,178,220,.7);transition:.25s;position:relative}
+  .badge-fab:hover{transform:scale(1.06)}
+  .badge-fab .ping{position:absolute;inset:0;border-radius:50%;border:2px solid var(--gold);animation:ping 2.2s ease-out infinite}
+  @keyframes ping{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.5);opacity:0}}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:960px){
+    .nav-links,.nav-phone{display:none}
+    .burger{display:flex}
+    .nav-links.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(20,23,26,.97);padding:24px 6vw;gap:20px}
+    .types-grid,.faq-grid{grid-template-columns:1fr;gap:36px}
+    .proj-grid{grid-template-columns:repeat(2,1fr)}
+    .split{grid-template-columns:1fr;gap:40px}
+    .split.rev{direction:ltr}
+    .how-row{grid-template-columns:repeat(2,1fr);gap:36px}
+    .how-row::before{display:none}
+  }
+  @media(max-width:620px){
+    .pad{padding:84px 0}
+    .opts{grid-template-columns:1fr}
+    .est-fields .row{grid-template-columns:1fr}
+    .est-head{padding:18px 18px}
+    .est-cue{display:none}
+    .est-inner{padding:6px 18px 26px}
+    .proj-grid{grid-template-columns:1fr}
+    .how-row{grid-template-columns:1fr}
+    .float-badge{right:14px;bottom:14px}
+    .badge-card{width:min(290px,80vw)}
+    .estimate{transform:translateY(26px)}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="logo">Cumberland<span class="dot"></span></a>
+    <nav class="nav-links" id="navlinks">
+      <a href="#home">Home</a>
+      <a href="#types">Services</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#projects">Projects</a>
+      <a href="#faq">FAQ</a>
+      <a href="#how">Contact</a>
+    </nav>
+    <a class="nav-phone" href="tel:+16155550142"><span class="pill">✆</span> (615) 555-0142</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-media">
+    <!-- Higgsfield spray-foam hero clip (Kling 3.0 Turbo, 1080p). CSS fallback shows if it can't load. -->
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3FIOVmzqLhhYVWrGz8tGlOyYHI3/hf_20260624_114145_b81b743a-03fd-4153-a33f-aaf5c6c9be87.mp4" type="video/mp4" />
+    </video>
+    <div class="fallback"></div>
+    <div class="mist"></div>
+  </div>
+  <div class="hero-shade"></div>
+
+  <div class="hero-content">
+    <p class="eyebrow" style="color:rgba(255,255,255,.85)">Spray foam · Blown-in · Crawl space · Whole-home</p>
+    <h1 style="margin-top:14px">Nashville's Insulation
+      <span class="line2"><em>Experts</em></span>
+    </h1>
+    <p class="sub">Nashville's trusted experts in home insulation — lower bills, steady comfort, no guesswork.</p>
+    <a href="#est" class="hero-cta" id="heroCta">Get your budget estimate <span class="arrow">→</span></a>
+  </div>
+
+  <!-- collapsible estimate panel -->
+  <div class="estimate" id="est">
+    <div class="estimate-card">
+      <div class="est-head" id="estHead">
+        <div class="est-head-l">
+          <div class="est-badge">⚡</div>
+          <div>
+            <h3>Get your budget estimate</h3>
+            <p>Answer 4 quick questions — ballpark range in under a minute.</p>
+          </div>
+        </div>
+        <div class="est-head-r">
+          <span class="est-cue">Tap to start <span class="cue-arr">↓</span></span>
+          <button class="est-toggle" aria-label="Open budget estimate">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="est-body">
+        <div class="est-inner">
+          <div class="est-divider"></div>
+          <div class="est-progress" id="estProg"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+
+          <!-- step 1 -->
+          <div class="step active" data-step="0">
+            <p class="step-q">What needs insulating?</p>
+            <p class="step-hint">Pick the area you want us to work on.</p>
+            <div class="opts" data-group="area">
+              <div class="opt" data-val="attic" data-lo="1.6" data-hi="3.2"><span class="ic">🏠</span> Attic</div>
+              <div class="opt" data-val="walls" data-lo="2.2" data-hi="4.6"><span class="ic">🧱</span> Walls</div>
+              <div class="opt" data-val="crawl" data-lo="3.0" data-hi="7.0"><span class="ic">🪵</span> Crawl space</div>
+              <div class="opt" data-val="whole" data-lo="2.6" data-hi="5.2"><span class="ic">🏡</span> Whole home</div>
+            </div>
+          </div>
+
+          <!-- step 2 -->
+          <div class="step" data-step="1">
+            <p class="step-q">What type of property?</p>
+            <p class="step-hint">Helps us match crew and materials.</p>
+            <div class="opts" data-group="prop">
+              <div class="opt" data-val="single"><span class="ic">🏠</span> Single-family home</div>
+              <div class="opt" data-val="town"><span class="ic">🏘️</span> Townhome / Condo</div>
+              <div class="opt" data-val="new"><span class="ic">🏗️</span> New construction</div>
+              <div class="opt" data-val="comm"><span class="ic">🏢</span> Commercial</div>
+            </div>
+          </div>
+
+          <!-- step 3 -->
+          <div class="step" data-step="2">
+            <p class="step-q">Roughly how much area?</p>
+            <p class="step-hint">A guess is fine — drag the slider.</p>
+            <div class="range-wrap">
+              <div class="range-val"><span id="sqftVal">1,200</span> <small>sq ft</small></div>
+              <input type="range" id="sqft" min="200" max="5000" step="100" value="1200" />
+            </div>
+          </div>
+
+          <!-- step 4 -->
+          <div class="step" data-step="3">
+            <p class="step-q">When are you hoping to start?</p>
+            <p class="step-hint">No pressure — exploring is welcome.</p>
+            <div class="opts" data-group="time">
+              <div class="opt" data-val="asap"><span class="ic">⏱️</span> As soon as possible</div>
+              <div class="opt" data-val="soon"><span class="ic">📅</span> Within 1–3 months</div>
+              <div class="opt" data-val="explore"><span class="ic">🔎</span> Just exploring</div>
+              <div class="opt" data-val="quote"><span class="ic">📝</span> Comparing quotes</div>
+            </div>
+          </div>
+
+          <!-- step 5 -->
+          <div class="step" data-step="4">
+            <p class="step-q">Where should we send your estimate?</p>
+            <p class="step-hint">Email and phone are required so we can send the figure and one quick follow-up.</p>
+            <div class="est-fields">
+              <div class="field">
+                <label>Name (optional)</label>
+                <input type="text" id="fName" placeholder="Jordan Hayes" />
+              </div>
+              <div class="row">
+                <div class="field" id="wEmail">
+                  <label>Email *</label>
+                  <input type="email" id="fEmail" placeholder="you@email.com" />
+                  <span class="msg">Enter a valid email</span>
+                </div>
+                <div class="field" id="wPhone">
+                  <label>Phone *</label>
+                  <input type="tel" id="fPhone" placeholder="(615) 000-0000" />
+                  <span class="msg">Enter a valid phone</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- result -->
+          <div class="est-result" id="estResult">
+            <p class="eyebrow" style="color:var(--gold);margin-bottom:10px">Your ballpark estimate</p>
+            <div class="big"><b id="rLo">$1,900</b> – <b id="rHi">$3,800</b></div>
+            <p>This is a rough range for <span id="rArea">attic</span> insulation at <span id="rSqft">1,200</span> sq ft. For an exact figure, send a short video or a description of the problem on WhatsApp and we'll price it the same day.</p>
+            <div class="refine">
+              <a class="btn btn-gold" href="https://wa.me/16155550142?text=Hi%20Cumberland%2C%20here%27s%20my%20insulation%20project" target="_blank" rel="noopener">Send a video on WhatsApp</a>
+              <button class="btn btn-ghost" id="estRestart">Start over</button>
+            </div>
+          </div>
+
+          <!-- actions -->
+          <div class="est-actions" id="estActions">
+            <button class="btn btn-ghost" id="estBack" style="visibility:hidden">← Back</button>
+            <button class="btn btn-gold" id="estNext" disabled>Continue →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TYPES (white) ============ -->
+<section class="types pad" id="types">
+  <div class="wrap">
+    <div class="types-grid">
+      <div class="types-intro">
+        <p class="eyebrow">Nashville's Insulation Company</p>
+        <h2 style="margin-top:12px">The right material <span class="gold">for every space.</span></h2>
+        <p>Not every home needs the same insulation. Tap a type to see where it fits best and what it does for comfort and bills.</p>
+        <div class="mini">
+          <div><span class="ic">⚡</span><div><h4>Energy efficiency</h4><p>Best applied to attics, rim joists and remodel projects.</p></div></div>
+          <div><span class="ic">🔇</span><div><h4>Sound control</h4><p>A cost-effective way to quiet rooms between floors.</p></div></div>
+          <div><span class="ic">🌿</span><div><h4>Healthier home</h4><p>Pairs sealing with ventilation to cut moisture and dust.</p></div></div>
+        </div>
+      </div>
+
+      <div class="type-list" id="typeList">
+        <div class="type-item open">
+          <button class="type-q"><span class="n">01</span><span class="label">Spray Foam</span><span class="plus">+</span></button>
+          <div class="type-a"><div class="type-a-in"><span class="tag">Best for · Attics · Rim joists · Walls</span>
+            Expanding foam that seals and insulates in one pass, stopping air leaks other materials miss. Ideal for irregular cavities and the highest R-value per inch — the premium choice for whole-home performance.</div></div>
+        </div>
+        <div class="type-item">
+          <button class="type-q"><span class="n">02</span><span class="label">Blown-In Cellulose</span><span class="plus">+</span></button>
+          <div class="type-a"><div class="type-a-in"><span class="tag">Best for · Attics · Existing walls</span>
+            Recycled, dense-packed fibre blown into place to fill gaps completely. A budget-friendly, high-coverage option that's excellent for topping up under-insulated attics in older Nashville homes.</div></div>
+        </div>
+        <div class="type-item">
+          <button class="type-q"><span class="n">03</span><span class="label">Fiberglass Batts</span><span class="plus">+</span></button>
+          <div class="type-a"><div class="type-a-in"><span class="tag">Best for · New builds · Open walls · Floors</span>
+            Pre-cut rolls fitted between studs and joists. The most cost-effective choice for new construction and accessible cavities, with solid thermal and sound performance.</div></div>
+        </div>
+        <div class="type-item">
+          <button class="type-q"><span class="n">04</span><span class="label">Mineral Wool</span><span class="plus">+</span></button>
+          <div class="type-a"><div class="type-a-in"><span class="tag">Best for · Sound rooms · Fire safety · Basements</span>
+            Dense rock-based batts that resist fire and dampen sound far better than fiberglass. The go-to for media rooms, shared walls and areas where moisture and fire resistance matter.</div></div>
+        </div>
+        <div class="type-item">
+          <button class="type-q"><span class="n">05</span><span class="label">Radiant Barrier</span><span class="plus">+</span></button>
+          <div class="type-a"><div class="type-a-in"><span class="tag">Best for · Hot attics · Summer comfort</span>
+            A reflective layer stapled in the attic that bounces radiant heat back out. Pairs with traditional insulation to tame those brutal Tennessee summer attic temperatures and ease AC load.</div></div>
+        </div>
+        <div class="type-item">
+          <button class="type-q"><span class="n">06</span><span class="label">Crawl Space Encapsulation</span><span class="plus">+</span></button>
+          <div class="type-a"><div class="type-a-in"><span class="tag">Best for · Crawl spaces · Moisture control</span>
+            A sealed vapour barrier plus rigid foam that locks out humidity and ground moisture. Stops mould, protects ductwork and makes floors noticeably warmer underfoot.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS (dark · blue) ============ -->
+<section class="dark pad" id="reviews">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">What people say</span>
+      <h2>Reviews from <em>Nashville homes.</em></h2>
+      <p>Residential and commercial work across Davidson and Williamson County — here's how it went.</p>
+    </div>
+    <div class="reviews-track">
+      <article class="rev">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Our upstairs was unusable in July. After the attic was sealed and re-insulated it finally holds temperature — and the August bill dropped noticeably."</blockquote>
+        <div class="who"><div class="av">L</div><div><b>Latisha M. Casillas</b><span>Belle Meade</span></div></div>
+      </article>
+      <article class="rev">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Crew showed up on time, laid down covers everywhere, and walked me through the thermal images before and after. No upsell, just honest work."</blockquote>
+        <div class="who"><div class="av">D</div><div><b>Diane P. Wuest</b><span>East Nashville</span></div></div>
+      </article>
+      <article class="rev">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Crawl space encapsulation fixed the damp smell we'd fought for years. The floors are warmer and the whole house feels drier."</blockquote>
+        <div class="who"><div class="av">M</div><div><b>Marcus Reed</b><span>Franklin</span></div></div>
+      </article>
+      <article class="rev">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Got the WhatsApp estimate the same evening I sent a video. Final price matched the quote exactly. That kind of straightness is rare."</blockquote>
+        <div class="who"><div class="av">S</div><div><b>Sofia Alvarez</b><span>Brentwood</span></div></div>
+      </article>
+    </div>
+    <p class="scrollhint">→ Scroll for more reviews</p>
+  </div>
+</section>
+
+<!-- ============ PROJECTS (dark · blue) ============ -->
+<section class="dark pad" id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Latest projects</span>
+      <h2>Projects we've <em>completed.</em></h2>
+      <p>Professional insulation for existing buildings and new construction, residential and commercial.</p>
+    </div>
+    <div class="proj-grid">
+      <article class="proj">
+        <span class="num">01</span>
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" alt="Attic insulation project" />
+        <div class="ov"><div><div class="cat">Attic · Blown-in</div><h4>Attic Insulation Installation</h4><div class="loc">Belle Meade, Nashville</div></div></div>
+      </article>
+      <article class="proj">
+        <span class="num">02</span>
+        <img src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=800&q=80" alt="Spray foam project" />
+        <div class="ov"><div><div class="cat">Walls · Spray foam</div><h4>Whole-Home Spray Foam</h4><div class="loc">East Nashville</div></div></div>
+      </article>
+      <article class="proj">
+        <span class="num">03</span>
+        <img src="https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?auto=format&fit=crop&w=800&q=80" alt="Crawl space project" />
+        <div class="ov"><div><div class="cat">Crawl space</div><h4>Crawl Space Encapsulation</h4><div class="loc">Franklin, TN</div></div></div>
+      </article>
+      <article class="proj">
+        <span class="num">04</span>
+        <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=800&q=80" alt="Commercial insulation project" />
+        <div class="ov"><div><div class="cat">Commercial</div><h4>Office Envelope Sealing</h4><div class="loc">The Gulch, Nashville</div></div></div>
+      </article>
+      <article class="proj">
+        <span class="num">05</span>
+        <img src="https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=800&q=80" alt="New build insulation" />
+        <div class="ov"><div><div class="cat">New construction</div><h4>New Build Batt Install</h4><div class="loc">Brentwood, TN</div></div></div>
+      </article>
+      <article class="proj">
+        <span class="num">06</span>
+        <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80" alt="Home safety check" />
+        <div class="ov"><div><div class="cat">Audit</div><h4>Home Safety &amp; Carbon Check</h4><div class="loc">Green Hills, Nashville</div></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPLIT 1 (image left / text right) ============ -->
+<section class="pad">
+  <div class="wrap">
+    <div class="split">
+      <div class="split-img">
+        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=900&q=80" alt="Modern Nashville home" />
+        <div class="nav-btns"><button aria-label="Previous">←</button><button aria-label="Next">→</button></div>
+      </div>
+      <div class="split-txt">
+        <span class="eyebrow">Services we provide</span>
+        <h3>Existing homes, retrofits &amp; new construction.</h3>
+        <p>Whether you're fighting cold rooms, topping up tired attic insulation, or specifying the envelope for a brand-new property, we handle the full job — assessment, materials and clean installation.</p>
+        <p>Every project starts with an inspection so you know exactly what you're paying for, and why.</p>
+        <a href="#est" class="btn btn-gold">Get an estimate →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPLIT 2 (image right / text left) — SEAL ENTIRE HOME ============ -->
+<section class="pad seal" style="background:var(--cream)">
+  <div class="wrap">
+    <div class="split rev">
+      <div class="split-img">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80" alt="Sealed and insulated home" />
+        <div class="nav-btns"><button aria-label="Previous">←</button><button aria-label="Next">→</button></div>
+      </div>
+      <div class="split-txt">
+        <span class="eyebrow">Whole-home approach</span>
+        <h3>We Can Seal an Entire <span class="home">Home</span>.</h3>
+        <p>Re-insulating, adding to what's already there, or starting fresh on a new property — Cumberland is built to seal the whole envelope, not just patch one room.</p>
+        <p>Air sealing and insulation together is where the real comfort and savings come from. We treat the house as one system.</p>
+        <a href="#est" class="btn btn-gold">See the details →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq pad" id="faq">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div class="sec-head">
+        <span class="eyebrow">Good to know</span>
+        <h2>Frequently asked <em>questions.</em></h2>
+        <p style="color:var(--muted);margin-top:14px">Straight answers before you ever pick up the phone.</p>
+      </div>
+      <div class="faq-list" id="faqList">
+        <div class="faq-item open">
+          <button class="faq-q"><span>How much does insulation cost in Nashville?</span><span class="plus">+</span></button>
+          <div class="faq-a"><p>Most attic projects land between $1,500 and $4,500 depending on size, material and condition. The fastest way to a real number is our estimate calculator, then a short WhatsApp video for an exact same-day quote.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Is there still a federal tax credit for insulation?</span><span class="plus">+</span></button>
+          <div class="faq-a"><p>The federal 25C credit expired on December 31, 2025, so 2026 projects no longer qualify federally. We'll point you to any Tennessee state and local utility rebates that still apply — and even without incentives, insulation typically pays for itself in lower bills within a few years.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>How long does a typical job take?</span><span class="plus">+</span></button>
+          <div class="faq-a"><p>Most attic and crawl-space jobs are done in a single day. Whole-home spray foam or larger commercial work can run two to three days. We give you the timeline up front with the quote.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Is spray foam safe once it's installed?</span><span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes. Once cured it's inert and stays put for the life of the home. We follow ventilation and cure-time best practice on every install, and we're happy to explain the process before we start.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Do you offer financing?</span><span class="plus">+</span></button>
+          <div class="faq-a"><p>We offer flexible monthly payment plans so the upgrade can pay for itself out of the energy savings. Ask about options when you get your estimate.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Which areas do you serve?</span><span class="plus">+</span></button>
+          <div class="faq-a"><p>All of Greater Nashville — Belle Meade, East Nashville, Green Hills, Brentwood, Franklin and surrounding Davidson and Williamson County neighbourhoods.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="how pad" id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">How it works</span>
+      <h2>From estimate to <em>insulated.</em></h2>
+      <p style="color:var(--muted);margin-top:14px">Reliable insulation since 2001 — we don't just insulate houses, we insulate comfort.</p>
+    </div>
+    <div class="how-row">
+      <div class="step-card">
+        <div class="dot">01</div>
+        <h4>Get an instant estimate</h4>
+        <p>Use the budget calculator above for a ballpark range in under a minute.</p>
+      </div>
+      <div class="step-card feat">
+        <div class="dot">02</div>
+        <h4>Share a video on WhatsApp</h4>
+        <p>Send a quick clip or describe the problem and we price it exactly — same day.</p>
+      </div>
+      <div class="step-card">
+        <div class="dot">03</div>
+        <h4>Book your inspection</h4>
+        <p>We confirm scope on-site so the quote is the price you actually pay.</p>
+      </div>
+      <div class="step-card">
+        <div class="dot">04</div>
+        <h4>We insulate, you save</h4>
+        <p>Clean install, then steadier comfort and lower bills for decades.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a href="#" class="logo">Cumberland<span class="dot"></span></a>
+        <p>Nashville's trusted experts in home insulation. Spray foam, blown-in, crawl space and whole-home sealing.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Services</h5>
+        <a href="#types">Spray Foam</a>
+        <a href="#types">Blown-In Cellulose</a>
+        <a href="#types">Crawl Space</a>
+        <a href="#types">Commercial</a>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <a href="tel:+16155550142">(615) 555-0142</a>
+        <a href="https://wa.me/16155550142" target="_blank" rel="noopener">WhatsApp us</a>
+        <a href="mailto:hello@cumberlandinsulation.com">hello@cumberlandinsulation.com</a>
+        <a href="#home">1200 Demonbreun St, Nashville, TN</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Cumberland Insulation. Spec concept by Elevate Designs.</span>
+      <span>BBB+ Accredited · Licensed &amp; Insured</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING BADGE ============ -->
+<div class="float-badge">
+  <div class="badge-card" id="badgeCard">
+    <button class="x" id="badgeX" aria-label="Close">✕</button>
+    <div class="tt">Want an exact price?</div>
+    <p>Get a ballpark from our calculator, or send a video / describe the problem on WhatsApp for a same-day quote.</p>
+    <div class="acts">
+      <a class="calc" href="#est" id="badgeCalc">Calculator</a>
+      <a class="wa" href="https://wa.me/16155550142?text=Hi%20Cumberland%2C%20here%27s%20my%20insulation%20project" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+  <button class="badge-fab" id="badgeFab" aria-label="Open estimate options"><span class="ping"></span>💬</button>
+</div>
+
+<script>
+/* ---------- nav ---------- */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+const burger=document.getElementById('burger'),navlinks=document.getElementById('navlinks');
+burger.addEventListener('click',()=>navlinks.classList.toggle('open'));
+navlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navlinks.classList.remove('open')));
+
+/* ---------- estimate panel ---------- */
+const estimate=document.getElementById('est'),estHead=document.getElementById('estHead');
+estHead.addEventListener('click',()=>estimate.classList.toggle('open'));
+document.getElementById('heroCta').addEventListener('click',()=>{estimate.classList.add('open');});
+document.getElementById('badgeCalc').addEventListener('click',()=>{estimate.classList.add('open');});
+
+const steps=[...document.querySelectorAll('.step')];
+const prog=[...document.querySelectorAll('#estProg i')];
+const nextBtn=document.getElementById('estNext'),backBtn=document.getElementById('estBack');
+const actions=document.getElementById('estActions'),result=document.getElementById('estResult');
+let cur=0;
+const data={area:'attic',lo:1.6,hi:3.2,prop:'',sqft:1200,time:''};
+
+function showStep(i){
+  steps.forEach(s=>s.classList.remove('active'));
+  steps[i].classList.add('active');
+  prog.forEach((p,idx)=>p.classList.toggle('on',idx<=i));
+  backBtn.style.visibility=i===0?'hidden':'visible';
+  nextBtn.textContent=i===steps.length-1?'Get my estimate':'Continue →';
+  validate();
+}
+function validate(){
+  let ok=false;
+  if(cur===0)ok=!!data.area;
+  else if(cur===1)ok=!!data.prop;
+  else if(cur===2)ok=true;
+  else if(cur===3)ok=!!data.time;
+  else if(cur===4)ok=true; // validated on submit
+  nextBtn.disabled=!ok;
+}
+
+/* option selection */
+document.querySelectorAll('.opts').forEach(group=>{
+  group.querySelectorAll('.opt').forEach(opt=>{
+    opt.addEventListener('click',()=>{
+      group.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+      opt.classList.add('sel');
+      const g=group.dataset.group;
+      if(g==='area'){data.area=opt.dataset.val;data.lo=+opt.dataset.lo;data.hi=+opt.dataset.hi;}
+      if(g==='prop')data.prop=opt.dataset.val;
+      if(g==='time')data.time=opt.dataset.val;
+      validate();
+    });
+  });
+});
+/* preselect first area */
+document.querySelector('[data-group=area] .opt').classList.add('sel');
+
+/* slider */
+const sqft=document.getElementById('sqft'),sqftVal=document.getElementById('sqftVal');
+sqft.addEventListener('input',()=>{data.sqft=+sqft.value;sqftVal.textContent=(+sqft.value).toLocaleString();});
+
+/* validation helpers */
+function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+function validPhone(v){return v.replace(/\D/g,'').length>=10;}
+
+backBtn.addEventListener('click',()=>{if(cur>0){cur--;showStep(cur);}});
+nextBtn.addEventListener('click',()=>{
+  if(cur<steps.length-1){cur++;showStep(cur);return;}
+  /* final step: validate contact */
+  const email=document.getElementById('fEmail'),phone=document.getElementById('fPhone');
+  const wE=document.getElementById('wEmail'),wP=document.getElementById('wPhone');
+  let ok=true;
+  if(!validEmail(email.value)){wE.classList.add('err');ok=false;}else wE.classList.remove('err');
+  if(!validPhone(phone.value)){wP.classList.add('err');ok=false;}else wP.classList.remove('err');
+  if(!ok)return;
+  /* compute + show result */
+  const lo=Math.round(data.sqft*data.lo/50)*50;
+  const hi=Math.round(data.sqft*data.hi/50)*50;
+  document.getElementById('rLo').textContent='$'+lo.toLocaleString();
+  document.getElementById('rHi').textContent='$'+hi.toLocaleString();
+  const names={attic:'attic',walls:'wall',crawl:'crawl space',whole:'whole-home'};
+  document.getElementById('rArea').textContent=names[data.area]||data.area;
+  document.getElementById('rSqft').textContent=data.sqft.toLocaleString();
+  steps.forEach(s=>s.classList.remove('active'));
+  actions.style.display='none';
+  result.classList.add('show');
+  prog.forEach(p=>p.classList.add('on'));
+});
+document.getElementById('estRestart').addEventListener('click',()=>{
+  result.classList.remove('show');actions.style.display='flex';cur=0;showStep(0);
+});
+/* live re-validate contact fields */
+['fEmail','fPhone'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{
+  document.getElementById('wEmail').classList.remove('err');
+  document.getElementById('wPhone').classList.remove('err');
+}));
+showStep(0);
+
+/* ---------- accordions (types + faq) ---------- */
+function accordion(listId){
+  document.querySelectorAll('#'+listId+' button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const item=btn.parentElement;
+      const open=item.classList.contains('open');
+      [...item.parentElement.children].forEach(c=>c.classList.remove('open'));
+      if(!open)item.classList.add('open');
+    });
+  });
+}
+accordion('typeList');accordion('faqList');
+
+/* ---------- floating badge ---------- */
+const badgeCard=document.getElementById('badgeCard'),badgeFab=document.getElementById('badgeFab');
+document.getElementById('badgeX').addEventListener('click',()=>badgeCard.classList.add('hide'));
+badgeFab.addEventListener('click',()=>badgeCard.classList.toggle('hide'));
+/* auto-peek the badge after a moment */
+badgeCard.classList.add('hide');
+setTimeout(()=>badgeCard.classList.remove('hide'),2600);
+</script>
+</body>
+</html>
