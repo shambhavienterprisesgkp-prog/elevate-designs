@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Larch &amp; Lantern — A coffee cabin in the Rockies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Caveat:wght@500;700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#efece1;
+    --paper-2:#e7e2d4;
+    --ink:#21251f;
+    --pine:#2f5a3e;
+    --glacier:#2c938a;
+    --ember:#c8592b;
+    --sky:#d4e6e6;
+    --snow:#faf8f2;
+    --muted:#6f6a5c;
+    --line:#d8d2c2;
+    --display:'Fraunces', Georgia, serif;
+    --hand:'Caveat', cursive;
+    --body:'Hanken Grotesk', system-ui, sans-serif;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  svg{display:block}
+  ::selection{background:var(--glacier);color:var(--snow)}
+
+  /* paper grain overlay */
+  .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:multiply}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+  .hand{font-family:var(--hand)}
+
+  /* ---- sketch button ---- */
+  .btn{
+    font-family:var(--body);font-weight:600;font-size:.92rem;letter-spacing:.01em;
+    padding:13px 24px;cursor:pointer;border:2px solid var(--ink);background:var(--snow);color:var(--ink);
+    border-radius:24px 22px 24px 20px / 22px 24px 20px 24px;
+    box-shadow:2.5px 3px 0 var(--ink);transition:transform .15s, box-shadow .15s;
+    display:inline-flex;align-items:center;gap:9px;
+  }
+  .btn:hover{transform:translate(-1px,-1px);box-shadow:4px 5px 0 var(--ink)}
+  .btn:active{transform:translate(1px,2px);box-shadow:1px 1px 0 var(--ink)}
+  .btn.pine{background:var(--pine);color:var(--snow);border-color:var(--ink)}
+  .btn.ember{background:var(--ember);color:var(--snow);border-color:var(--ink)}
+  .btn:focus-visible{outline:3px solid var(--glacier);outline-offset:3px}
+
+  .eyebrow{font-family:var(--hand);font-size:1.5rem;color:var(--glacier);line-height:1}
+
+  /* ===================================================== NAV */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:20;
+    transition:background .3s, box-shadow .3s, border-color .3s;
+    border-bottom:1.5px solid transparent;
+  }
+  header.nav.solid{background:rgba(239,236,225,.92);backdrop-filter:blur(8px);border-color:var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:600;font-size:1.45rem;font-style:italic;line-height:1}
+  .brand svg{width:30px;height:30px;flex:0 0 30px}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{font-weight:600;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);opacity:.8;transition:opacity .2s;position:relative}
+  .nav-links a:hover{opacity:1}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:2px;background:var(--glacier);transition:width .25s}
+  .nav-links a:hover::after{width:100%}
+  .burger{display:none;background:none;border:0;cursor:pointer;flex-direction:column;gap:5px;padding:8px}
+  .burger span{width:24px;height:2.5px;background:var(--ink);display:block;border-radius:2px}
+
+  /* ===================================================== HERO (exterior) */
+  .hero{position:relative;height:100vh;min-height:620px;overflow:hidden}
+  .hero .scene{position:absolute;inset:0;width:100%;height:100%}
+  .hero .scene > g{will-change:transform}
+  .hero-copy{
+    position:absolute;left:0;right:0;top:19vh;z-index:6;text-align:center;padding:0 24px;
+  }
+  .hero-copy .kick{font-family:var(--hand);font-size:clamp(1.4rem,3vw,2rem);color:var(--ember);transform:rotate(-3deg);display:inline-block}
+  .hero-copy h1{
+    font-family:var(--display);font-style:italic;font-weight:600;
+    font-size:clamp(2.5rem,7vw,5.4rem);line-height:.98;letter-spacing:-.01em;margin:.15em 0 .35em;
+    color:var(--ink);max-width:16ch;margin-left:auto;margin-right:auto;
+  }
+  .hero-copy p{max-width:36ch;margin:0 auto 26px;color:#33372e;font-size:1.05rem}
+  .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .scroll-cue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:6;text-align:center;font-family:var(--hand);font-size:1.3rem;color:var(--ink);opacity:.75}
+  .scroll-cue .arrow{display:block;font-size:1.6rem;animation:bob 2.4s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  /* ===================================================== INTERIOR PAN */
+  .pan{position:relative;background:var(--ink);overflow:hidden}
+  .pan .room{position:relative;height:100vh;min-height:620px;display:flex;align-items:center;justify-content:center}
+  .pan .room .scene{position:absolute;inset:0;width:100%;height:100%;transform-origin:50% 42%;will-change:transform,opacity}
+  .pan .room .label{position:relative;z-index:5;text-align:center;color:var(--snow);padding:0 24px;max-width:640px;
+    text-shadow:0 2px 20px rgba(0,0,0,.45)}
+  .pan .label .kick{font-family:var(--hand);font-size:1.7rem;color:#ffd9a8}
+  .pan .label h2{font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(2rem,5vw,3.6rem);line-height:1.02;margin:.1em 0 .4em}
+  .pan .label p{color:#efe9dc;max-width:42ch;margin:0 auto;font-size:1.04rem}
+
+  /* ===================================================== SECTION */
+  section.block{position:relative;z-index:2;background:var(--paper)}
+  .pad{padding:96px 0}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 54px}
+  .sec-head h2{font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.02;margin:.1em 0 .3em}
+  .sec-head p{color:var(--muted)}
+  .squiggle{display:block;margin:0 auto;width:160px;height:18px}
+  .squiggle path{stroke:var(--glacier);stroke-width:3;fill:none;stroke-linecap:round}
+
+  /* ===================================================== MENU */
+  #menu{background:var(--paper)}
+  .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;max-width:980px;margin:0 auto}
+  .menu-col h3{font-family:var(--display);font-style:italic;font-weight:600;font-size:1.7rem;display:flex;align-items:center;gap:12px;margin-bottom:8px}
+  .menu-col h3 svg{width:34px;height:34px}
+  .menu-col .hint{font-family:var(--hand);color:var(--ember);font-size:1.35rem;margin-bottom:18px}
+  .m-item{display:flex;align-items:baseline;gap:10px;padding:13px 0;border-bottom:1.5px dotted var(--line)}
+  .m-item .nm{font-weight:600;white-space:nowrap}
+  .m-item .ds{color:var(--muted);font-size:.86rem;flex:1;min-width:0}
+  .m-item .dotfill{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px);min-width:14px}
+  .m-item .pr{font-family:var(--display);font-weight:600;color:var(--pine)}
+
+  /* ===================================================== STORY */
+  #story{background:var(--paper-2)}
+  .story-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:54px;align-items:center;max-width:1040px;margin:0 auto}
+  .story-art{position:relative}
+  .story-art svg{width:100%;height:auto}
+  .story-art .note{position:absolute;font-family:var(--hand);color:var(--glacier);font-size:1.4rem;transform:rotate(-6deg)}
+  .story-copy .eyebrow{margin-bottom:6px}
+  .story-copy h2{font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(1.8rem,3.6vw,2.7rem);line-height:1.05;margin-bottom:18px}
+  .story-copy p{color:#3a3e34;margin-bottom:16px;max-width:46ch}
+  .story-stats{display:flex;gap:34px;margin-top:26px}
+  .story-stats .n{font-family:var(--display);font-style:italic;font-weight:600;font-size:1.9rem;color:var(--pine);line-height:1}
+  .story-stats .l{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:5px}
+
+  /* ===================================================== VISIT */
+  #visit{background:var(--paper)}
+  .visit-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:stretch;max-width:1040px;margin:0 auto}
+  .map-card{position:relative;border:2px solid var(--ink);border-radius:14px 12px 16px 12px;overflow:hidden;background:var(--snow);box-shadow:3px 4px 0 var(--ink);min-height:340px}
+  .map-card svg{width:100%;height:100%;display:block}
+  .map-pin{position:absolute;font-family:var(--hand);color:var(--ember);font-size:1.5rem;transform:rotate(-4deg)}
+  .visit-info h3{font-family:var(--display);font-style:italic;font-weight:600;font-size:1.9rem;margin-bottom:6px}
+  .visit-info .addr{font-family:var(--hand);font-size:1.5rem;color:var(--glacier);margin-bottom:22px}
+  .hours{list-style:none;margin:0 0 24px}
+  .hours li{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1.5px dotted var(--line);font-size:.98rem}
+  .hours li span:last-child{font-weight:600}
+  .visit-info .closing{font-family:var(--hand);font-size:1.45rem;color:var(--ember);margin-bottom:22px}
+
+  /* ===================================================== FOOTER */
+  footer{background:var(--ink);color:var(--paper);position:relative;z-index:2;padding:64px 0 28px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:30px}
+  footer .brand{color:var(--snow);margin-bottom:12px}
+  .foot-about{color:#c9c4b6;font-size:.9rem;max-width:30ch}
+  .foot-note{font-family:var(--hand);color:#ffd9a8;font-size:1.35rem;margin-top:16px;display:inline-block;transform:rotate(-2deg)}
+  .foot-col h4{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:#a7d8d0;margin-bottom:14px}
+  .foot-col a{display:block;color:#cfcabd;font-size:.9rem;padding:5px 0;transition:color .2s}
+  .foot-col a:hover{color:var(--snow)}
+  .foot-bottom{border-top:1px solid #3a3e34;margin-top:46px;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:#8d897c;font-size:.8rem}
+
+  /* ===================================================== TOAST */
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(160%);z-index:60;
+    background:var(--snow);color:var(--ink);border:2px solid var(--ink);border-radius:16px 14px 18px 12px;
+    padding:13px 20px;box-shadow:3px 4px 0 var(--ink);font-family:var(--hand);font-size:1.4rem;
+    transition:transform .4s cubic-bezier(.2,.9,.3,1);max-width:88vw}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+
+  /* ===================================================== REVEAL */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ink wobble helper for stroked groups handled by SVG filter */
+
+  @media(max-width:900px){
+    .menu-grid{grid-template-columns:1fr;gap:36px}
+    .story-grid,.visit-grid{grid-template-columns:1fr;gap:32px}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:640px){
+    .nav-links{display:none}.burger{display:flex}
+    header.nav .btn{display:none}
+    .pad{padding:70px 0}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none}
+    .hero .scene > g{transform:none!important}
+  }
+</style>
+</head>
+<body>
+
+<!-- paper grain -->
+<svg class="grain" xmlns="http://www.w3.org/2000/svg"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+
+<!-- shared hand-drawn ink filter -->
+<svg width="0" height="0" style="position:absolute"><defs>
+  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.013 0.016" numOctaves="2" seed="6" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="5.5" xChannelSelector="R" yChannelSelector="G"/></filter>
+  <filter id="rough2"><feTurbulence type="fractalNoise" baseFrequency="0.02 0.02" numOctaves="2" seed="11" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/></filter>
+  <filter id="wash" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="7"/></filter>
+</defs></svg>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand" style="font-size:0">
+      <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCABGAR4DASIAAhEBAxEB/8QAHAABAAICAwEAAAAAAAAAAAAAAAYHAwQBBQgC/8QAOBAAAQMEAQIEAwYFAwUAAAAAAQIDBAAFBhESByEIEzFBIlFhFBUjMnGBM0KCkaIWUqFiY5LB8P/EABgBAQEBAQEAAAAAAAAAAAAAAAABAgME/8QAHxEBAQEAAwEBAAMBAAAAAAAAAAERAgMhBDFhccHR/9oADAMBAAIRAxEAPwD1XSlK8rZSlKBSlKBSlKBSlKBSlKBSlKBSlKBSlKBSlKBSlKBSlKBSlKBSlKBSlKBSlKBSlCaBXG6VxuivqlKUQrHLkMxYrsqQ4ltllBccWr0SkDZJ/aslVp4i765bcGFniO8Jl6eEVOt7DXq6rt7a0k/RdLcm1OVsniB9JOp8x3qJdXb89LFtvklLcMKBUhh0rAbQNnSRwV3PvxBr0PXke4phyBc24jUhCHY8dEBHIFTDjCEJSr5ErCNE9tcvfVel+m+QjKcItd7JR5z7ID4T6B1PwrGvbuCQPkRXHo+jr7pbwu41z+L6fi5Tr+njlvs/38SGlKV2Qqv7x1jwG0X5VhuNxuEe5pc8sRlWmVzUSdDiPL+IH2I2D7VYFeXMISM68YF2vJ/Eh2VThQfb8IBlH+RKv2qyJa9OwpCJkNmU0l5CHkBaUutKbWARv4kqAUk/QgEVmpVdTOq0GVdbhbMOsdwyp+2pKpr8VbbUVnW9pLzigFK7HskHff5GirFpVbdLur1rzjHbtfBZrlbItr/jLcAcSvtvigp7qVrXbXuPXddJYuv9lud0u9uVi2RR5cAfhRPs/OTIWCdt+UO6VAAk7OgAdkaplTYuSlVngfWbGMlwm65XNbeskO1veVJEpQV3IBTx4/mJ3rWt7rrLj1xbt9kg5RMwm9R8Wmvhlm4uushxW96UGAoq4nRO99wKZTYtx91phlbzziGmm0lS1rUAlIHckk+gqssg65YdaYKrk1CyC6WpLhaVcoVtUYnMHXEOrKUq7/LYqK+LzKn0YTZscs0g+bkb42UEgrYGjr9FKUj+xrDc+r2GYNjlnw9OL3K8WVMdMMyzGCYcriAHPLK+z3cneuxJ9TurIWrnwvJrRmGORr/Y31PQpG+JWgoUCDpSSD6EEEV3Nalnh2+BbGItrgx4MNCNtMMNJbQgHvoJSAB61WvWLqlJxzILZhOKw2J+U3VaENh8nyYqVnQUsDuT6nXbsNn5GZq/i1ar+P1MbX1pe6bPWKSytMbz2ZxcBS78AUfg12TrY5bPca0KhfV+5dTsI/065jmSXLJ7pLdWJVuVbGFodSlIJUhDTYcSgE6/MSNjv87DwzGnF3pec5AwhORT4jbPkp3wgs/m8lO+5Oz8Sj6n0AHamJqTXi4MWq2vXCUiQtllPJYjx1vL19EIBUf2FQ/EurmC5Xd02rH7jNnyifiS3bJPFsfNai3pA+qiBXadV74Mb6cX+9cuK48Jzyj/ANxQ4o/yIqqvBRYfsXT+4X91P4t0mFKFH1LbQ0P8iurnhvq/KVp3u626yWqRdbtMZhwoyObrzqtJSP8A729TVV5B1xbgYwcsg4VeZeOecGUXB51qOHiToKQ2olakn/cQKmLq4KVXd36sWy29N4OZu2G9rTOZL7MFDAU8EDuXFkEpQ2Bo8ifRQ7d9V0DHX+wvYKMkZx69SZAC1uwYzXmlhtKiPNdcHwobJBAJ7kg9u26ZU2LjpUG6f9R42ZdPncuttiuawy4ttUFvgp5ak63wKlJSrsQe5HuKr7p51fyHNOo1ymW7G76/jMJhMZuJFaYKw8pQ/EeK3E67JV2STr/mmGr6pUJyXqJAt+VNYhZrbLv+RLb81cOKpCUx0evJ1xRCUDR+p7jt3G8HTzqfactj3xL0ORaJ9hcUi4xX1BZaCeW1JUn8w+FQ/b9NsXU9JriqdtXX2xzcouFhdxnIYr8VsqZbXG3IkL2OLaWR8QUrlsb9u50K3sH61WXJ7FfLmLJd4rlodQ2uGGvOfeUskIShKe5WSCOPt86ZTYtImvkmqexPr7Yr/BuTwx+9tyYjgbYgsM/aJEskKJCEJ9CkJ2rfYbHfvXcdHuq9u6ku3RmJaJtudt5RzS+oKCgrYHceh+E7FLLFlizqUpUQqnZAazPq9dpL7YctdgjKtjYP8769+aofLQKkn+n61bswPqiPJirQiQW1BpSxtIVrsSPluqZxTp/1SscBdsYvOMMsSX1OyZY852QFL0FODaQFKA9AdA6GzSzfHHtvKcuOT+f+NHGcNgrza6x1uOORLS+0EpUficKm0OJ329ByIP6D51I+lrgxrqFf8PcSpqHPP3nax/J3GnUJ/Q67fJNY43SzL40yXMY6nOofmKSp9Ys6PjKUhKT/ABPYADtWaL0tyJWTWe93XqA7PXa5Hmto+7EtEgkc08gvsFAa7g/pXLq6OvplnCZrr9P2fV9XLjy7ttn9fi1KUpXVXS55em8cwu8X1xQSIUNx5Oz6qCTxH7nQqj/BHaFjH8gyiTtT0+YGErPqQgclH91L/wCKunN8KxvNIjMTJYT02O0SpLSZjzKCTruoNrSFenbe9e1dDD6O4FBtb9st0C6QYb+/MYj3uahtRI0SUh3iT+oNa3xM9V/1u6sKl9N8uaxxCkMxrg1Z0XFDuw8VpKnuOh2AA472d8t9q6tF4tXTPwqw2YKmzeL/AAS4kI7rUp4aU4dd+KEkJ38+I96uRPTTCRgxwr7ia+5CrzCx5i+RXvfPnvly+u/p6dq0IPRzp3Cxqbj8fH0JhzgkSVF9xTq+JCk/iFXIAEA6BA37U2GVE/D3ItWGeH37zelR1PNRnbrMbS4CtIVsthQ9RtKABv1qP+DyxpusfJc9uqEPzrnLXHCldyEn43P/ACKgP6at2B02wyBhUvDoVlQxZ5oP2lpDq+bpOviUvfInsPftrXpW3geFY3g9rctuNW/7HHdc813bq3FLXoDZKiT6AfSmmPOni3s9qxDH8YxnHrai2WV+U/KkIa5acdAQAVEkkkBR1s1c+bp6dT8Nxy2X6Gzd4Ep+M3aYcdwlTqyAlKkBKhtKUklXfWt736VKs1xHHcytItWSWxufFCw4hKlKSpCh7pUkhQP6GulwXpVgeFTjPsFibZm8SkSXXVvOJB9eJWTx/bW6aYpHPoUfqJ4qrZifYWqyMobdQg6HFtPmLSNemyUo/as3ViRb8t8SOPYk8/Gi2PHGg7K5rS20gJSHVg77AcUoT/erwtHTfD7Vm0rM4drUm9ylLUuQp9xQBX+YhJPEb/T9NVqzOk2Azc0Xl8ywNyLstxLqluPLLZcA0FeXviT2Htrtv1pqYm6SlSQpJBSRsEemq8g3eRMY8Zjqy/CTJVNDUZ2UolpsqY4oJCe5I2NJ2Nntsb3XpDrNeLtYOmF+u1jbcXcGIp8koTyLeyAV6/6QSr9qieDYNhGe9JsXk3zGitxERKw46VtSPMJPNZcSQpQUratk6O90ni319dbYrmJdIMgu1vvcli/PpaSu6KXxkvq8wDy0FOuA0VaSjQGzrvs1KeizOQM9L7EnKJEl+7Kjc3lSVEugKJKQsnuVBJAO+9ZbZ09xmFKiy3mZ10kRDuMu6XB+YGT7KQl1akoP1SAaldTTFCeNe/8A2Hp7AsLS9O3SYFLSD3LbY5H/ACKKnmLO23pl0Ptz91Wlli2WxDjw2AVuqHIpHzUVq0Pqay5V0j6f5TeHLtkFkenzHPVxy4yQAPklIcCUj6AAV8XDpDg1w+xpnwrnMZhrC2mJV4lvtAj0HBx1Q19P/VXZhl1SfiAySfm9+6d4tJZXbIV4bjTpUfzOWlPL4gE6G+KeWuw/NW34qr7Bmyca6V2AtIaTKaRI8vs2yrshtr5bAXyI9tp+dXdnnTTC83ciO5FZxIdhp4MuNvLaUlG98doI2Pp7e2q0r10e6dXeBa4EzHGhFtnL7M00842AFaKuRSoFWyASSST86ssSyoH4osmg2PozBx2xymXk3VSITKmHApJYa1z0R69wlP7muh6tRYnS3w1QMThIQ3cb2UIlrH5nFEBbyifcdggfQirky7pfg+VN2pq82RDrNqQW4bLTq2UIQdfDxQQNfCP7Vs5309xPN4UKHkdsMlmCrlHCHltFGwARtJHYgCpKtiBsSIXTfwwP/YJUd2VDt5bdUy4FcZj2tgkehCnB2+QFaPhTTasd6VwQ5Mjqu1+fkSmo4VyccDYI1od9AI2SewKtepqz5WCYnIwk4WuzMosXEJEVtSkgaPIHkDy5b773sn1rXwLpzhuDeavGrK1FfeTxcfWtTrqh8uSiSB9BoU3wz1558Ljt4yHMMumN5LGtV2mLS5IcXES9KWgrUVeUVq4pAOt7Qv8Al7Crb6dW7p3jV8yq5WIzJk63tld4vL7/ADQ6tXJxaNpIRyTraglA1sD6Vv3/AKH9Mb3eXbtOxwCS+suPeTKdaQ4o+pKUqAHz7aqUx8RxuJiTuKRLSxGszzKmXIzO0BSVDStkHZJ/3b39aW6SKL8KEIZRmWW9SrkhLkl6UpmPy7lvn8a9f08E/purFz1OO9KOl2RXTHbbHtzr4UpPAnbkhz4Ukkkk6J3r0AB1UiwLA8WwSJIjYzbjETJUlT6lPLcU4QCBsqJ16nsNVmznFLFmll+58hiqkww6l0IS6pshSd6O0kH3P96lvqyeKK6SRIvTnw7XbP3m0ffFzYWpp1XdQBVwZSD8ir4j+v0qR+EG0w7d09dmqksOXO6PGU82HAXENAlDfIeoBKVn9zVjTsDxWXg6MKdtYFjQlKUR0vLBTpXIHlvlvffZNZsJw/G8Ltq7fjdsbgsuK5ukKUtbivmpSiSf76HtS8l48fUtpSlRClKUClKUClKUClKUClKUClKUClKUClKUClKUClKUClKUClKUClKUCuKGuDRXBNfCjXKjWNRoOFGvgmhNfJqVuQNBSuazrcjepSlbcClKUClKUClKUClKUClKUClKUClKUClKUClKUClKUClKUClKUClKUHFfJpSisajWJRpSlWPg0FKVmtxzSlKy2//Z" alt="Larch &amp; Lantern" style="height:40px;width:auto;display:block">
+    </a>
+    <nav class="nav-links">
+      <a href="#menu" data-page="Menu">Menu</a>
+      <a href="#story" data-page="Our Story">Our Story</a>
+      <a href="#" data-page="The Roastery">Roastery</a>
+      <a href="#visit" data-page="Visit">Visit</a>
+    </nav>
+    <button class="btn pine" data-page="Reservations">Reserve a table</button>
+    <button class="burger" aria-label="Menu" data-page="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ HERO — EXTERIOR ============ -->
+<section class="hero" id="top">
+  <svg class="scene" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" aria-label="Hand-drawn illustration of a coffee cabin in front of the Rocky Mountains">
+    <!-- sky -->
+    <defs>
+      <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#cfe6e6"/><stop offset="62%" stop-color="#e6ecdf"/><stop offset="100%" stop-color="#efece1"/>
+      </linearGradient>
+    </defs>
+    <rect width="1600" height="900" fill="url(#skyG)"/>
+
+    <!-- washes (watercolor) -->
+    <g filter="url(#wash)" opacity=".5">
+      <ellipse cx="1270" cy="180" rx="120" ry="120" fill="#f6d9a6"/>
+      <path d="M120 470 L520 360 L900 440 L1340 360 L1600 460 L1600 600 L0 600 Z" fill="#bcd6d4"/>
+      <path d="M0 560 L380 470 L820 540 L1200 470 L1600 560 L1600 720 L0 720 Z" fill="#a9c9b2" opacity=".8"/>
+    </g>
+
+    <!-- BACK PARALLAX: sun + far range -->
+    <g data-depth="0.06">
+      <circle cx="1270" cy="180" r="66" fill="#f4c878"/>
+      <g filter="url(#rough)" stroke="#c8592b" stroke-width="2.2" opacity=".55">
+        <path d="M1270 92 v-22 M1270 290 v22 M1358 180 h22 M1182 180 h-22 M1332 118 l16 -16 M1208 242 l-16 16 M1332 242 l16 16 M1208 118 l-16 -16"/>
+      </g>
+      <!-- birds -->
+      <g filter="url(#rough2)" stroke="#21251f" stroke-width="2" fill="none" opacity=".6">
+        <path d="M360 150 q14 -12 28 0 q14 -12 28 0"/>
+        <path d="M450 190 q11 -9 22 0 q11 -9 22 0"/>
+      </g>
+      <!-- far range fill -->
+      <path d="M0 520 L210 360 L360 470 L560 300 L760 470 L980 320 L1200 470 L1380 360 L1600 500 L1600 600 L0 600 Z" fill="#cdddda"/>
+      <g filter="url(#rough)">
+        <path d="M0 520 L210 360 L360 470 L560 300 L760 470 L980 320 L1200 470 L1380 360 L1600 500" stroke="#7fa9a3" stroke-width="3" fill="none"/>
+        <!-- snow caps -->
+        <path d="M560 300 L530 350 L592 350 Z M980 320 L952 366 L1010 366 Z" fill="#faf8f2" stroke="#7fa9a3" stroke-width="2"/>
+      </g>
+    </g>
+
+    <!-- MID PARALLAX: nearer range -->
+    <g data-depth="0.13">
+      <path d="M0 600 L260 410 L470 560 L700 380 L900 560 L1140 400 L1380 560 L1600 470 L1600 700 L0 700 Z" fill="#9ec3bd"/>
+      <g filter="url(#rough)">
+        <path d="M0 600 L260 410 L470 560 L700 380 L900 560 L1140 400 L1380 560 L1600 470" stroke="#3f7a72" stroke-width="3.4" fill="none"/>
+        <path d="M700 380 L662 446 L742 446 Z M1140 400 L1104 458 L1180 458 Z" fill="#faf8f2" stroke="#3f7a72" stroke-width="2.2"/>
+        <!-- hatching shade -->
+        <g stroke="#3f7a72" stroke-width="1.6" opacity=".5">
+          <path d="M720 392 l30 50 M740 400 l28 48 M900 560 l-26 -44 M880 556 l-24 -40"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- NEAR HILLS + TREELINE -->
+    <g data-depth="0.22">
+      <path d="M0 720 L300 560 L640 660 L980 560 L1320 660 L1600 580 L1600 900 L0 900 Z" fill="#b7cdab"/>
+      <g filter="url(#rough)">
+        <path d="M0 720 L300 560 L640 660 L980 560 L1320 660 L1600 580" stroke="#3a6b46" stroke-width="3.4" fill="none"/>
+        <!-- tiny ridge pines -->
+        <g fill="#3a6b46">
+          <path d="M250 588 l12 26 -24 0 Z M290 576 l13 28 -26 0 Z M330 590 l11 24 -22 0 Z M980 576 l12 26 -24 0 Z M1020 588 l11 24 -22 0 Z"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- THE CABIN CAFE (focal) -->
+    <g data-depth="0.18">
+      <g filter="url(#rough)">
+        <!-- ground patch -->
+        <path d="M520 760 q260 -40 560 0 q-30 90 -280 92 q-250 -2 -280 -92Z" fill="#cdd6b4" stroke="#3a6b46" stroke-width="2"/>
+        <!-- walls -->
+        <rect x="690" y="630" width="240" height="150" fill="#e9d4ad" stroke="#21251f" stroke-width="3"/>
+        <!-- roof -->
+        <path d="M668 636 L810 548 L952 636 Z" fill="#9c6b43" stroke="#21251f" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M810 548 L810 636" stroke="#7d5232" stroke-width="2"/>
+        <!-- snow on roof -->
+        <path d="M690 632 q120 -28 240 0" stroke="#faf8f2" stroke-width="6" fill="none" opacity=".9"/>
+        <!-- chimney + smoke -->
+        <rect x="880" y="566" width="22" height="44" fill="#9c6b43" stroke="#21251f" stroke-width="2.5"/>
+        <path d="M891 560 q-22 -26 0 -52 q22 -26 0 -52 q-18 -22 -4 -44" stroke="#9aa39a" stroke-width="3.4" fill="none" opacity=".75"/>
+        <!-- door -->
+        <rect x="784" y="688" width="52" height="92" rx="3" fill="#7d5232" stroke="#21251f" stroke-width="2.6"/>
+        <circle cx="828" cy="736" r="3.4" fill="#21251f"/>
+        <!-- glowing windows -->
+        <rect x="708" y="668" width="56" height="52" fill="#f6c773" stroke="#21251f" stroke-width="2.6"/>
+        <rect x="856" y="668" width="56" height="52" fill="#f6c773" stroke="#21251f" stroke-width="2.6"/>
+        <path d="M736 668 v52 M708 694 h56 M884 668 v52 M856 694 h56" stroke="#21251f" stroke-width="1.8"/>
+        <!-- hanging sign -->
+        <path d="M952 600 h44 M988 600 v34" stroke="#21251f" stroke-width="3"/>
+        <rect x="956" y="634" width="74" height="40" rx="5" fill="#2f5a3e" stroke="#21251f" stroke-width="2.6"/>
+        <!-- sandwich board -->
+        <path d="M610 782 l16 -54 16 54 Z" fill="#2f5a3e" stroke="#21251f" stroke-width="2.4"/>
+        <!-- path of dashes to door -->
+        <g stroke="#a98f63" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 18">
+          <path d="M810 884 q0 -60 0 -100"/>
+        </g>
+      </g>
+      <text x="993" y="659" font-family="'Caveat',cursive" font-size="20" fill="#faf8f2" text-anchor="middle" font-weight="700">Larch &amp;</text>
+      <text x="993" y="672" font-family="'Caveat',cursive" font-size="14" fill="#f6c773" text-anchor="middle">Lantern</text>
+      <text x="626" y="752" font-family="'Caveat',cursive" font-size="13" fill="#faf8f2" text-anchor="middle">OPEN</text>
+    </g>
+
+    <!-- FOREGROUND PINES + LARCH + ANNOTATIONS -->
+    <g data-depth="0.4">
+      <g filter="url(#rough)">
+        <!-- left spruce -->
+        <path d="M250 900 L250 660 M170 880 L250 700 L330 880 M195 800 L250 700 L305 800 M210 740 L250 680 L290 740" stroke="#2f5a3e" stroke-width="4.5" fill="none" stroke-linejoin="round"/>
+        <path d="M178 876 L250 720 L322 876 Z" fill="#2f5a3e" opacity=".92"/>
+        <path d="M200 792 L250 700 L300 792 Z" fill="#356b48"/>
+        <!-- right LARCH (golden) -->
+        <path d="M1380 900 L1380 640 M1300 880 L1380 690 L1460 880 M1320 800 L1380 700 L1440 800" stroke="#b07a2c" stroke-width="4.5" fill="none" stroke-linejoin="round"/>
+        <path d="M1306 876 L1380 700 L1454 876 Z" fill="#d99a3c" opacity=".92"/>
+        <path d="M1326 792 L1380 706 L1434 792 Z" fill="#e8b558"/>
+        <!-- rocks -->
+        <path d="M470 884 q34 -34 76 -6 q-6 14 -38 16 q-30 0 -38 -10Z" fill="#bdb6a3" stroke="#21251f" stroke-width="2.4"/>
+        <!-- grass tufts -->
+        <g stroke="#3a6b46" stroke-width="2.6" fill="none">
+          <path d="M600 884 q4 -16 0 -26 M610 884 q8 -14 12 -24 M590 884 q-4 -14 -8 -22"/>
+          <path d="M1140 884 q4 -16 0 -26 M1152 884 q8 -14 12 -24"/>
+        </g>
+      </g>
+      <!-- hand-written annotations -->
+      <text x="1040" y="556" font-family="'Caveat',cursive" font-size="30" fill="#2c938a" transform="rotate(-6 1040 556)">roasted in-house ↑</text>
+      <text x="430" y="700" font-family="'Caveat',cursive" font-size="30" fill="#c8592b" transform="rotate(-4 430 700)">open from sunrise</text>
+      <text x="120" y="430" font-family="'Caveat',cursive" font-size="26" fill="#3f7a72">Mt. Rundle, 2,949 m</text>
+      <path d="M455 712 q120 30 250 40" stroke="#c8592b" stroke-width="2.4" fill="none" filter="url(#rough2)"/>
+      <path d="M700 752 l-14 -2 6 12" fill="#c8592b"/>
+    </g>
+  </svg>
+
+  <div class="hero-copy">
+    <span class="kick">good morning, mountain</span>
+    <h1>A coffee cabin where the Rockies begin.</h1>
+    <p>Slow-roasted beans, glacier-fed water, and a window full of peaks. Pull up a stool — the kettle's already on.</p>
+    <div class="hero-actions">
+      <button class="btn ember" data-scroll="#pan">Step inside ↓</button>
+      <button class="btn" data-scroll="#menu">See the menu</button>
+    </div>
+  </div>
+
+  <div class="scroll-cue">scroll to come in<span class="arrow">↓</span></div>
+</section>
+
+<!-- ============ CINEMATIC PAN — INTERIOR ============ -->
+<section class="pan" id="pan">
+  <div class="room" id="room">
+    <svg class="scene" id="interior" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-label="Hand-drawn interior of the coffee cabin: counter, espresso machine, hanging lanterns and a window framing the mountains">
+      <defs>
+        <linearGradient id="wallG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3a3226"/><stop offset="100%" stop-color="#2a241b"/></linearGradient>
+        <radialGradient id="lamp" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#ffcf8a" stop-opacity=".9"/><stop offset="100%" stop-color="#ffcf8a" stop-opacity="0"/></radialGradient>
+        <linearGradient id="winG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#bfe0e0"/><stop offset="100%" stop-color="#e6ecdf"/></linearGradient>
+      </defs>
+      <!-- wall -->
+      <rect width="1600" height="900" fill="url(#wallG)"/>
+      <!-- warm light pools -->
+      <g filter="url(#wash)" opacity=".8">
+        <ellipse cx="360" cy="250" rx="240" ry="220" fill="url(#lamp)"/>
+        <ellipse cx="1160" cy="250" rx="240" ry="220" fill="url(#lamp)"/>
+        <ellipse cx="800" cy="640" rx="420" ry="200" fill="#ffcf8a" opacity=".25"/>
+      </g>
+
+      <!-- WINDOW with mountain view -->
+      <g filter="url(#rough)">
+        <rect x="600" y="120" width="400" height="250" rx="6" fill="url(#winG)" stroke="#1a160f" stroke-width="6"/>
+        <path d="M600 320 L700 250 L800 300 L900 230 L1000 300 L1000 370 L600 370 Z" fill="#9ec3bd"/>
+        <path d="M600 320 L700 250 L800 300 L900 230 L1000 300" stroke="#3f7a72" stroke-width="3" fill="none"/>
+        <path d="M800 300 L778 336 L824 336 Z" fill="#faf8f2"/>
+        <path d="M800 120 L800 370 M600 245 L1000 245" stroke="#1a160f" stroke-width="4"/>
+      </g>
+
+      <!-- SHELVES of beans & mugs (left) -->
+      <g filter="url(#rough)">
+        <path d="M120 300 H470 M120 400 H470" stroke="#5a4a35" stroke-width="8"/>
+        <g stroke="#1a160f" stroke-width="2.6">
+          <rect x="150" y="248" width="40" height="52" rx="4" fill="#c8592b"/>
+          <rect x="206" y="252" width="40" height="48" rx="4" fill="#2c938a"/>
+          <rect x="262" y="246" width="40" height="54" rx="4" fill="#d99a3c"/>
+          <path d="M330 300 q-4 -34 22 -34 q26 0 22 34Z" fill="#e9d4ad"/>
+          <path d="M386 300 q-4 -30 20 -30 q24 0 20 30Z" fill="#bcd6d4"/>
+          <!-- mugs lower shelf -->
+          <path d="M150 396 h40 v-34 h-40Z M194 379 q14 0 14 12 t-14 12" fill="none"/>
+          <rect x="150" y="362" width="40" height="36" rx="3" fill="#e9d4ad"/>
+          <rect x="210" y="362" width="40" height="36" rx="3" fill="#c8592b"/>
+          <rect x="270" y="362" width="40" height="36" rx="3" fill="#2f5a3e"/>
+          <!-- plant -->
+          <path d="M410 362 h44 v36 h-44Z" fill="#7d5232"/>
+          <path d="M432 362 q-22 -34 -34 -54 M432 362 q4 -40 0 -64 M432 362 q22 -32 36 -52" stroke="#3a6b46" stroke-width="4" fill="none"/>
+        </g>
+      </g>
+
+      <!-- chalkboard menu (right) -->
+      <g filter="url(#rough)">
+        <rect x="1120" y="250" width="340" height="220" rx="8" fill="#262b22" stroke="#5a4a35" stroke-width="8"/>
+        <text x="1290" y="300" font-family="'Caveat',cursive" font-size="34" fill="#ffd9a8" text-anchor="middle">Today's pour</text>
+        <g stroke="#cfe6e6" stroke-width="2.4" opacity=".8" fill="none">
+          <path d="M1150 330 h220 M1150 366 h260 M1150 402 h180 M1150 438 h240"/>
+        </g>
+      </g>
+
+      <!-- COUNTER + espresso machine (foreground) -->
+      <g filter="url(#rough)">
+        <!-- counter front -->
+        <path d="M120 620 H1480 V900 H120 Z" fill="#6e4d30"/>
+        <path d="M120 620 H1480 V660 H120Z" fill="#83603e"/>
+        <g stroke="#3a2a1a" stroke-width="3" opacity=".5"><path d="M300 660 V900 M620 660 V900 M980 660 V900 M1280 660 V900"/></g>
+        <!-- espresso machine -->
+        <g>
+          <rect x="640" y="470" width="320" height="150" rx="10" fill="#c8592b" stroke="#1a160f" stroke-width="4"/>
+          <rect x="640" y="470" width="320" height="30" fill="#a8461f"/>
+          <rect x="700" y="510" width="60" height="60" rx="5" fill="#3a2a1a" stroke="#1a160f" stroke-width="3"/>
+          <rect x="840" y="510" width="60" height="60" rx="5" fill="#3a2a1a" stroke="#1a160f" stroke-width="3"/>
+          <!-- portafilter handles -->
+          <path d="M730 570 v34 M870 570 v34" stroke="#1a160f" stroke-width="8" stroke-linecap="round"/>
+          <!-- group cups -->
+          <rect x="716" y="600" width="28" height="20" rx="2" fill="#f0e9da"/>
+          <rect x="856" y="600" width="28" height="20" rx="2" fill="#f0e9da"/>
+          <circle cx="800" cy="500" r="9" fill="#ffd9a8"/>
+        </g>
+        <!-- a mug with steam on counter -->
+        <path d="M360 612 h70 v-40 h-70Z M430 580 q22 0 22 18 t-22 18" fill="#e9d4ad" stroke="#1a160f" stroke-width="3"/>
+        <rect x="360" y="572" width="70" height="40" rx="4" fill="#e9d4ad" stroke="#1a160f" stroke-width="3"/>
+        <path d="M384 568 q-16 -22 0 -42 q16 -22 0 -44 M412 568 q16 -20 0 -40 q-16 -22 0 -42" stroke="#cdbfa6" stroke-width="3.4" fill="none" opacity=".85"/>
+        <!-- hanging lanterns -->
+        <g>
+          <path d="M360 120 V210 M1160 120 V210" stroke="#1a160f" stroke-width="3"/>
+          <rect x="330" y="208" width="60" height="64" rx="8" fill="#3a2a1a" stroke="#1a160f" stroke-width="3"/>
+          <rect x="338" y="218" width="44" height="44" fill="#f6c773"/>
+          <rect x="1130" y="208" width="60" height="64" rx="8" fill="#3a2a1a" stroke="#1a160f" stroke-width="3"/>
+          <rect x="1138" y="218" width="44" height="44" fill="#f6c773"/>
+        </g>
+        <!-- stool -->
+        <g stroke="#1a160f" stroke-width="4" fill="#83603e">
+          <ellipse cx="1330" cy="744" rx="58" ry="16"/><path d="M1290 758 l-14 120 M1370 758 l14 120 M1320 762 v118 M1342 762 v118"/>
+        </g>
+      </g>
+
+      <!-- open sign + annotation -->
+      <text x="1060" y="600" font-family="'Caveat',cursive" font-size="30" fill="#ffd9a8" transform="rotate(-5 1060 600)">two shots, always pulled fresh</text>
+    </svg>
+
+    <div class="label reveal">
+      <span class="kick">…and we're inside</span>
+      <h2>Pull up a stool by the window.</h2>
+      <p>Reclaimed timber, hanging lanterns, and the hiss of the machine. The mountains stay in frame while you stay a while.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section class="block pad" id="menu">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">what's on today</span>
+      <h2>The little menu</h2>
+      <svg class="squiggle" viewBox="0 0 160 18"><path d="M4 12 Q24 2 44 12 T84 12 T124 12 T156 8"/></svg>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-col reveal">
+        <h3><svg viewBox="0 0 40 40" fill="none"><g filter="url(#rough2)"><path d="M9 16 h22 v8 a11 11 0 0 1 -22 0 Z" stroke="#2f5a3e" stroke-width="2.2" fill="#2f5a3e" fill-opacity=".1"/><path d="M31 18 q8 0 8 6 t-8 6" stroke="#2f5a3e" stroke-width="2.2" fill="none"/><path d="M15 11 q-3 -4 0 -7 M21 11 q-3 -4 0 -7" stroke="#c8592b" stroke-width="2"/></g></svg> From the bar</h3>
+        <p class="hint">all beans roasted out back</p>
+        <div class="m-item"><span class="nm">House drip</span><span class="ds">daily roast, bottomless</span><span class="dotfill"></span><span class="pr">$4.5</span></div>
+        <div class="m-item"><span class="nm">Single-origin pour-over</span><span class="ds">rotating, ask at the bar</span><span class="dotfill"></span><span class="pr">$6</span></div>
+        <div class="m-item"><span class="nm">Glacier cold brew</span><span class="ds">18-hour, over ice</span><span class="dotfill"></span><span class="pr">$5.5</span></div>
+        <div class="m-item"><span class="nm">Larch-honey latte</span><span class="ds">local honey, cinnamon</span><span class="dotfill"></span><span class="pr">$6.5</span></div>
+        <div class="m-item"><span class="nm">Spruce-tip mocha</span><span class="ds">dark chocolate, foraged tips</span><span class="dotfill"></span><span class="pr">$7</span></div>
+        <div class="m-item"><span class="nm">Maple hot chocolate</span><span class="ds">for the little hikers</span><span class="dotfill"></span><span class="pr">$5.5</span></div>
+      </div>
+
+      <div class="menu-col reveal">
+        <h3><svg viewBox="0 0 40 40" fill="none"><g filter="url(#rough2)"><path d="M8 26 q12 -16 24 0" stroke="#c8592b" stroke-width="2.2" fill="#c8592b" fill-opacity=".12"/><path d="M8 26 h24 v4 h-24Z" stroke="#c8592b" stroke-width="2.2" fill="none"/><path d="M16 14 q4 -4 0 -8 M22 14 q4 -4 0 -8" stroke="#2f5a3e" stroke-width="2"/></g></svg> From the kitchen</h3>
+        <p class="hint">baked this morning</p>
+        <div class="m-item"><span class="nm">Sourdough + cultured butter</span><span class="ds">our own starter</span><span class="dotfill"></span><span class="pr">$6</span></div>
+        <div class="m-item"><span class="nm">Wild blueberry scone</span><span class="ds">warm, with cream</span><span class="dotfill"></span><span class="pr">$4.5</span></div>
+        <div class="m-item"><span class="nm">Maple oat bowl</span><span class="ds">toasted seeds, berries</span><span class="dotfill"></span><span class="pr">$8</span></div>
+        <div class="m-item"><span class="nm">Smoked trout toast</span><span class="ds">dill, lemon, capers</span><span class="dotfill"></span><span class="pr">$12</span></div>
+        <div class="m-item"><span class="nm">Cabin bison chili</span><span class="ds">with a hunk of bread</span><span class="dotfill"></span><span class="pr">$14</span></div>
+        <div class="m-item"><span class="nm">Saskatoon-berry pie</span><span class="ds">by the slice, while it lasts</span><span class="dotfill"></span><span class="pr">$7</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section class="block pad" id="story">
+  <div class="wrap">
+    <div class="story-grid">
+      <div class="story-art reveal">
+        <svg viewBox="0 0 460 380" xmlns="http://www.w3.org/2000/svg" aria-label="Hand-drawn coffee roaster and beans">
+          <g filter="url(#rough)">
+            <!-- roaster drum -->
+            <ellipse cx="230" cy="180" rx="120" ry="92" fill="#c8592b" stroke="#21251f" stroke-width="4"/>
+            <ellipse cx="230" cy="180" rx="74" ry="58" fill="#83603e" stroke="#21251f" stroke-width="3"/>
+            <circle cx="230" cy="180" r="10" fill="#21251f"/>
+            <path d="M186 138 l88 84 M274 138 l-88 84" stroke="#21251f" stroke-width="2.4"/>
+            <!-- hopper -->
+            <path d="M196 92 L264 92 L240 120 L220 120 Z" fill="#9c6b43" stroke="#21251f" stroke-width="3"/>
+            <!-- chute + tray -->
+            <path d="M348 196 q40 8 40 56 l-70 0 q0 -44 30 -56Z" fill="#e9d4ad" stroke="#21251f" stroke-width="3"/>
+            <!-- legs -->
+            <path d="M150 256 l-20 96 M310 256 l20 96" stroke="#21251f" stroke-width="5"/>
+            <!-- beans -->
+            <g fill="#5a3a22" stroke="#21251f" stroke-width="1.6">
+              <path d="M330 300 q12 -10 24 0 q-2 12 -12 12 q-12 0 -12 -12Z"/>
+              <path d="M356 312 q12 -10 24 0 q-2 12 -12 12 q-12 0 -12 -12Z"/>
+              <path d="M342 326 q12 -10 24 0 q-2 12 -12 12 q-12 0 -12 -12Z"/>
+            </g>
+            <!-- steam -->
+            <path d="M230 86 q-18 -24 0 -48 q18 -24 0 -46" stroke="#9aa39a" stroke-width="3.4" fill="none" opacity=".7"/>
+          </g>
+          <line class="" x1="372" y1="306" x2="372" y2="306"/>
+        </svg>
+        <span class="note" style="top:6%;right:2%">small-batch, twice a week</span>
+      </div>
+      <div class="story-copy reveal">
+        <span class="eyebrow">our story</span>
+        <h2>One cabin, one roaster, a lot of early mornings.</h2>
+        <p>We started Larch &amp; Lantern with a single drum roaster and a view we couldn't keep to ourselves. Every bean is roasted out back in small batches, brewed with water that started as snow on the peaks above us.</p>
+        <p>Come golden larch season the whole valley turns to fire, and so does the cabin — woodsmoke, fresh roast, and a steady line out the door. We wouldn't have it any other way.</p>
+        <div class="story-stats">
+          <div><div class="n">2019</div><div class="l">First roast</div></div>
+          <div><div class="n">1,463 m</div><div class="l">Above sea level</div></div>
+          <div><div class="n">6 am</div><div class="l">Doors open</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISIT ============ -->
+<section class="block pad" id="visit">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">come find us</span>
+      <h2>Up the road, past the trailhead</h2>
+      <svg class="squiggle" viewBox="0 0 160 18"><path d="M4 10 Q24 18 44 8 T84 10 T124 8 T156 12"/></svg>
+    </div>
+    <div class="visit-grid">
+      <div class="map-card reveal">
+        <svg viewBox="0 0 520 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-label="Hand-drawn map showing the trail to the cabin">
+          <rect width="520" height="360" fill="#eef0e8"/>
+          <g filter="url(#rough)">
+            <!-- contour lines -->
+            <g stroke="#bcd0c4" stroke-width="2" fill="none">
+              <path d="M40 300 q120 -120 260 -110 q120 8 180 -40"/>
+              <path d="M20 330 q150 -130 300 -120 q120 8 200 -50"/>
+              <path d="M90 280 q90 -80 180 -70 q90 10 150 -30"/>
+            </g>
+            <!-- river -->
+            <path d="M0 120 q120 40 200 20 q120 -30 200 30 q60 36 120 10" stroke="#9ad3d3" stroke-width="9" fill="none"/>
+            <!-- road -->
+            <path d="M30 350 q90 -120 160 -150 q120 -50 230 -90" stroke="#caa46a" stroke-width="7" fill="none" stroke-dasharray="1 14" stroke-linecap="round"/>
+            <!-- trees -->
+            <g fill="#3a6b46">
+              <path d="M120 230 l11 24 -22 0Z M150 210 l12 26 -24 0Z M360 120 l11 24 -22 0Z M390 140 l12 26 -24 0Z"/>
+            </g>
+            <!-- cabin marker -->
+            <rect x="404" y="86" width="34" height="26" fill="#e9d4ad" stroke="#21251f" stroke-width="2.6"/>
+            <path d="M400 88 L421 70 L442 88Z" fill="#9c6b43" stroke="#21251f" stroke-width="2.6"/>
+          </g>
+          <text x="232" y="206" font-family="'Caveat',cursive" font-size="22" fill="#3f7a72" transform="rotate(-10 232 206)">Bow River</text>
+        </svg>
+        <span class="map-pin" style="top:14%;right:8%">that's us! ☕</span>
+      </div>
+      <div class="visit-info reveal">
+        <h3>Larch &amp; Lantern</h3>
+        <div class="addr">Bear Street, Banff, Alberta</div>
+        <ul class="hours">
+          <li><span>Mon – Fri</span><span>6:30a – 6p</span></li>
+          <li><span>Saturday</span><span>6a – 7p</span></li>
+          <li><span>Sunday</span><span>6a – 7p</span></li>
+          <li><span>Larch season</span><span>sunrise – last light</span></li>
+        </ul>
+        <p class="closing">no wifi, big windows, dogs welcome</p>
+        <div class="hero-actions">
+          <button class="btn pine" data-page="Reservations">Reserve a table</button>
+          <button class="btn" data-page="Directions">Get directions</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="brand" style="font-size:0;margin-bottom:14px">
+          <img src="data:image/png;base64,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" alt="Larch &amp; Lantern" style="height:36px;width:auto;display:block;filter:brightness(0) invert(1) sepia(1) saturate(0) hue-rotate(0deg) brightness(1.8)">
+        </a>
+        <p class="foot-about">A coffee cabin in the Rockies. Small-batch roasting, big windows, and a kettle that's always on.</p>
+        <span class="foot-note">p.s. the full site is still being built ✎</span>
+      </div>
+      <div class="foot-col">
+        <h4>The cabin</h4>
+        <a href="#menu" data-page="Menu">Menu</a>
+        <a href="#story" data-page="Our Story">Our story</a>
+        <a href="#" data-page="The Roastery">Roastery</a>
+        <a href="#" data-page="Beans">Buy beans</a>
+      </div>
+      <div class="foot-col">
+        <h4>Visit</h4>
+        <a href="#visit" data-page="Hours">Hours</a>
+        <a href="#" data-page="Directions">Directions</a>
+        <a href="#" data-page="Reservations">Reserve a table</a>
+        <a href="#" data-page="Private events">Private events</a>
+      </div>
+      <div class="foot-col">
+        <h4>Say hello</h4>
+        <a href="#" data-page="Instagram">Instagram</a>
+        <a href="#" data-page="Newsletter">Newsletter</a>
+        <a href="#" data-page="Careers">Work with us</a>
+        <a href="#" data-page="Contact">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Larch &amp; Lantern — concept landing page. Illustrations drawn in-house.</span>
+      <span>Banff, Alberta · 1,463 m</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var nav = document.getElementById('nav');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* nav background on scroll */
+  function navState(){ nav.classList.toggle('solid', window.scrollY > 60); }
+  navState();
+
+  /* smooth-scroll buttons */
+  document.querySelectorAll('[data-scroll]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var t = document.querySelector(b.getAttribute('data-scroll'));
+      if(t) t.scrollIntoView({behavior: reduce ? 'auto':'smooth'});
+    });
+  });
+
+  /* placeholder links -> friendly toast (in-page anchors scroll normally) */
+  var toast = document.getElementById('toast'), tt;
+  function ping(label){
+    toast.textContent = '“' + label + '” opens on the full site — still brewing ☕';
+    toast.classList.add('show'); clearTimeout(tt);
+    tt = setTimeout(function(){toast.classList.remove('show')}, 2800);
+  }
+  document.querySelectorAll('[data-page]').forEach(function(el){
+    el.addEventListener('click', function(e){
+      var href = el.getAttribute('href');
+      if(href && href.length>1 && document.querySelector(href)) return;
+      e.preventDefault(); ping(el.getAttribute('data-page'));
+    });
+  });
+
+  /* reveal */
+  if(!reduce){
+    var io = new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{threshold:.16});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  } else { document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in')}); }
+
+  /* parallax + cinematic interior pan */
+  var layers = Array.prototype.slice.call(document.querySelectorAll('.hero .scene > g[data-depth]'));
+  var hero = document.getElementById('top');
+  var pan = document.getElementById('pan');
+  var interior = document.getElementById('interior');
+  var ticking = false;
+
+  function frame(){
+    var y = window.scrollY;
+    var vh = window.innerHeight;
+
+    /* hero depth parallax (foreground rises faster -> push-in feel) */
+    if(!reduce){
+      layers.forEach(function(g){
+        var d = parseFloat(g.getAttribute('data-depth'));
+        g.style.transform = 'translate3d(0,' + (-y * d) + 'px,0)';
+      });
+    }
+
+    /* interior: as the pan section enters, scale 1.12 -> 1 and fade in (camera moving inside) */
+    if(!reduce){
+      var rect = pan.getBoundingClientRect();
+      var prog = 1 - Math.min(Math.max(rect.top / vh, 0), 1);   // 0 below, 1 when top reaches viewport top
+      var scale = 1.14 - 0.14 * prog;
+      var op = Math.min(prog * 1.6, 1);
+      interior.style.transform = 'scale(' + scale.toFixed(4) + ')';
+      interior.style.opacity = op.toFixed(3);
+    }
+
+    navState();
+    ticking = false;
+  }
+  function onScroll(){ if(!ticking){ requestAnimationFrame(frame); ticking = true; } }
+  if(!reduce){ interior.style.opacity = 0; }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  frame();
+})();
+</script>
+</body>
+</html>
