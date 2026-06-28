@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ridgeline Contracting | Northern Utah's Premier Remodeler</title>
+<meta name="description" content="Morgan, Utah's most trusted general contractor. Kitchen remodels, bathroom renovations, basement finishes and home additions serving Davis, Weber and Morgan Counties.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & ROOT ─────────────────────────────────────────── */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --stone:#1C1C1A;
+  --ridge:#2B3A2E;
+  --pine:#3D5A40;
+  --sage:#7A9E7E;
+  --sand:#F0EBE0;
+  --cream:#FAFAF7;
+  --gold:#C8973A;
+  --gold-light:#E8B86D;
+  --white:#FFFFFF;
+  --muted:#8A8A82;
+  --radius:4px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--stone);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+::selection{background:var(--gold);color:var(--stone)}
+
+/* ── NAV ──────────────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:20px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:all .4s ease;
+}
+nav.scrolled{
+  background:rgba(28,28,26,.94);
+  backdrop-filter:blur(12px);
+  padding:14px 48px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.nav-logo{
+  font-family:'Playfair Display',serif;
+  font-size:22px;font-weight:800;
+  color:var(--white);letter-spacing:-.01em;
+  display:flex;align-items:center;gap:10px;
+}
+.nav-logo .ridge-mark{
+  width:32px;height:32px;
+  background:var(--gold);
+  clip-path:polygon(50% 0%,100% 100%,0% 100%);
+  flex-shrink:0;
+}
+.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links a{
+  font-size:13.5px;font-weight:500;letter-spacing:.04em;
+  text-transform:uppercase;color:rgba(255,255,255,.75);
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{
+  background:var(--gold);color:var(--stone);
+  font-size:13px;font-weight:600;letter-spacing:.04em;
+  text-transform:uppercase;padding:11px 22px;
+  border-radius:var(--radius);transition:all .2s;
+}
+.nav-cta:hover{background:var(--gold-light);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:2px;background:white;border-radius:2px;transition:.3s}
+
+/* ── SCROLL SECTIONS ──────────────────────────────────────── */
+.scroll-stage{position:relative}
+
+/* Each panel is a full-screen section */
+.panel{
+  position:relative;
+  min-height:100vh;
+  display:flex;align-items:center;
+  overflow:hidden;
+}
+
+/* Background image layer */
+.panel-bg{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center;
+  transform:scale(1.08);
+  transition:transform 1.2s cubic-bezier(.25,.46,.45,.94);
+  will-change:transform;
+}
+.panel.in-view .panel-bg{transform:scale(1)}
+
+/* Dark overlay — different per panel */
+.panel-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(105deg,rgba(28,28,26,.82) 0%,rgba(28,28,26,.45) 60%,rgba(28,28,26,.2) 100%);
+}
+.panel-overlay.right{
+  background:linear-gradient(255deg,rgba(28,28,26,.82) 0%,rgba(28,28,26,.45) 60%,rgba(28,28,26,.1) 100%);
+}
+.panel-overlay.center{
+  background:linear-gradient(180deg,rgba(28,28,26,.5) 0%,rgba(28,28,26,.75) 100%);
+}
+
+/* Content */
+.panel-content{
+  position:relative;z-index:2;
+  max-width:1200px;margin:0 auto;padding:0 48px;
+  width:100%;
+  opacity:0;transform:translateY(32px);
+  transition:opacity .8s ease .2s, transform .8s ease .2s;
+}
+.panel.in-view .panel-content{opacity:1;transform:none}
+
+/* ── HERO PANEL ───────────────────────────────────────────── */
+#hero{min-height:100vh}
+#hero .panel-bg{
+  background-image:url('https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1800&q=80');
+}
+
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'DM Mono',monospace;
+  font-size:11px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:22px;
+}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
+
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(44px,7vw,84px);
+  font-weight:800;line-height:1.02;
+  letter-spacing:-.025em;
+  color:var(--white);
+  margin-bottom:24px;
+  max-width:13ch;
+}
+.hero-title em{font-style:normal;color:var(--gold)}
+
+.hero-sub{
+  font-size:17px;font-weight:300;line-height:1.65;
+  color:rgba(255,255,255,.72);
+  max-width:46ch;margin-bottom:40px;
+}
+
+.hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.btn-primary{
+  background:var(--gold);color:var(--stone);
+  font-size:14px;font-weight:600;letter-spacing:.04em;
+  text-transform:uppercase;padding:16px 32px;
+  border-radius:var(--radius);transition:all .2s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 12px 32px rgba(200,151,58,.3)}
+.btn-ghost{
+  color:rgba(255,255,255,.8);
+  font-size:14px;font-weight:500;letter-spacing:.02em;
+  border:1px solid rgba(255,255,255,.3);
+  padding:15px 28px;border-radius:var(--radius);transition:all .2s;
+}
+.btn-ghost:hover{border-color:white;color:white}
+
+.hero-trust{
+  display:flex;align-items:center;gap:32px;
+  margin-top:56px;padding-top:32px;
+  border-top:1px solid rgba(255,255,255,.12);
+  flex-wrap:wrap;
+}
+.trust-item{
+  display:flex;align-items:center;gap:10px;
+  font-size:13px;font-weight:500;color:rgba(255,255,255,.65);
+}
+.trust-item .t-icon{
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(200,151,58,.18);border:1px solid rgba(200,151,58,.35);
+  display:grid;place-items:center;flex-shrink:0;font-size:15px;
+}
+
+/* Scroll indicator */
+.scroll-hint{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:.5;animation:bounce 2s ease infinite;
+}
+.scroll-hint span{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:white}
+.scroll-arrow{width:20px;height:20px;border-right:1.5px solid white;border-bottom:1.5px solid white;transform:rotate(45deg)}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+
+/* ── KITCHEN PANEL ────────────────────────────────────────── */
+#kitchen .panel-bg{
+  background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1800&q=80');
+}
+#kitchen .panel-overlay{
+  background:linear-gradient(255deg,rgba(43,58,46,.9) 0%,rgba(43,58,46,.55) 55%,rgba(28,28,26,.1) 100%);
+}
+#kitchen .panel-content{margin-left:auto;max-width:560px;padding-right:80px}
+
+/* ── BASEMENT PANEL ───────────────────────────────────────── */
+#basement .panel-bg{
+  background-image:url('https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=1800&q=80');
+}
+#basement .panel-content{max-width:560px;padding-left:80px}
+
+/* ── ADDITIONS PANEL ──────────────────────────────────────── */
+#additions .panel-bg{
+  background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1800&q=80');
+}
+#additions .panel-overlay{
+  background:linear-gradient(255deg,rgba(28,28,26,.88) 0%,rgba(28,28,26,.5) 60%,rgba(28,28,26,.1) 100%);
+}
+#additions .panel-content{margin-left:auto;max-width:560px;padding-right:80px}
+
+/* Panel text styles */
+.panel-tag{
+  display:inline-block;
+  font-family:'DM Mono',monospace;
+  font-size:10px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold);
+  border:1px solid rgba(200,151,58,.4);
+  padding:5px 12px;border-radius:20px;margin-bottom:20px;
+}
+.panel-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(32px,4.5vw,54px);
+  font-weight:800;line-height:1.06;
+  letter-spacing:-.02em;color:var(--white);
+  margin-bottom:18px;
+}
+.panel-body{
+  font-size:16px;font-weight:300;line-height:1.7;
+  color:rgba(255,255,255,.72);margin-bottom:28px;max-width:44ch;
+}
+.panel-list{
+  list-style:none;margin-bottom:32px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.panel-list li{
+  display:flex;align-items:center;gap:10px;
+  font-size:14.5px;font-weight:400;color:rgba(255,255,255,.8);
+}
+.panel-list li::before{
+  content:'';width:18px;height:1px;background:var(--gold);flex-shrink:0;
+}
+.btn-panel{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--gold);border-bottom:1px solid var(--gold);
+  padding-bottom:4px;transition:gap .2s;
+}
+.btn-panel:hover{gap:14px}
+
+/* ── PROCESS SECTION ──────────────────────────────────────── */
+.process-section{
+  background:var(--stone);padding:100px 48px;
+}
+.section-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'DM Mono',monospace;
+  font-size:10.5px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:16px;
+}
+.section-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold)}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(30px,4vw,48px);
+  font-weight:800;letter-spacing:-.02em;
+  color:var(--white);margin-bottom:16px;line-height:1.1;
+}
+.section-sub{
+  font-size:16px;font-weight:300;color:rgba(255,255,255,.55);
+  max-width:52ch;line-height:1.65;margin-bottom:64px;
+}
+.process-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  max-width:1100px;margin:0 auto;
+}
+.process-card{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.06);
+  padding:44px 36px;position:relative;overflow:hidden;
+  transition:background .3s;
+}
+.process-card:hover{background:rgba(255,255,255,.06)}
+.process-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;
+  transition:transform .4s ease;
+}
+.process-card:hover::before{transform:scaleX(1)}
+.step-num{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:.1em;color:rgba(200,151,58,.5);
+  margin-bottom:20px;display:block;
+}
+.step-icon{font-size:28px;margin-bottom:18px}
+.step-title{
+  font-family:'Playfair Display',serif;
+  font-size:22px;font-weight:700;color:var(--white);
+  margin-bottom:12px;letter-spacing:-.01em;
+}
+.step-text{font-size:14.5px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.65}
+
+/* ── REVIEWS SECTION ──────────────────────────────────────── */
+.reviews-section{
+  padding:100px 48px;background:var(--ridge);
+  position:relative;overflow:hidden;
+}
+.reviews-section::before{
+  content:'';position:absolute;
+  width:600px;height:600px;border-radius:50%;
+  background:rgba(200,151,58,.04);
+  top:-200px;right:-200px;pointer-events:none;
+}
+.reviews-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  max-width:1100px;margin:0 auto;
+}
+.review-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:var(--radius);padding:32px 28px;
+  transition:transform .3s,box-shadow .3s;
+}
+.review-card:hover{transform:translateY(-4px);box-shadow:0 24px 48px rgba(0,0,0,.3)}
+.review-stars{
+  display:flex;gap:3px;margin-bottom:18px;font-size:16px;
+}
+.review-text{
+  font-size:15px;font-weight:300;line-height:1.7;
+  color:rgba(255,255,255,.75);margin-bottom:22px;
+  font-style:italic;
+}
+.reviewer{
+  display:flex;align-items:center;gap:12px;
+  padding-top:18px;border-top:1px solid rgba(255,255,255,.08);
+}
+.reviewer-init{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--gold);display:grid;place-items:center;
+  font-size:14px;font-weight:700;color:var(--stone);flex-shrink:0;
+}
+.reviewer-name{font-size:13.5px;font-weight:600;color:rgba(255,255,255,.9)}
+.reviewer-loc{font-size:12px;color:rgba(255,255,255,.4);margin-top:1px}
+
+/* ── ABOUT SECTION ────────────────────────────────────────── */
+.about-section{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:600px;
+}
+.about-img{
+  position:relative;overflow:hidden;
+}
+.about-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .8s ease;
+}
+.about-img:hover img{transform:scale(1.04)}
+.about-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(43,58,46,.3),transparent);
+}
+.about-copy{
+  background:var(--sand);
+  padding:80px 64px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.about-copy .section-eyebrow{color:var(--pine)}
+.about-copy .section-eyebrow::before{background:var(--pine)}
+.about-copy .section-title{color:var(--stone)}
+.about-body{
+  font-size:16px;font-weight:300;line-height:1.75;
+  color:rgba(28,28,26,.7);margin-bottom:32px;
+}
+.about-creds{
+  display:flex;flex-direction:column;gap:14px;
+}
+.cred{
+  display:flex;align-items:center;gap:14px;
+  font-size:14.5px;font-weight:500;color:var(--stone);
+}
+.cred-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--gold);flex-shrink:0;
+}
+
+/* ── SERVICE AREA SECTION ─────────────────────────────────── */
+.area-section{
+  background:var(--cream);padding:80px 48px;text-align:center;
+}
+.area-section .section-eyebrow{color:var(--pine);justify-content:center}
+.area-section .section-eyebrow::before{background:var(--pine)}
+.area-section .section-title{color:var(--stone)}
+.area-section .section-sub{margin:0 auto 48px;color:rgba(28,28,26,.6)}
+.county-grid{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:12px;
+  max-width:700px;margin:0 auto 48px;
+}
+.county-pill{
+  background:white;border:1px solid rgba(28,28,26,.12);
+  padding:10px 22px;border-radius:30px;
+  font-size:14px;font-weight:500;color:var(--stone);
+  display:flex;align-items:center;gap:7px;
+  transition:all .2s;
+}
+.county-pill:hover{border-color:var(--gold);color:var(--pine);transform:translateY(-2px)}
+.county-pill::before{content:'📍';font-size:13px}
+
+/* ── CONTACT / CTA SECTION ────────────────────────────────── */
+.cta-section{
+  background:var(--stone);padding:0;
+  display:grid;grid-template-columns:1fr 1fr;min-height:600px;
+}
+.cta-left{
+  padding:80px 64px;display:flex;flex-direction:column;justify-content:center;
+}
+.cta-left .section-title{color:var(--white);margin-bottom:16px}
+.cta-left .section-sub{color:rgba(255,255,255,.55);margin-bottom:0}
+.cta-details{
+  margin-top:40px;display:flex;flex-direction:column;gap:18px;
+}
+.cta-detail{
+  display:flex;align-items:center;gap:14px;
+  font-size:15px;color:rgba(255,255,255,.75);
+}
+.cta-detail strong{color:white;font-weight:600}
+.cta-icon{
+  width:38px;height:38px;border-radius:8px;
+  background:rgba(200,151,58,.15);border:1px solid rgba(200,151,58,.25);
+  display:grid;place-items:center;font-size:17px;flex-shrink:0;
+}
+
+.cta-right{
+  background:var(--ridge);
+  padding:64px 56px;display:flex;flex-direction:column;justify-content:center;
+}
+.form-title{
+  font-family:'Playfair Display',serif;
+  font-size:26px;font-weight:700;color:white;
+  margin-bottom:28px;letter-spacing:-.01em;
+}
+.form-grid{display:flex;flex-direction:column;gap:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-field{display:flex;flex-direction:column;gap:7px}
+.form-field label{
+  font-size:12px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:rgba(255,255,255,.5);
+}
+.form-field input,
+.form-field select,
+.form-field textarea{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--radius);
+  padding:13px 15px;
+  font-family:'DM Sans',sans-serif;
+  font-size:15px;color:white;outline:none;
+  transition:border-color .2s;
+  -webkit-appearance:none;appearance:none;
+}
+.form-field input::placeholder,
+.form-field textarea::placeholder{color:rgba(255,255,255,.25)}
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus{border-color:var(--gold)}
+.form-field textarea{resize:none;height:100px}
+.form-field select option{background:var(--ridge);color:white}
+.btn-submit{
+  background:var(--gold);color:var(--stone);
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;padding:16px;
+  border:none;border-radius:var(--radius);cursor:pointer;
+  transition:all .2s;margin-top:4px;
+}
+.btn-submit:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:0 12px 28px rgba(200,151,58,.3)}
+.form-note{
+  font-size:12px;color:rgba(255,255,255,.3);
+  margin-top:10px;text-align:center;line-height:1.5;
+}
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+footer{
+  background:#111110;padding:32px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+.footer-logo{
+  font-family:'Playfair Display',serif;
+  font-size:17px;font-weight:800;color:rgba(255,255,255,.6);
+  display:flex;align-items:center;gap:8px;
+}
+.footer-logo .ridge-mark{
+  width:22px;height:22px;
+  background:var(--gold);opacity:.7;
+  clip-path:polygon(50% 0%,100% 100%,0% 100%);
+}
+.footer-links{display:flex;gap:24px;flex-wrap:wrap}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.3);transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.7)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.25)}
+
+/* ── MOBILE NAV ───────────────────────────────────────────── */
+.mobile-menu{
+  display:none;position:fixed;inset:0;z-index:99;
+  background:rgba(28,28,26,.98);
+  flex-direction:column;align-items:center;justify-content:center;gap:32px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  font-family:'Playfair Display',serif;
+  font-size:28px;font-weight:700;color:white;
+  transition:color .2s;
+}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-close{
+  position:absolute;top:24px;right:24px;
+  font-size:28px;color:white;cursor:pointer;background:none;border:none;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media(max-width:900px){
+  nav{padding:16px 24px}
+  nav.scrolled{padding:12px 24px}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .panel-content{padding:0 24px}
+  #kitchen .panel-content,#additions .panel-content{
+    margin-left:0;padding-right:24px;max-width:100%;
+  }
+  #basement .panel-content{padding-left:24px}
+  .process-grid{grid-template-columns:1fr}
+  .reviews-grid{grid-template-columns:1fr}
+  .about-section{grid-template-columns:1fr}
+  .about-img{height:320px}
+  .about-copy{padding:48px 28px}
+  .cta-section{grid-template-columns:1fr}
+  .cta-left{padding:48px 28px}
+  .cta-right{padding:44px 28px}
+  .form-row{grid-template-columns:1fr}
+  footer{padding:24px;flex-direction:column;text-align:center}
+  .process-section,.reviews-section,.area-section{padding:64px 24px}
+  .hero-trust{gap:18px}
+}
+@media(max-width:600px){
+  .hero-actions{flex-direction:column;align-items:flex-start}
+  .btn-primary,.btn-ghost{width:100%;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo">
+    <div class="ridge-mark"></div>
+    Ridgeline
+  </div>
+  <div class="nav-links">
+    <a href="#kitchen">Services</a>
+    <a href="#process">Process</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#about">About</a>
+    <a href="#contact" class="nav-cta">Free Estimate</a>
+  </div>
+  <div class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#kitchen" class="mobile-link">Services</a>
+  <a href="#process" class="mobile-link">Process</a>
+  <a href="#reviews" class="mobile-link">Reviews</a>
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#contact" class="mobile-link" style="color:var(--gold)">Free Estimate</a>
+</div>
+
+<!-- ── SCROLL STAGE ─────────────────────────────────────── -->
+<div class="scroll-stage">
+
+  <!-- HERO: BATHROOM -->
+  <section class="panel" id="hero">
+    <div class="panel-bg"></div>
+    <div class="panel-overlay"></div>
+    <div class="panel-content">
+      <div class="hero-eyebrow">Morgan, Utah · Est. 2019</div>
+      <h1 class="hero-title">Built right.<br>No shortcuts.<br>No <em>confusion.</em></h1>
+      <p class="hero-sub">Northern Utah homeowners trust Ridgeline Contracting for kitchen remodels, bathroom renovations, basement finishes, and home additions — done with the craftsmanship and clear communication your home deserves.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get a Free Estimate →</a>
+        <a href="#kitchen" class="btn-ghost">See Our Work</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item">
+          <div class="t-icon">✓</div>
+          Licensed General Contractor
+        </div>
+        <div class="trust-item">
+          <div class="t-icon">🛡</div>
+          Fully Insured
+        </div>
+        <div class="trust-item">
+          <div class="t-icon">⭐</div>
+          5+ Years · 100% Satisfied Clients
+        </div>
+        <div class="trust-item">
+          <div class="t-icon">📞</div>
+          Free Estimates Always
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- KITCHEN -->
+  <section class="panel" id="kitchen">
+    <div class="panel-bg" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1800&q=80')"></div>
+    <div class="panel-overlay right"></div>
+    <div class="panel-content">
+      <div class="panel-tag">Kitchen Remodels</div>
+      <h2 class="panel-title">The heart of your home,<br>transformed.</h2>
+      <p class="panel-body">Your kitchen should work as beautifully as it looks. We handle everything — cabinets, countertops, layout changes, lighting, flooring, and tile — with a finish that holds up and a process that doesn't disrupt your life.</p>
+      <ul class="panel-list">
+        <li>Custom cabinet installation & refacing</li>
+        <li>Countertops: granite, quartz, butcher block</li>
+        <li>Tile backsplash & flooring</li>
+        <li>Lighting & electrical upgrades</li>
+        <li>Full layout reconfiguration</li>
+      </ul>
+      <a href="#contact" class="btn-panel">Start Your Kitchen Project ↗</a>
+    </div>
+  </section>
+
+  <!-- BASEMENT -->
+  <section class="panel" id="basement">
+    <div class="panel-bg" style="background-image:url('https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=1800&q=80')"></div>
+    <div class="panel-overlay"></div>
+    <div class="panel-content">
+      <div class="panel-tag">Basement Finishes</div>
+      <h2 class="panel-title">Unlock the space<br>you already own.</h2>
+      <p class="panel-body">An unfinished basement is untapped square footage. We transform it into family rooms, home offices, guest suites, or ADU rentals — fully framed, finished, and code-compliant across Utah counties.</p>
+      <ul class="panel-list">
+        <li>Full framing, drywall & finish</li>
+        <li>Egress windows & permits handled</li>
+        <li>Bathroom & kitchenette additions</li>
+        <li>ADU & rental unit conversions</li>
+        <li>Flooring, lighting & electrical</li>
+      </ul>
+      <a href="#contact" class="btn-panel">Plan Your Basement ↗</a>
+    </div>
+  </section>
+
+  <!-- HOME ADDITIONS -->
+  <section class="panel" id="additions">
+    <div class="panel-bg" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1800&q=80')"></div>
+    <div class="panel-overlay right"></div>
+    <div class="panel-content">
+      <div class="panel-tag">Home Additions & Remodels</div>
+      <h2 class="panel-title">When you've outgrown<br>your space.</h2>
+      <p class="panel-body">Structural additions, second-story expansions, master suite builds — Ridgeline manages engineering, permits, and full construction, so you get the home you need without the move.</p>
+      <ul class="panel-list">
+        <li>Structural additions: bedrooms, kitchens, living areas</li>
+        <li>Second-story expansions</li>
+        <li>Bathroom & master suite remodels</li>
+        <li>Custom decks & outdoor living</li>
+        <li>Full permits & engineering coordination</li>
+      </ul>
+      <a href="#contact" class="btn-panel">Discuss Your Addition ↗</a>
+    </div>
+  </section>
+
+</div><!-- end scroll-stage -->
+
+<!-- ── HOW IT WORKS ─────────────────────────────────────── -->
+<section class="process-section" id="process">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-eyebrow">How it works</div>
+    <h2 class="section-title">Simple from start to finish.</h2>
+    <p class="section-sub">Most homeowners dread the contractor process. We've rebuilt it around you — clear communication, honest pricing, and a crew that treats your home with the care it deserves.</p>
+    <div class="process-grid">
+      <div class="process-card">
+        <span class="step-num">Step 01</span>
+        <div class="step-icon">📞</div>
+        <div class="step-title">Free Consultation</div>
+        <p class="step-text">We sit down (or hop on a call) to understand your vision, your space, and your budget. No pressure, no pitch — just a real conversation about what's possible.</p>
+      </div>
+      <div class="process-card">
+        <span class="step-num">Step 02</span>
+        <div class="step-icon">📋</div>
+        <div class="step-title">Honest Estimate</div>
+        <p class="step-text">You get a detailed, line-by-line estimate — no vague ranges, no hidden fees. We explain every number so you know exactly what you're getting and why.</p>
+      </div>
+      <div class="process-card">
+        <span class="step-num">Step 03</span>
+        <div class="step-icon">🔨</div>
+        <div class="step-title">Clean Execution</div>
+        <p class="step-text">Our crew shows up on time, works clean, and keeps you updated at every stage. When we're done, your home is better than you imagined — and we don't leave until it is.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REVIEWS ──────────────────────────────────────────── -->
+<section class="reviews-section" id="reviews">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-eyebrow">Client Reviews</div>
+    <h2 class="section-title">What Northern Utah homeowners say.</h2>
+    <p class="section-sub">Don't take our word for it. Here's what the homeowners we've worked with across Davis, Weber, and Morgan Counties have to say.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Their attention to detail and commitment to quality truly stood out. The whole process was clear and honest — we always knew what was happening and why. We've already recommended them to three neighbors."</p>
+        <div class="reviewer">
+          <div class="reviewer-init">JM</div>
+          <div>
+            <div class="reviewer-name">Jennifer M.</div>
+            <div class="reviewer-loc">Bountiful, UT · Kitchen Remodel</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"I was so impressed with the professionalism of Ridgeline! They did a basement addition and turned our kitchenette into a full kitchen. Great workmanship — I love it. Would absolutely hire them again."</p>
+        <div class="reviewer">
+          <div class="reviewer-init">TR</div>
+          <div>
+            <div class="reviewer-name">Todd R.</div>
+            <div class="reviewer-loc">Morgan, UT · Basement Addition</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Working with Ridgeline felt different from other contractors we'd dealt with. They communicated constantly, stayed on schedule, and the finished bathroom is absolutely stunning. Worth every penny."</p>
+        <div class="reviewer">
+          <div class="reviewer-init">SK</div>
+          <div>
+            <div class="reviewer-name">Sarah K.</div>
+            <div class="reviewer-loc">Ogden, UT · Bathroom Remodel</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ────────────────────────────────────────────── -->
+<section class="about-section" id="about">
+  <div class="about-img">
+    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80" alt="Ridgeline Contracting owner on a job site" loading="lazy">
+    <div class="about-img-overlay"></div>
+  </div>
+  <div class="about-copy">
+    <div class="section-eyebrow">Our Story</div>
+    <h2 class="section-title">Built by hand.<br>Earned by trust.</h2>
+    <p class="about-body">Construction has always been in my blood. I grew up building with my father, started flipping homes as a young man, and eventually spent years honing my skills under an experienced general contractor before going out on my own.</p>
+    <p class="about-body">I spent time in sales too — and what I learned there was just as valuable: people don't want to be managed. They want to be heard. That's why at Ridgeline, we treat every project as a collaboration. You bring the vision. We bring the craftsmanship and the honesty to get it done right.</p>
+    <div class="about-creds">
+      <div class="cred"><div class="cred-dot"></div>Licensed General Contractor — State of Utah</div>
+      <div class="cred"><div class="cred-dot"></div>Fully insured — liability & workers' comp</div>
+      <div class="cred"><div class="cred-dot"></div>5+ years hands-on experience across all trades</div>
+      <div class="cred"><div class="cred-dot"></div>Proven track record — 100% client satisfaction</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICE AREA ──────────────────────────────────────── -->
+<section class="area-section">
+  <div class="section-eyebrow">Service Area</div>
+  <h2 class="section-title">Proudly serving Northern Utah</h2>
+  <p class="section-sub">Based in Morgan, Utah — we serve homeowners across the greater Wasatch Front and surrounding mountain communities.</p>
+  <div class="county-grid">
+    <div class="county-pill">Morgan County</div>
+    <div class="county-pill">Davis County</div>
+    <div class="county-pill">Weber County</div>
+    <div class="county-pill">Salt Lake County</div>
+    <div class="county-pill">Morgan</div>
+    <div class="county-pill">Ogden</div>
+    <div class="county-pill">Bountiful</div>
+    <div class="county-pill">Mountain Green</div>
+    <div class="county-pill">Layton</div>
+    <div class="county-pill">Kaysville</div>
+    <div class="county-pill">Farmington</div>
+    <div class="county-pill">Syracuse</div>
+  </div>
+  <a href="#contact" class="btn-primary" style="margin:0 auto;display:inline-flex">Get Your Free Estimate →</a>
+</section>
+
+<!-- ── CONTACT ───────────────────────────────────────────── -->
+<section class="cta-section" id="contact">
+  <div class="cta-left">
+    <div class="section-eyebrow" style="color:var(--gold)">Free Estimate</div>
+    <h2 class="section-title" style="font-size:clamp(28px,3.5vw,44px)">Let's talk about your project.</h2>
+    <p class="section-sub" style="margin-bottom:0">No obligation, no pressure. Just an honest conversation about what you want to build and what it will realistically take to get there.</p>
+    <div class="cta-details">
+      <div class="cta-detail">
+        <div class="cta-icon">📞</div>
+        <div><strong>Call or Text</strong><br>Available Mon–Sat, 7am–7pm</div>
+      </div>
+      <div class="cta-detail">
+        <div class="cta-icon">📍</div>
+        <div><strong>Based in Morgan, Utah</strong><br>Serving Davis, Weber & Morgan Counties</div>
+      </div>
+      <div class="cta-detail">
+        <div class="cta-icon">⚡</div>
+        <div><strong>Fast Response</strong><br>We reply within one business day</div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-right">
+    <div class="form-title">Tell us about your project</div>
+    <form class="form-grid" id="quoteForm" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-field">
+          <label>First Name</label>
+          <input type="text" placeholder="Sarah" required>
+        </div>
+        <div class="form-field">
+          <label>Last Name</label>
+          <input type="text" placeholder="Johnson" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Phone</label>
+          <input type="tel" placeholder="(801) 555-0100" required>
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" placeholder="sarah@email.com" required>
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Project Type</label>
+        <select required>
+          <option value="" disabled selected>Select a project type...</option>
+          <option>Kitchen Remodel</option>
+          <option>Bathroom Remodel</option>
+          <option>Basement Finish</option>
+          <option>Home Addition</option>
+          <option>Custom Deck</option>
+          <option>Full Home Remodel</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Tell us about your project</label>
+        <textarea placeholder="What are you hoping to build or change? Any timeline or budget in mind?"></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Request My Free Estimate →</button>
+      <p class="form-note">We respond within one business day. Your information is never shared.</p>
+    </form>
+    <div id="formSuccess" style="display:none;text-align:center;padding:40px 0">
+      <div style="font-size:42px;margin-bottom:16px">✅</div>
+      <div style="font-family:'Playfair Display',serif;font-size:22px;color:white;margin-bottom:10px">We got it!</div>
+      <div style="font-size:15px;color:rgba(255,255,255,.6);line-height:1.6">We'll be in touch within one business day to talk through your project.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="ridge-mark"></div>
+    Ridgeline Contracting
+  </div>
+  <div class="footer-links">
+    <a href="#kitchen">Services</a>
+    <a href="#process">Process</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-copy">© 2025 Ridgeline Contracting LLC · Morgan, Utah · Licensed & Insured</div>
+</footer>
+
+<script>
+/* ── NAV scroll ─────────────────────────────── */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+},{passive:true});
+
+/* ── Mobile menu ────────────────────────────── */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+hamburger.addEventListener('click',()=>mobileMenu.classList.add('open'));
+mobileClose.addEventListener('click',()=>mobileMenu.classList.remove('open'));
+document.querySelectorAll('.mobile-link').forEach(l=>{
+  l.addEventListener('click',()=>mobileMenu.classList.remove('open'));
+});
+
+/* ── Intersection observer: panel reveals ───── */
+const panels = document.querySelectorAll('.panel');
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add('in-view');
+  });
+},{threshold:0.15});
+panels.forEach(p=>observer.observe(p));
+
+/* ── Parallax-style bg shift on scroll ─────── */
+function updateParallax(){
+  panels.forEach(panel=>{
+    const bg = panel.querySelector('.panel-bg');
+    if(!bg) return;
+    const rect = panel.getBoundingClientRect();
+    const vh = window.innerHeight;
+    // how far through the viewport (0 = just entered bottom, 1 = exiting top)
+    const progress = 1 - (rect.bottom / (vh + rect.height));
+    const shift = progress * 60; // max 60px shift
+    bg.style.transform = `scale(1.08) translateY(${shift}px)`;
+  });
+}
+window.addEventListener('scroll', updateParallax, {passive:true});
+updateParallax();
+
+/* ── Process cards stagger ──────────────────── */
+const cards = document.querySelectorAll('.process-card');
+const cardObs = new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>{
+        e.target.style.opacity='1';
+        e.target.style.transform='none';
+      }, e.target.dataset.delay);
+    }
+  });
+},{threshold:0.2});
+cards.forEach((c,i)=>{
+  c.style.opacity='0';
+  c.style.transform='translateY(24px)';
+  c.style.transition='opacity .6s ease, transform .6s ease';
+  c.dataset.delay = i * 140;
+  cardObs.observe(c);
+});
+
+/* ── Review cards stagger ───────────────────── */
+const reviewCards = document.querySelectorAll('.review-card');
+const revObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      setTimeout(()=>{
+        e.target.style.opacity='1';
+        e.target.style.transform='none';
+      }, e.target.dataset.delay);
+    }
+  });
+},{threshold:0.15});
+reviewCards.forEach((c,i)=>{
+  c.style.opacity='0';
+  c.style.transform='translateY(20px)';
+  c.style.transition='opacity .6s ease, transform .6s ease';
+  c.dataset.delay = i * 120;
+  revObs.observe(c);
+});
+
+/* ── Form submit ────────────────────────────── */
+function handleSubmit(e){
+  e.preventDefault();
+  document.getElementById('quoteForm').style.display='none';
+  document.getElementById('formSuccess').style.display='block';
+}
+</script>
+</body>
+</html>

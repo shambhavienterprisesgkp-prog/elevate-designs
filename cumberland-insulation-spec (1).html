@@ -12,8 +12,8 @@
     --sky-top:#A9C6CB;
     --sky:#7CA1A9;
     --sky-deep:#2E4348;
-    --gold:#F2B705;
-    --gold-soft:#FFD64A;
+    --gold:#3FB2DC;
+    --gold-soft:#74CDEF;
     --ink:#14171A;
     --ink-2:#1C2024;
     --blue:#3FB2DC;
@@ -57,8 +57,9 @@
   .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;overflow:hidden}
   .hero-media{position:absolute;inset:0;z-index:0}
   .hero-media video,.hero-media .fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero-media video{z-index:1;background:#243033}
   /* Animated CSS fallback — looks like teal sky + drifting spray-foam mist. Swap for a Higgsfield MP4 in <video> below. */
-  .fallback{background:
+  .fallback{z-index:0;background:
      radial-gradient(120% 80% at 78% 12%,rgba(255,255,255,.18),transparent 60%),
      linear-gradient(170deg,var(--sky-top) 0%,var(--sky) 42%,var(--sky-deep) 100%);}
   .mist{position:absolute;inset:-20% -10%;z-index:1;pointer-events:none;
@@ -82,7 +83,7 @@
   .estimate-card{background:var(--ink);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
   .est-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 28px;cursor:pointer;user-select:none}
   .est-head-l{display:flex;align-items:center;gap:18px}
-  .est-badge{width:48px;height:48px;border-radius:12px;background:rgba(242,183,5,.14);display:grid;place-items:center;color:var(--gold);flex:none}
+  .est-badge{width:48px;height:48px;border-radius:12px;background:rgba(63,178,220,.14);display:grid;place-items:center;color:var(--gold);flex:none}
   .est-head h3{color:#fff;font-size:1.28rem;font-weight:400}
   .est-head p{color:rgba(255,255,255,.55);font-size:.85rem;margin-top:2px}
   .est-toggle{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;color:#fff;transition:.3s;flex:none}
@@ -102,13 +103,13 @@
   .opts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
   .opt{border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:16px 16px;color:rgba(255,255,255,.86);font-size:.95rem;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.02)}
   .opt .ic{font-size:1.15rem}
-  .opt:hover{border-color:rgba(242,183,5,.6);background:rgba(242,183,5,.06)}
-  .opt.sel{border-color:var(--gold);background:rgba(242,183,5,.12);color:#fff}
+  .opt:hover{border-color:rgba(63,178,220,.6);background:rgba(63,178,220,.06)}
+  .opt.sel{border-color:var(--gold);background:rgba(63,178,220,.12);color:#fff}
   .range-wrap{padding:6px 2px}
   .range-val{color:var(--gold);font-family:var(--display);font-size:2rem;font-weight:400;margin-bottom:6px}
   .range-val small{color:rgba(255,255,255,.5);font-size:.85rem;font-family:var(--body)}
   input[type=range]{width:100%;-webkit-appearance:none;height:5px;border-radius:4px;background:rgba(255,255,255,.18);outline:none}
-  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--gold);cursor:pointer;box-shadow:0 0 0 6px rgba(242,183,5,.18)}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--gold);cursor:pointer;box-shadow:0 0 0 6px rgba(63,178,220,.18)}
   input[type=range]::-moz-range-thumb{width:22px;height:22px;border:0;border-radius:50%;background:var(--gold);cursor:pointer}
   .est-fields{display:grid;gap:12px}
   .est-fields .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -237,7 +238,7 @@
   .how-row::before{content:"";position:absolute;top:24px;left:6%;right:6%;height:1px;background:repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 16px)}
   .step-card{text-align:center;position:relative}
   .step-card .dot{width:50px;height:50px;border-radius:50%;background:var(--paper);border:1px solid var(--line);display:grid;place-items:center;margin:0 auto 20px;font-family:var(--display);color:var(--gold);font-size:1.05rem;position:relative;z-index:2}
-  .step-card.feat .dot{background:var(--gold);color:var(--ink);border-color:var(--gold);box-shadow:0 12px 26px -10px rgba(242,183,5,.6)}
+  .step-card.feat .dot{background:var(--gold);color:var(--ink);border-color:var(--gold);box-shadow:0 12px 26px -10px rgba(63,178,220,.6)}
   .step-card h4{font-size:1.12rem;font-weight:500;font-family:var(--display);margin-bottom:8px}
   .step-card p{font-size:.88rem;color:var(--muted)}
   .step-card.feat::after{content:"Most popular";position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--ink);font-size:.62rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px}
@@ -265,7 +266,7 @@
   .acts .calc:hover{background:var(--gold-soft)}
   .acts .wa{background:#25D366;color:#fff}
   .acts .wa:hover{filter:brightness(1.07)}
-  .badge-fab{width:60px;height:60px;border-radius:50%;background:var(--gold);color:var(--ink);border:0;cursor:pointer;display:grid;place-items:center;box-shadow:0 16px 34px -10px rgba(242,183,5,.7);transition:.25s;position:relative}
+  .badge-fab{width:60px;height:60px;border-radius:50%;background:var(--gold);color:var(--ink);border:0;cursor:pointer;display:grid;place-items:center;box-shadow:0 16px 34px -10px rgba(63,178,220,.7);transition:.25s;position:relative}
   .badge-fab:hover{transform:scale(1.06)}
   .badge-fab .ping{position:absolute;inset:0;border-radius:50%;border:2px solid var(--gold);animation:ping 2.2s ease-out infinite}
   @keyframes ping{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.5);opacity:0}}
@@ -321,9 +322,9 @@
 <!-- ============ HERO ============ -->
 <section class="hero" id="home">
   <div class="hero-media">
-    <!-- ▼ Drop your Higgsfield spray-foam MP4 URL into src below. CSS fallback shows until then. -->
-    <video autoplay muted loop playsinline poster="">
-      <source src="" type="video/mp4" />
+    <!-- Higgsfield spray-foam hero clip (Kling 3.0 Turbo, 1080p). CSS fallback shows if it can't load. -->
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3FIOVmzqLhhYVWrGz8tGlOyYHI3/hf_20260624_114145_b81b743a-03fd-4153-a33f-aaf5c6c9be87.mp4" type="video/mp4" />
     </video>
     <div class="fallback"></div>
     <div class="mist"></div>

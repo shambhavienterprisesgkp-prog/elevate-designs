@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Throwback List — Throwback Kitchen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF6EF;
+    --paper:#FFFFFF;
+    --ink:#2A1538;
+    --ink-soft:#6B5772;
+    --magenta:#E0218A;
+    --pink:#FF5BAE;
+    --pink-tint:#FFE0F0;
+    --grape:#6B2C91;
+    --teal:#1FB6B1;
+    --teal-tint:#D6F6F4;
+    --yellow:#FFC92E;
+    --line:#EFE3D9;
+    --shadow:rgba(42,21,56,.10);
+    --display:"Bricolage Grotesque",sans-serif;
+    --body:"Plus Jakarta Sans",sans-serif;
+    --mono:"Space Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img,svg{display:block}
+  ::selection{background:var(--yellow);color:var(--ink)}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--display);font-weight:700;font-size:1rem;
+    padding:15px 26px;border-radius:999px;border:none;cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease;
+    line-height:1;letter-spacing:.2px;
+  }
+  .btn:focus-visible{outline:3px solid var(--grape);outline-offset:3px}
+  .btn-primary{background:var(--magenta);color:#fff;box-shadow:0 6px 0 #A8146A}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 0 #A8146A}
+  .btn-primary:active{transform:translateY(4px);box-shadow:0 2px 0 #A8146A}
+  .btn-ghost{background:var(--ink);color:#fff}
+  .btn-ghost:hover{transform:translateY(-2px)}
+  .btn .bolt{width:16px;height:16px;fill:currentColor}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,246,239,.82);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:1.1rem;letter-spacing:.3px}
+  .brand .mark{
+    width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+    background:var(--grape);box-shadow:2px 2px 0 var(--teal);
+  }
+  .brand .mark .bolt{width:18px;height:18px;fill:var(--yellow)}
+  .brand small{color:var(--magenta)}
+  .nav .btn{padding:11px 20px;font-size:.92rem}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:64px 0 72px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--mono);font-weight:700;font-size:.72rem;letter-spacing:1.5px;
+    text-transform:uppercase;color:var(--grape);
+    background:#fff;border:1.5px solid var(--line);
+    padding:8px 14px;border-radius:999px;margin-bottom:22px;
+  }
+  .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--magenta);animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  h1{
+    font-family:var(--display);font-weight:800;
+    font-size:clamp(2.6rem,5.6vw,4.2rem);line-height:.98;
+    letter-spacing:-1.5px;margin-bottom:20px;
+  }
+  h1 .hl{position:relative;white-space:nowrap}
+  h1 .hl::after{
+    content:"";position:absolute;left:-2%;right:-2%;bottom:6%;height:34%;
+    background:var(--yellow);z-index:-1;border-radius:3px;transform:rotate(-1.2deg);
+  }
+  .lede{font-size:1.12rem;color:var(--ink-soft);max-width:30em;margin-bottom:24px}
+  .proof-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .avatars{display:flex}
+  .avatars span{
+    width:34px;height:34px;border-radius:50%;border:2.5px solid var(--cream);
+    margin-left:-10px;display:grid;place-items:center;font-size:1rem;
+  }
+  .avatars span:first-child{margin-left:0}
+  .proof-text{font-size:.92rem;color:var(--ink-soft)}
+  .proof-text b{color:var(--ink)}
+  .stars{color:var(--yellow);letter-spacing:2px}
+
+  /* ---------- the ticket (signature) ---------- */
+  .ticket{
+    position:relative;background:var(--paper);border-radius:22px;
+    box-shadow:0 26px 60px -22px rgba(42,21,56,.42);
+    border:1px solid var(--line);
+  }
+  .ticket-top{padding:26px 30px 22px;position:relative}
+  .ticket-stub{
+    display:flex;align-items:center;justify-content:space-between;
+    font-family:var(--mono);font-size:.72rem;letter-spacing:1px;text-transform:uppercase;
+    color:var(--ink-soft);margin-bottom:16px;
+  }
+  .ticket-stub .num{color:var(--magenta);font-weight:700}
+  .ticket h2{font-family:var(--display);font-weight:800;font-size:1.6rem;letter-spacing:-.5px;line-height:1.05}
+  .ticket .sub{font-size:.92rem;color:var(--ink-soft);margin-top:6px}
+  .perf{
+    height:24px;position:relative;
+    background:
+      radial-gradient(circle at 12px 12px, var(--cream) 11px, transparent 12px) repeat-x;
+    background-size:24px 24px;background-position:-12px 0;
+  }
+  .perf::before,.perf::after{
+    content:"";position:absolute;top:0;width:24px;height:24px;background:var(--cream);
+  }
+  .perf::before{left:-12px;border-radius:50%}
+  .perf::after{right:-12px;border-radius:50%}
+  .ticket-form{padding:18px 30px 28px}
+  .field{margin-bottom:13px}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  label{display:block;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ink);margin-bottom:6px}
+  input[type=text],input[type=email],input[type=tel]{
+    width:100%;font-family:var(--body);font-size:.98rem;color:var(--ink);
+    padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;
+    background:#FDFBF9;transition:border-color .15s, box-shadow .15s;
+  }
+  input::placeholder{color:#B7A9BE}
+  input:focus{outline:none;border-color:var(--magenta);box-shadow:0 0 0 3px var(--pink-tint)}
+  .consent{display:flex;gap:11px;align-items:flex-start;margin:6px 0 16px;font-size:.78rem;color:var(--ink-soft);line-height:1.45}
+  .consent input{margin-top:2px;width:18px;height:18px;accent-color:var(--magenta);flex-shrink:0}
+  .ticket-form .btn-primary{width:100%;justify-content:center;font-size:1.05rem;padding:16px}
+  .form-foot{text-align:center;font-size:.72rem;color:var(--ink-soft);margin-top:12px}
+  .err{color:var(--magenta);font-size:.74rem;font-weight:600;margin-top:5px;display:none}
+  .field.invalid input{border-color:var(--magenta);background:#FFF4F9}
+  .field.invalid .err{display:block}
+
+  /* success state */
+  .success{display:none;padding:40px 30px;text-align:center}
+  .success.show{display:block;animation:pop .4s ease}
+  @keyframes pop{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+  .success .seal{
+    width:78px;height:78px;border-radius:50%;background:var(--teal);
+    display:grid;place-items:center;margin:0 auto 18px;box-shadow:3px 3px 0 var(--grape);
+  }
+  .success .seal .bolt{width:38px;height:38px;fill:var(--yellow)}
+  .success h2{font-family:var(--display);font-weight:800;font-size:1.7rem;margin-bottom:8px}
+  .success p{color:var(--ink-soft);font-size:.95rem}
+  .success .conf{font-family:var(--mono);font-size:.78rem;color:var(--magenta);margin-top:14px;letter-spacing:1px}
+
+  /* hero confetti */
+  .confetti{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:-1}
+  .shape{position:absolute;opacity:.85}
+  .tri{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-bottom:30px solid var(--teal)}
+  .zig{width:46px;height:14px;background:
+    linear-gradient(135deg,var(--pink) 25%,transparent 25%) -10px 0,
+    linear-gradient(225deg,var(--pink) 25%,transparent 25%) -10px 0;
+    background-size:20px 20px;background-repeat:repeat-x}
+  .ring{width:34px;height:34px;border-radius:50%;border:7px solid var(--yellow)}
+  .sq{width:26px;height:26px;background:var(--grape);transform:rotate(18deg)}
+
+  /* ---------- section base ---------- */
+  section{padding:84px 0}
+  .sec-head{text-align:center;max-width:34rem;margin:0 auto 50px}
+  .kicker{
+    font-family:var(--mono);font-weight:700;font-size:.74rem;letter-spacing:2px;
+    text-transform:uppercase;color:var(--magenta);margin-bottom:12px;
+  }
+  .sec-head h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,4vw,2.8rem);letter-spacing:-1px;line-height:1.04}
+  .sec-head p{color:var(--ink-soft);margin-top:14px;font-size:1.05rem}
+
+  /* ---------- why join ---------- */
+  .perks{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .perk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .perk{
+    background:var(--cream);border:1px solid var(--line);border-radius:18px;padding:28px 24px;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .perk:hover{transform:translateY(-4px);box-shadow:0 16px 30px -16px var(--shadow)}
+  .perk .ico{width:50px;height:50px;border-radius:13px;display:grid;place-items:center;margin-bottom:16px;font-size:1.5rem}
+  .perk h3{font-family:var(--display);font-weight:700;font-size:1.2rem;margin-bottom:7px}
+  .perk p{font-size:.94rem;color:var(--ink-soft)}
+  .perk:nth-child(1) .ico{background:var(--pink-tint)}
+  .perk:nth-child(2) .ico{background:var(--teal-tint)}
+  .perk:nth-child(3) .ico{background:#FFF1CC}
+  .perk:nth-child(4) .ico{background:#EDE0F4}
+  .perk:nth-child(5) .ico{background:var(--pink-tint)}
+
+  /* ---------- drops ---------- */
+  .drop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .drop{
+    border-radius:18px;overflow:hidden;border:1px solid var(--line);
+    background:var(--paper);transition:transform .18s ease;
+  }
+  .drop:hover{transform:translateY(-5px)}
+  .drop .cap{height:128px;display:grid;place-items:center;position:relative}
+  .drop .cap .big{font-family:var(--display);font-weight:800;font-size:2.6rem;color:#fff;opacity:.92}
+  .drop:nth-child(1) .cap{background:linear-gradient(135deg,var(--magenta),var(--pink))}
+  .drop:nth-child(2) .cap{background:linear-gradient(135deg,var(--grape),#9D4FC4)}
+  .drop:nth-child(3) .cap{background:linear-gradient(135deg,var(--teal),#43D6D1)}
+  .drop:nth-child(4) .cap{background:linear-gradient(135deg,#F0A800,var(--yellow))}
+  .drop .body{padding:18px}
+  .drop .dn{font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);letter-spacing:1px;text-transform:uppercase}
+  .drop h3{font-family:var(--display);font-weight:700;font-size:1.18rem;margin:5px 0 8px;line-height:1.1}
+  .drop p{font-size:.86rem;color:var(--ink-soft)}
+  .drop .tag{
+    display:inline-block;margin-top:12px;font-family:var(--mono);font-size:.66rem;font-weight:700;
+    letter-spacing:.8px;text-transform:uppercase;color:var(--grape);
+    background:#fff;border:1.5px solid var(--line);padding:5px 10px;border-radius:999px;
+  }
+
+  /* ---------- social proof band ---------- */
+  .voices{background:var(--grape);color:#fff}
+  .voices .kicker{color:var(--yellow)}
+  .voices .sec-head h2{color:#fff}
+  .quote-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .quote{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:26px}
+  .quote .stars{margin-bottom:12px;display:block}
+  .quote p{font-size:1rem;line-height:1.55;margin-bottom:16px}
+  .quote .who{display:flex;align-items:center;gap:11px}
+  .quote .who .av{width:38px;height:38px;border-radius:50%;background:var(--pink);display:grid;place-items:center;font-size:1.1rem}
+  .quote .who b{font-family:var(--display);font-weight:700;font-size:.95rem}
+  .quote .who small{display:block;color:rgba(255,255,255,.6);font-size:.78rem}
+  .statbar{display:flex;justify-content:center;gap:60px;flex-wrap:wrap;margin-top:54px;padding-top:44px;border-top:1px solid rgba(255,255,255,.18)}
+  .stat{text-align:center}
+  .stat b{font-family:var(--display);font-weight:800;font-size:2.6rem;display:block;line-height:1}
+  .stat span{font-size:.8rem;text-transform:uppercase;letter-spacing:1.4px;color:rgba(255,255,255,.7);font-family:var(--mono)}
+
+  /* ---------- final cta ---------- */
+  .final{text-align:center}
+  .final-card{
+    background:linear-gradient(150deg,var(--magenta),var(--grape));
+    border-radius:30px;padding:64px 40px;color:#fff;position:relative;overflow:hidden;
+  }
+  .final-card h2{font-family:var(--display);font-weight:800;font-size:clamp(2.1rem,4.4vw,3.1rem);letter-spacing:-1px;line-height:1.02;margin-bottom:14px}
+  .final-card p{font-size:1.1rem;opacity:.92;max-width:30em;margin:0 auto 30px}
+  .final-card .btn-primary{background:var(--yellow);color:var(--ink);box-shadow:0 6px 0 #C99A00}
+  .final-card .btn-primary:hover{box-shadow:0 8px 0 #C99A00}
+  .final-card .btn-primary:active{box-shadow:0 2px 0 #C99A00}
+  .final-card .fine{margin-top:18px;font-size:.78rem;opacity:.75}
+  .final-card .blob{position:absolute;border-radius:50%;filter:blur(2px);opacity:.35}
+  .final-card .b1{width:160px;height:160px;background:var(--yellow);top:-50px;right:-30px}
+  .final-card .b2{width:120px;height:120px;background:var(--teal);bottom:-40px;left:-20px}
+
+  /* ---------- footer ---------- */
+  footer{padding:40px 0;border-top:1px solid var(--line);text-align:center}
+  footer .brand{justify-content:center;margin-bottom:10px}
+  footer p{font-size:.82rem;color:var(--ink-soft)}
+  footer a{color:var(--magenta);font-weight:600}
+
+  /* ---------- mobile sticky bar ---------- */
+  .mobar{
+    position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;
+    padding:12px 16px;background:rgba(255,246,239,.94);backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);
+  }
+  .mobar .btn{width:100%;justify-content:center}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:36px}
+    .ticket{order:-1}
+    .perk-grid{grid-template-columns:1fr 1fr}
+    .drop-grid{grid-template-columns:1fr 1fr}
+    .quote-grid{grid-template-columns:1fr}
+    .statbar{gap:36px}
+  }
+  @media(max-width:600px){
+    section{padding:60px 0}
+    .hero{padding:40px 0 56px}
+    .perk-grid{grid-template-columns:1fr}
+    .drop-grid{grid-template-columns:1fr 1fr}
+    .final-card{padding:48px 24px}
+    .nav .btn{display:none}
+    .mobar{display:block}
+    body{padding-bottom:74px}
+    .statbar{gap:28px}
+    .stat b{font-size:2.1rem}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  }
+</style>
+</head>
+<body>
+
+<!-- lightning bolt symbol, reused everywhere -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="bolt" viewBox="0 0 24 24"><path d="M13.5 2 4 13.2h6L9 22l10-12.4h-6L13.5 2Z"/></symbol>
+</svg>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <span class="mark"><svg class="bolt"><use href="#bolt"/></svg></span>
+      Throwback <small>Kitchen</small>
+    </a>
+    <a class="btn btn-primary" href="#join"><svg class="bolt"><use href="#bolt"/></svg> Claim my spot</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="confetti" aria-hidden="true">
+      <div class="shape tri" style="top:12%;left:6%;transform:rotate(-12deg)"></div>
+      <div class="shape ring" style="top:64%;left:3%"></div>
+      <div class="shape zig" style="top:8%;right:14%"></div>
+      <div class="shape sq" style="bottom:14%;right:6%"></div>
+      <div class="shape tri" style="bottom:8%;left:46%;transform:rotate(160deg);border-bottom-color:var(--yellow)"></div>
+    </div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="dot"></span> Members only · Drop #004 loading</span>
+        <h1>Get first dibs on the desserts you <span class="hl">grew up on</span>.</h1>
+        <p class="lede">The Throwback List unlocks early access to every weekly drop — ice-cream-truck classics and lunchbox legends, reimagined as premium scoops. Members order before everyone else. Drops sell out fast.</p>
+        <div class="proof-row">
+          <div class="avatars" aria-hidden="true">
+            <span style="background:var(--pink-tint)">🍦</span>
+            <span style="background:var(--teal-tint)">🧁</span>
+            <span style="background:#FFF1CC">🍫</span>
+            <span style="background:#EDE0F4">🍓</span>
+          </div>
+          <div class="proof-text">
+            <span class="stars">★★★★★</span><br>
+            <b>12,400+ 90s kids</b> already on the list
+          </div>
+        </div>
+      </div>
+
+      <!-- SIGNATURE: membership ticket -->
+      <div class="ticket" id="join">
+        <div class="ticket-top">
+          <div class="ticket-stub">
+            <span>The Throwback List</span>
+            <span class="num">№ 12,401</span>
+          </div>
+          <h2>Join the list. Skip the line.</h2>
+          <p class="sub">Free to join. Early access to every drop. Cancel anytime.</p>
+        </div>
+        <div class="perf" aria-hidden="true"></div>
+
+        <form class="ticket-form" id="signup" novalidate>
+          <div class="field">
+            <label for="fname">First name</label>
+            <input type="text" id="fname" name="fname" placeholder="Angela" autocomplete="given-name">
+            <span class="err">Tell us what to call you.</span>
+          </div>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email">
+            <span class="err">Add a valid email so we can reach you.</span>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="phone">Mobile number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 012-3456" autocomplete="tel">
+              <span class="err">We need a mobile for drop alerts.</span>
+            </div>
+            <div class="field">
+              <label for="zip">ZIP code</label>
+              <input type="text" id="zip" name="zip" placeholder="85001" autocomplete="postal-code" inputmode="numeric" maxlength="5">
+              <span class="err">5-digit ZIP, please.</span>
+            </div>
+          </div>
+          <div class="field">
+            <label class="consent" for="sms">
+              <input type="checkbox" id="sms" name="sms">
+              <span>Text me when drops go live. Msg &amp; data rates may apply. Reply STOP to opt out anytime.</span>
+            </label>
+            <span class="err" style="margin-top:-8px">Check the box to get drop alerts.</span>
+          </div>
+          <button type="submit" class="btn btn-primary"><svg class="bolt"><use href="#bolt"/></svg> Claim my spot on the list</button>
+          <p class="form-foot">No spam, ever. Just first dibs on the good stuff.</p>
+        </form>
+
+        <div class="success" id="success">
+          <div class="seal"><svg class="bolt"><use href="#bolt"/></svg></div>
+          <h2>You're on the list!</h2>
+          <p>Keep an eye on your phone — <strong>Drop #004</strong> goes live this Friday and you'll get the early link before anyone else.</p>
+          <p class="conf">★ MEMBER #12,401 · CONFIRMED ★</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY JOIN -->
+  <section class="perks">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">Why join</p>
+        <h2>The list is where the perks live.</h2>
+        <p>Everyone can order a drop. Members get the early link, the secret stuff, and a say in what we make next.</p>
+      </div>
+      <div class="perk-grid">
+        <div class="perk">
+          <div class="ico">⚡</div>
+          <h3>Early access</h3>
+          <p>Get the drop link hours before it opens to the public — and before it sells out.</p>
+        </div>
+        <div class="perk">
+          <div class="ico">🤫</div>
+          <h3>Secret menu drops</h3>
+          <p>Members-only flavors that never hit the main lineup. Blink and they're gone.</p>
+        </div>
+        <div class="perk">
+          <div class="ico">🗳️</div>
+          <h3>Vote on flavors</h3>
+          <p>Help decide which childhood favorite gets reimagined next. Your pick, our kitchen.</p>
+        </div>
+        <div class="perk">
+          <div class="ico">🎂</div>
+          <h3>Birthday rewards</h3>
+          <p>A little something sweet shows up in your inbox when your big day rolls around.</p>
+        </div>
+        <div class="perk">
+          <div class="ico">🎟️</div>
+          <h3>Exclusive perks</h3>
+          <p>First looks, member pricing on select drops, and surprises we can't list here yet.</p>
+        </div>
+        <div class="perk" style="display:flex;flex-direction:column;justify-content:center;background:var(--ink);color:#fff;border-color:var(--ink)">
+          <h3 style="color:#fff">Sound good?</h3>
+          <p style="color:rgba(255,255,255,.75);margin-bottom:16px">It takes 20 seconds and it's free.</p>
+          <a href="#join" class="btn btn-primary" style="align-self:flex-start"><svg class="bolt"><use href="#bolt"/></svg> Join now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE DROPS -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">A taste of past drops</p>
+        <h2>Every Friday, a new piece of your childhood.</h2>
+        <p>Limited runs, themed collections, made fresh. Once a drop sells out, it's gone for good.</p>
+      </div>
+      <div class="drop-grid">
+        <article class="drop">
+          <div class="cap"><span class="big">001</span></div>
+          <div class="body">
+            <span class="dn">Drop #001</span>
+            <h3>Ice Cream Truck</h3>
+            <p>The bomb pop, the drumstick, the cone with the chocolate bottom — all grown up.</p>
+            <span class="tag">Sold out</span>
+          </div>
+        </article>
+        <article class="drop">
+          <div class="cap"><span class="big">002</span></div>
+          <div class="body">
+            <span class="dn">Drop #002</span>
+            <h3>Lunchbox Dessert</h3>
+            <p>Cosmic-style brownies and snack-pack puddings, reimagined into real scoops.</p>
+            <span class="tag">Sold out</span>
+          </div>
+        </article>
+        <article class="drop">
+          <div class="cap"><span class="big">003</span></div>
+          <div class="body">
+            <span class="dn">Drop #003</span>
+            <h3>Saturday Morning</h3>
+            <p>Cereal-milk soft serve and toaster-pastry sundaes for the cartoon crowd.</p>
+            <span class="tag">Sold out</span>
+          </div>
+        </article>
+        <article class="drop">
+          <div class="cap"><span class="big">004</span></div>
+          <div class="body">
+            <span class="dn">Drop #004</span>
+            <h3>Candy Aisle</h3>
+            <p>The wax bottles, the rope candy, the powder you weren't supposed to eat straight.</p>
+            <span class="tag" style="color:var(--magenta);border-color:var(--pink)">⚡ This Friday</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="voices">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">From the list</p>
+        <h2>People do not play about these drops.</h2>
+      </div>
+      <div class="quote-grid">
+        <div class="quote">
+          <span class="stars">★★★★★</span>
+          <p>"Tasted Drop #001 and was instantly nine years old chasing the ice cream truck again. The early link is the only way I got it before it sold out."</p>
+          <div class="who"><span class="av">🍦</span><div><b>Maya R.</b><small>List member since Drop #001</small></div></div>
+        </div>
+        <div class="quote">
+          <span class="stars">★★★★★</span>
+          <p>"The cosmic brownie scoop genuinely stopped me mid-scroll. Joined the list that night and haven't missed a Friday since."</p>
+          <div class="who"><span class="av">🍫</span><div><b>Devon T.</b><small>Voted on Drop #003</small></div></div>
+        </div>
+        <div class="quote">
+          <span class="stars">★★★★★</span>
+          <p>"Got a birthday surprise drop link out of nowhere. Felt like the brand actually remembered me. Premium without being precious about it."</p>
+          <div class="who"><span class="av">🎂</span><div><b>Priya & Sam</b><small>Secret menu regulars</small></div></div>
+        </div>
+      </div>
+      <div class="statbar">
+        <div class="stat"><b>12.4k</b><span>On the list</span></div>
+        <div class="stat"><b>~7 min</b><span>Avg sell-out</span></div>
+        <div class="stat"><b>4</b><span>Drops &amp; counting</span></div>
+        <div class="stat"><b>100%</b><span>Childhood</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final">
+    <div class="wrap">
+      <div class="final-card">
+        <span class="blob b1" aria-hidden="true"></span>
+        <span class="blob b2" aria-hidden="true"></span>
+        <h2>Don't miss the next drop.</h2>
+        <p>Drop #004 lands this Friday. Members get the link first — and these run out in minutes.</p>
+        <a href="#join" class="btn btn-primary"><svg class="bolt"><use href="#bolt"/></svg> Get on The Throwback List</a>
+        <p class="fine">Free · 20 seconds · Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <span class="mark"><svg class="bolt"><use href="#bolt"/></svg></span>
+      Throwback <small>Kitchen</small>
+    </a>
+    <p>Childhood Favorites, Reimagined. · Orders handled on <a href="#">Hotplate</a> · <a href="#">Instagram</a></p>
+    <p style="margin-top:8px;opacity:.7">Concept landing page · not the live site</p>
+  </div>
+</footer>
+
+<div class="mobar"><a href="#join" class="btn btn-primary"><svg class="bolt"><use href="#bolt"/></svg> Claim my spot on the list</a></div>
+
+<script>
+  const form = document.getElementById('signup');
+  const success = document.getElementById('success');
+
+  function fail(id){ document.getElementById(id).closest('.field').classList.add('invalid'); }
+  function clearErr(field){ field.classList.remove('invalid'); }
+
+  form.querySelectorAll('input').forEach(inp=>{
+    inp.addEventListener('input', ()=>clearErr(inp.closest('.field')));
+    inp.addEventListener('change', ()=>clearErr(inp.closest('.field')));
+  });
+
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    let ok = true;
+    const fname = document.getElementById('fname');
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+    const zip   = document.getElementById('zip');
+    const sms   = document.getElementById('sms');
+
+    if(!fname.value.trim()){ fail('fname'); ok=false; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){ fail('email'); ok=false; }
+    if(phone.value.replace(/\D/g,'').length < 10){ fail('phone'); ok=false; }
+    if(!/^\d{5}$/.test(zip.value.trim())){ fail('zip'); ok=false; }
+    if(!sms.checked){ sms.closest('.field').classList.add('invalid'); ok=false; }
+
+    if(!ok){
+      const firstBad = form.querySelector('.field.invalid input');
+      if(firstBad) firstBad.focus();
+      return;
+    }
+
+    // demo only — real site posts to Gravity Forms → Make.com → Brevo
+    form.style.display='none';
+    success.classList.add('show');
+    success.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+</script>
+</body>
+</html>

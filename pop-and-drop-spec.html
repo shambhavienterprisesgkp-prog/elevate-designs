@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pop &amp; Drop — Austin Balloon &amp; Streamer Fringe Decor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FDF4EA;
+    --paper-2:#FBEAD9;
+    --ink:#1B1726;
+    --ink-soft:#4A4255;
+    --punch:#FF4D6D;
+    --tangerine:#FF7A1A;
+    --sunshine:#FFC93C;
+    --mint:#16C79A;
+    --grape:#8A4FFF;
+    --sky:#2BB3FF;
+    --display:'Unbounded',system-ui,sans-serif;
+    --body:'DM Sans',system-ui,sans-serif;
+    --mono:'Space Mono',ui-monospace,monospace;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:.72rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .btn{
+    font-family:var(--mono);
+    font-size:.8rem;
+    font-weight:700;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    padding:15px 28px;
+    border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    border:2px solid var(--ink);
+    background:var(--punch);
+    color:#fff;
+    cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease;
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+  .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+  .btn.ghost{background:transparent;color:var(--ink);box-shadow:4px 4px 0 var(--sunshine)}
+  .btn.ghost:hover{box-shadow:6px 6px 0 var(--sunshine)}
+  :focus-visible{outline:3px solid var(--grape);outline-offset:3px;border-radius:4px}
+
+  /* NAV */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(253,244,234,.82);
+    backdrop-filter:blur(10px);
+    border-bottom:2px solid var(--ink);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:1.25rem;
+    letter-spacing:-.02em;
+    display:flex;align-items:center;gap:8px;
+  }
+  .logo .amp{color:var(--punch)}
+  .logo .dot{
+    width:13px;height:13px;border-radius:50%;
+    background:var(--mint);display:inline-block;
+    box-shadow:0 0 0 3px var(--paper),0 0 0 5px var(--ink);
+  }
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{font-size:.92rem;font-weight:500;transition:color .15s}
+  .nav-links a:hover{color:var(--punch)}
+  .nav-cta{font-family:var(--mono);font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:10px 20px;border-radius:999px;background:var(--ink);color:var(--paper);border:2px solid var(--ink)}
+  .nav-cta:hover{background:var(--punch);color:#fff}
+  .burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px}
+  .burger span{width:26px;height:2.5px;background:var(--ink);border-radius:2px;transition:.25s}
+
+  /* HERO */
+  .hero{position:relative;padding-bottom:90px;overflow:hidden}
+  .fringe{position:absolute;top:0;left:0;width:100%;height:230px;display:flex;pointer-events:none;z-index:1}
+  .strip{flex:1 1 auto;transform-origin:top center;border-radius:0 0 6px 6px}
+  @keyframes sway{0%,100%{transform:rotate(-1.4deg)}50%{transform:rotate(1.4deg)}}
+  .hero-inner{position:relative;z-index:2;text-align:center;padding-top:200px}
+  .hero h1{
+    font-family:var(--display);
+    font-weight:900;
+    font-size:clamp(2.9rem,8.5vw,6.4rem);
+    line-height:.96;
+    letter-spacing:-.03em;
+    margin-bottom:22px;
+  }
+  .hero h1 .pop{
+    position:relative;display:inline-block;color:var(--punch);
+  }
+  .hero h1 .pop::after{
+    content:"";position:absolute;left:-6%;right:-6%;bottom:6%;height:14px;
+    background:var(--sunshine);z-index:-1;border-radius:8px;transform:rotate(-1.5deg);
+  }
+  .hero p.lead{
+    font-size:clamp(1.05rem,2.2vw,1.32rem);
+    max-width:600px;margin:0 auto 34px;color:var(--ink-soft);
+  }
+  .hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .confetti-bit{position:absolute;border-radius:2px;z-index:1;opacity:.9}
+
+  /* MARQUEE / BRAND WALL */
+  .brands{padding:70px 0 64px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);background:var(--ink);color:var(--paper)}
+  .brands .eyebrow{color:var(--sunshine)}
+  .brands h2{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,3.4vw,2.3rem);text-align:center;margin:10px 0 8px;letter-spacing:-.02em}
+  .brands .sub{text-align:center;color:#c9c2d4;max-width:560px;margin:0 auto 40px;font-size:.98rem}
+  .brand-grid{
+    display:grid;grid-template-columns:repeat(6,1fr);gap:0;
+    border:1px solid rgba(255,255,255,.16);border-radius:14px;overflow:hidden;
+  }
+  .brand-cell{
+    font-family:var(--display);font-weight:600;
+    font-size:clamp(.7rem,1.3vw,1rem);
+    letter-spacing:.01em;
+    text-align:center;padding:26px 10px;
+    border:1px solid rgba(255,255,255,.12);
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s,color .2s;
+  }
+  .brand-cell:hover{background:var(--punch);color:#fff}
+
+  /* SECTION HEADERS */
+  .section{padding:96px 0}
+  .sec-head{max-width:680px;margin-bottom:48px}
+  .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .sec-head h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.02;letter-spacing:-.03em;margin:14px 0 16px}
+  .sec-head p{color:var(--ink-soft);font-size:1.05rem}
+
+  /* SERVICES */
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .svc{
+    border:2px solid var(--ink);border-radius:18px;overflow:hidden;
+    background:var(--paper);box-shadow:5px 5px 0 var(--ink);
+    transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;
+  }
+  .svc:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--ink)}
+  .svc .art{height:170px;position:relative;overflow:hidden}
+  .svc .art .fr{position:absolute;inset:0;display:flex}
+  .svc .art .fr span{flex:1}
+  .svc .body{padding:22px 22px 26px}
+  .svc h3{font-family:var(--display);font-weight:700;font-size:1.18rem;margin-bottom:8px;letter-spacing:-.01em}
+  .svc p{font-size:.92rem;color:var(--ink-soft)}
+  .svc .tag{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft);margin-top:14px;display:block}
+
+  /* EVENTS / PRICING */
+  .events{background:var(--paper-2);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+  .ev-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .ev{
+    background:var(--paper);border:2px solid var(--ink);border-radius:18px;
+    padding:28px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden;
+    transition:transform .18s;
+  }
+  .ev:hover{transform:translateY(-4px)}
+  .ev .pin{position:absolute;top:0;right:0;width:64px;height:64px}
+  .ev .pin::before{content:"";position:absolute;top:-32px;right:-32px;width:64px;height:64px;transform:rotate(45deg)}
+  .ev .kicker{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-soft)}
+  .ev h3{font-family:var(--display);font-weight:700;font-size:1.4rem;letter-spacing:-.02em;margin:2px 0 4px}
+  .ev p{font-size:.92rem;color:var(--ink-soft);margin-bottom:10px}
+  .ev .price{font-family:var(--mono);font-weight:700;font-size:1.02rem;margin-top:auto}
+  .ev .price small{font-family:var(--body);font-weight:400;color:var(--ink-soft);font-size:.8rem}
+  .ev .badge{display:inline-block;font-family:var(--mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;padding:3px 9px;border-radius:999px;border:1.5px solid var(--ink);margin-bottom:8px;align-self:flex-start}
+  .ev-note{text-align:center;margin-top:34px;font-size:.92rem;color:var(--ink-soft);font-family:var(--mono)}
+
+  /* FOUNDER */
+  .founder{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .founder-art{
+    aspect-ratio:4/5;border:2px solid var(--ink);border-radius:20px;overflow:hidden;
+    position:relative;box-shadow:8px 8px 0 var(--grape);
+    background:linear-gradient(140deg,var(--grape),var(--sky));
+    display:flex;align-items:flex-end;
+  }
+  .founder-art .frbar{position:absolute;top:0;left:0;right:0;height:90px;display:flex}
+  .founder-art .frbar span{flex:1}
+  .founder-art .cap{position:relative;z-index:2;padding:24px;color:#fff}
+  .founder-art .cap b{font-family:var(--display);font-weight:700;font-size:1.3rem;display:block}
+  .founder-art .cap em{font-family:var(--mono);font-style:normal;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;opacity:.9}
+  .founder h2{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,3.6vw,2.7rem);line-height:1.05;letter-spacing:-.03em;margin:14px 0 18px}
+  .founder p{color:var(--ink-soft);margin-bottom:16px}
+  .vals{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+  .val{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;padding:8px 14px;border-radius:999px;border:2px solid var(--ink);background:var(--sunshine)}
+  .val.m{background:var(--mint)}
+  .val.g{background:var(--grape);color:#fff}
+
+  /* QUOTE */
+  .quote{background:var(--ink);color:var(--paper);text-align:center}
+  .quote .stars{color:var(--sunshine);font-size:1.3rem;letter-spacing:.12em;margin-bottom:22px}
+  .quote blockquote{font-family:var(--display);font-weight:600;font-size:clamp(1.4rem,3.2vw,2.2rem);line-height:1.28;letter-spacing:-.02em;max-width:880px;margin:0 auto 24px}
+  .quote cite{font-family:var(--mono);font-style:normal;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:#c9c2d4}
+
+  /* CTA */
+  .cta-final{text-align:center;position:relative;overflow:hidden}
+  .cta-final h2{font-family:var(--display);font-weight:900;font-size:clamp(2.2rem,6vw,4.4rem);line-height:1;letter-spacing:-.03em;margin-bottom:20px}
+  .cta-final h2 .y{color:var(--tangerine)}
+  .cta-final p{color:var(--ink-soft);max-width:480px;margin:0 auto 32px;font-size:1.05rem}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:var(--paper);padding:60px 0 36px;border-top:2px solid var(--ink)}
+  .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.15)}
+  .foot-brand .logo{color:var(--paper);font-size:1.5rem}
+  .foot-brand p{color:#c9c2d4;font-size:.9rem;margin-top:12px;max-width:300px}
+  .foot-cols{display:flex;gap:60px;flex-wrap:wrap}
+  .foot-col h4{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.16em;color:var(--sunshine);margin-bottom:14px}
+  .foot-col a{display:block;color:#d8d2e0;font-size:.92rem;margin-bottom:9px;transition:color .15s}
+  .foot-col a:hover{color:#fff}
+  .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;padding-top:24px;font-size:.78rem;color:#9a93a8;font-family:var(--mono);letter-spacing:.04em}
+
+  .spec-flag{
+    position:fixed;bottom:14px;left:14px;z-index:99;
+    font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+    background:var(--ink);color:var(--paper);padding:7px 12px;border-radius:999px;
+    border:1.5px solid var(--sunshine);opacity:.88;
+  }
+  .spec-flag a{color:var(--sunshine)}
+
+  /* RESPONSIVE */
+  @media(max-width:900px){
+    .brand-grid{grid-template-columns:repeat(3,1fr)}
+    .svc-grid{grid-template-columns:1fr}
+    .founder{grid-template-columns:1fr;gap:34px}
+    .founder-art{max-width:380px}
+  }
+  @media(max-width:680px){
+    .nav-links{
+      position:fixed;top:68px;left:0;right:0;
+      background:var(--paper);border-bottom:2px solid var(--ink);
+      flex-direction:column;align-items:flex-start;gap:0;
+      padding:8px 24px 20px;
+      transform:translateY(-150%);transition:transform .3s ease;
+    }
+    .nav-links.open{transform:translateY(0)}
+    .nav-links a{padding:12px 0;width:100%;border-bottom:1px solid rgba(27,23,38,.1)}
+    .nav-links .nav-cta{margin-top:12px;width:100%;text-align:center}
+    .burger{display:flex}
+    .ev-grid{grid-template-columns:1fr}
+    .brand-grid{grid-template-columns:repeat(2,1fr)}
+    .hero-inner{padding-top:170px}
+    .foot-cols{gap:34px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .strip{animation:none!important}
+    *{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo">Pop<span class="amp">&amp;</span>Drop<span class="dot"></span></a>
+    <nav class="nav-links" id="navlinks">
+      <a href="#brands">Clients</a>
+      <a href="#services">Services</a>
+      <a href="#events">Events</a>
+      <a href="#founder">Our Story</a>
+      <a href="#quote-cta" class="nav-cta">Get a quote</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="fringe" id="fringe" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Austin, Texas · Custom Event Decor</p>
+    <h1>Let's make<br>your big day <span class="pop">pop.</span></h1>
+    <p class="lead">Streamer fringe, balloon installations and showstopping backdrops — handcrafted in our studio and delivered to turn any space into a masterpiece.</p>
+    <div class="hero-ctas">
+      <a href="#quote-cta" class="btn">Start your vision →</a>
+      <a href="#services" class="btn ghost">See what we do</a>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND WALL -->
+<section class="brands" id="brands">
+  <div class="wrap">
+    <p class="eyebrow" style="text-align:center">Trusted by the brands that throw the best parties</p>
+    <h2>The names that party with us</h2>
+    <p class="sub">From product launches to grand openings, these brands trusted Pop &amp; Drop to make the moment unforgettable.</p>
+    <div class="brand-grid">
+      <div class="brand-cell">TikTok</div>
+      <div class="brand-cell">Meta</div>
+      <div class="brand-cell">Visa</div>
+      <div class="brand-cell">Dropbox</div>
+      <div class="brand-cell">Reddit</div>
+      <div class="brand-cell">Prime Video</div>
+      <div class="brand-cell">MGM Studios</div>
+      <div class="brand-cell">AMC Networks</div>
+      <div class="brand-cell">Warner Media</div>
+      <div class="brand-cell">Teen Vogue</div>
+      <div class="brand-cell">Kendra Scott</div>
+      <div class="brand-cell">UT Austin</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">What we make</p>
+      <h2>Five ways to fill a room with joy.</h2>
+      <p>Mix and match any of our signature pieces — every install is custom color-matched to your palette or brand.</p>
+    </div>
+    <div class="svc-grid" id="svcgrid"></div>
+  </div>
+</section>
+
+<!-- EVENTS / PRICING -->
+<section class="events section" id="events">
+  <div class="wrap">
+    <div class="sec-head center">
+      <p class="eyebrow">Find your celebration</p>
+      <h2>Decor built for the moment.</h2>
+      <p>Every event has its own energy. Pick your occasion to see where designs start — then we'll dream up the custom build from there.</p>
+    </div>
+    <div class="ev-grid">
+      <div class="ev">
+        <span class="badge" style="background:var(--mint)">Most booked</span>
+        <p class="kicker">For the brands</p>
+        <h3>Corporate &amp; Brand</h3>
+        <p>Launches, grand openings, holiday parties and conference activations that get photographed and shared.</p>
+        <p class="price">From $1,500 <small>· custom quote</small></p>
+      </div>
+      <div class="ev">
+        <p class="kicker">For the "I do"</p>
+        <h3>Weddings &amp; Showers</h3>
+        <p>Streamer fringe altars, bridal showers, bachelorette weekends and engagement reveals.</p>
+        <p class="price">From $1,200 <small>· custom quote</small></p>
+      </div>
+      <div class="ev">
+        <p class="kicker">For the little ones</p>
+        <h3>Baby Shower &amp; Gender Reveal</h3>
+        <p>Soft palettes, balloon clouds and the perfect reveal moment your guests won't stop talking about.</p>
+        <p class="price">From $1,000 <small>· custom quote</small></p>
+      </div>
+      <div class="ev">
+        <span class="badge" style="background:var(--sunshine)">Texas favorite</span>
+        <p class="kicker">For the milestones</p>
+        <h3>Birthdays &amp; Quinceañeras</h3>
+        <p>Sweet 16s, quinces, and milestone birthdays that deserve a statement install and a disco moment.</p>
+        <p class="price">From $1,000 <small>· custom quote</small></p>
+      </div>
+    </div>
+    <p class="ev-note">$1,000 minimum · delivery &amp; install included · serving Austin &amp; the Hill Country</p>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="section" id="founder">
+  <div class="wrap founder">
+    <div class="founder-art">
+      <div class="frbar" id="frbar"></div>
+      <div class="cap">
+        <b>Kelsey Harrison</b>
+        <em>Founder · Owner</em>
+      </div>
+    </div>
+    <div>
+      <p class="eyebrow">The eye behind it all</p>
+      <h2>A decade in Austin events — and a photographer's eye.</h2>
+      <p>Before founding Pop &amp; Drop, Kelsey spent years as a wedding photographer, learning exactly how decor reads through a lens. That's why our installs don't just look good in the room — they look unforgettable in every photo your guests take home.</p>
+      <p>We build strong relationships with planners and venues across Central Texas, and we love working with the same clients through life's biggest moments, again and again.</p>
+      <div class="vals">
+        <span class="val">Woman-owned</span>
+        <span class="val m">Disability-owned</span>
+        <span class="val g">Biodegradable balloons</span>
+        <span class="val">Equal pay &amp; inclusion</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote section">
+  <div class="wrap">
+    <div class="stars">★★★★★</div>
+    <blockquote>"Everything was even better than I had imagined, and our guests couldn't stop talking about how stunning it was. If I could give them 10 stars, I would!"</blockquote>
+    <cite>— Kristina W., Wedding Client</cite>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-final section" id="quote-cta">
+  <div class="wrap">
+    <p class="eyebrow">Let's get this party started</p>
+    <h2>Tell us your vision.<br>We'll make it <span class="y">pop.</span></h2>
+    <p>Share your date, your space and your wildest idea — we'll dream up something amazing to bring it to life.</p>
+    <div class="hero-ctas">
+      <a href="#" class="btn" id="confettiBtn">Request a quote 🎈</a>
+      <a href="tel:5127744975" class="btn ghost">512-774-4975</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="#top" class="logo">Pop<span class="amp">&amp;</span>Drop<span class="dot"></span></a>
+        <p>Texas' favorite custom balloon &amp; streamer fringe decor company. Handcrafted in Austin.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>Services</h4>
+          <a href="#">Streamer Fringe</a>
+          <a href="#">Balloon Garlands</a>
+          <a href="#">Backdrops</a>
+          <a href="#">Disco Balls</a>
+          <a href="#">Chandeliers</a>
+        </div>
+        <div class="foot-col">
+          <h4>Company</h4>
+          <a href="#">Our Story</a>
+          <a href="#">Gallery</a>
+          <a href="#">Reviews</a>
+          <a href="#">FAQs</a>
+          <a href="#">Oh Happy Day Booth</a>
+        </div>
+        <div class="foot-col">
+          <h4>Get in touch</h4>
+          <a href="tel:5127744975">512-774-4975</a>
+          <a href="mailto:hello@popanddroptx.com">hello@popanddroptx.com</a>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Pop &amp; Drop · Austin, TX</span>
+      <span>Woman-owned &amp; disability-owned</span>
+    </div>
+  </div>
+</footer>
+
+<div class="spec-flag">Spec concept by <a href="https://goelevatedesigns.com" target="_blank" rel="noopener">Elevate Designs</a></div>
+
+<script>
+  // ---- confetti palette ----
+  const palette = ['#FF4D6D','#FF7A1A','#FFC93C','#16C79A','#8A4FFF','#2BB3FF'];
+
+  // ---- streamer fringe hero ----
+  (function(){
+    const fringe = document.getElementById('fringe');
+    if(!fringe) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const count = 56;
+    for(let i=0;i<count;i++){
+      const s = document.createElement('span');
+      s.className='strip';
+      const c = palette[i % palette.length];
+      s.style.background = c;
+      s.style.height = (130 + Math.random()*95) + 'px';
+      if(!reduce){
+        const dur = (2.6 + Math.random()*1.8).toFixed(2);
+        const delay = (Math.random()*-3).toFixed(2);
+        s.style.animation = `sway ${dur}s ease-in-out ${delay}s infinite`;
+      }
+      fringe.appendChild(s);
+    }
+  })();
+
+  // ---- small fringe bars in service cards + founder ----
+  function fillFringe(el, n){
+    for(let i=0;i<n;i++){
+      const s=document.createElement('span');
+      s.style.background=palette[i%palette.length];
+      el.appendChild(s);
+    }
+  }
+  const frbar=document.getElementById('frbar');
+  if(frbar) fillFringe(frbar,24);
+
+  // ---- services ----
+  const services = [
+    {t:'Streamer Fringe',d:'Our signature. Hand-cut cascades of color over altars, dance floors and entryways.',tag:'The signature look',g:['#FF4D6D','#FF7A1A','#FFC93C']},
+    {t:'Balloon Garlands',d:'Lush organic garlands and statement arches, color-matched to your palette or brand.',tag:'Most requested',g:['#16C79A','#2BB3FF','#8A4FFF']},
+    {t:'Backdrops',d:'Sequin, floral and block-color backdrops that double as the photo op of the night.',tag:'Picture perfect',g:['#8A4FFF','#FF4D6D','#FFC93C']},
+    {t:'Disco Balls',d:'Glittering clusters that turn any ceiling into a dance floor. Add-on to any install.',tag:'After dark',g:['#2BB3FF','#16C79A','#FF7A1A']},
+    {t:'Chandeliers',d:'Custom hanging statement pieces for weddings and luxe corporate moments.',tag:'The grand gesture',g:['#FFC93C','#FF4D6D','#2BB3FF']},
+    {t:'Self-Install Kits',d:'Our streamer fringe, shipped to your door. Same wow, your own hands.',tag:'Ships nationwide',g:['#FF7A1A','#8A4FFF','#16C79A']},
+  ];
+  const grid=document.getElementById('svcgrid');
+  if(grid){
+    services.forEach(s=>{
+      const card=document.createElement('div');
+      card.className='svc';
+      const fr = s.g.map((c,i)=>`<span style="background:${c}"></span>`).join('').repeat(6);
+      card.innerHTML=`
+        <div class="art" style="background:linear-gradient(135deg,${s.g[0]}22,${s.g[2]}22)">
+          <div class="fr">${fr}</div>
+        </div>
+        <div class="body">
+          <h3>${s.t}</h3>
+          <p>${s.d}</p>
+          <span class="tag">${s.tag}</span>
+        </div>`;
+      grid.appendChild(card);
+    });
+  }
+
+  // ---- burger menu ----
+  const burger=document.getElementById('burger');
+  const links=document.getElementById('navlinks');
+  burger.addEventListener('click',()=>{
+    const open=links.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open);
+  });
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    links.classList.remove('open');burger.setAttribute('aria-expanded','false');
+  }));
+
+  // ---- confetti burst on CTA ----
+  document.getElementById('confettiBtn').addEventListener('click',(e)=>{
+    e.preventDefault();
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const rect=e.target.getBoundingClientRect();
+    const cx=rect.left+rect.width/2, cy=rect.top+rect.height/2;
+    for(let i=0;i<40;i++){
+      const bit=document.createElement('div');
+      bit.className='confetti-bit';
+      bit.style.position='fixed';
+      bit.style.left=cx+'px';bit.style.top=cy+'px';
+      bit.style.width=(6+Math.random()*6)+'px';
+      bit.style.height=(6+Math.random()*10)+'px';
+      bit.style.background=palette[i%palette.length];
+      bit.style.zIndex=999;bit.style.pointerEvents='none';
+      bit.style.borderRadius=Math.random()>.5?'50%':'2px';
+      document.body.appendChild(bit);
+      const ang=Math.random()*Math.PI*2, vel=4+Math.random()*7;
+      let vx=Math.cos(ang)*vel, vy=Math.sin(ang)*vel-6, x=cx,y=cy,rot=0,life=0;
+      (function anim(){
+        life++;vy+=0.32;x+=vx;y+=vy;rot+=8;
+        bit.style.transform=`translate(${x-cx}px,${y-cy}px) rotate(${rot}deg)`;
+        bit.style.opacity=Math.max(0,1-life/70);
+        if(life<70)requestAnimationFrame(anim);else bit.remove();
+      })();
+    }
+  });
+</script>
+</body>
+</html>
